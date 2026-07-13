@@ -147,8 +147,8 @@ export default function OfficerCharts({ schemes, tasks }: OfficerChartsProps) {
                 <Tooltip 
                   cursor={{ fill: '#f1f5f9', opacity: 0.1 }}
                   contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
-                  formatter={(value: number) => [`${value}%`, 'Progress']}
-                  labelFormatter={(label: string, payload: any[]) => payload[0]?.payload?.fullName || label}
+                  formatter={(value: any) => [`${value}%`, 'Progress']}
+                  labelFormatter={(label: any, payload: any) => payload[0]?.payload?.fullName || label}
                 />
                 <Bar dataKey="Progress" fill={COLORS.inProgress} radius={[0, 4, 4, 0]}>
                   {
@@ -196,7 +196,7 @@ export default function OfficerCharts({ schemes, tasks }: OfficerChartsProps) {
                   dataKey="value"
                 />
                 <Legend iconSize={10} width={120} height={140} layout="vertical" verticalAlign="middle" wrapperStyle={{ top: 0, left: 0, lineHeight: '24px', fontSize: '11px' }} />
-                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} formatter={(val: number) => [`${val.toFixed(1)}%`, 'Progress']} />
+                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} formatter={(val: any) => [`${Number(val).toFixed(1)}%`, 'Progress']} />
               </RadialBarChart>
             </ResponsiveContainer>
           </div>

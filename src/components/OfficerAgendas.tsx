@@ -30,10 +30,10 @@ export default function OfficerAgendas({ data }: { data: any[] }) {
         <span className="text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2 py-0.5 rounded-full">{data.length} Items</span>
       </div>
       
-      {Object.entries(groupedData).map(([agenda, groupItems], groupIdx) => {
+      {Object.entries(groupedData).map(([agenda, groupItems]: [string, any], groupIdx) => {
         const isExpanded = expandedGroups[agenda];
         const schemes = groupItems.filter(isScheme);
-        const tasks = groupItems.filter((row) => !isScheme(row));
+        const tasks = groupItems.filter((row: any) => !isScheme(row));
 
         return (
           <div key={groupIdx} className="bg-slate-50 dark:bg-slate-900/30 rounded-2xl border border-slate-200 dark:border-slate-800 mb-6 overflow-hidden">
@@ -56,7 +56,7 @@ export default function OfficerAgendas({ data }: { data: any[] }) {
                 {/* Schemes Grid */}
                 {schemes.length > 0 && (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-4">
-                    {schemes.map((row, idx) => {
+                    {schemes.map((row: any, idx: number) => {
                       const pctRaw = parseFloat(row['Achieved %']);
                       const pct = isNaN(pctRaw) ? 0 : pctRaw;
                       const hasFlag = row['Auto-Flag'] && row['Auto-Flag'].trim() !== '';
@@ -128,7 +128,7 @@ export default function OfficerAgendas({ data }: { data: any[] }) {
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-slate-100 dark:divide-slate-800 bg-white dark:bg-slate-900/50">
-                        {tasks.map((row, idx) => {
+                        {tasks.map((row: any, idx: number) => {
                           const hasFlag = row['Auto-Flag'] && row['Auto-Flag'].trim() !== '';
                           const isCompleted = row['Status']?.toLowerCase() === 'completed';
                           const isPending = row['Status']?.toLowerCase().includes('pending') || row['Status']?.toLowerCase().includes('blocked');

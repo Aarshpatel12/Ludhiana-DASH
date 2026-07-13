@@ -44,7 +44,7 @@ export default function RedFlagsCharts({ flagsData }: RedFlagsChartsProps) {
             <Tooltip 
               cursor={{ fill: '#f1f5f9', opacity: 0.1 }}
               contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
-              formatter={(val: number) => [val, 'Red Flags']}
+              formatter={(val: any) => [val, 'Red Flags']}
             />
             <Bar dataKey="flags" radius={[4, 4, 0, 0]}>
               {chartData.map((entry, index) => (
