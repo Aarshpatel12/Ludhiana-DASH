@@ -1,0 +1,44 @@
+AC (G)   —   Priority Agenda Review   |   DC Ludhiana (MASTER),,,,,,,,,,,,,,,,,
+Sr,Priority Agenda,KPI / Metric,Concerned Officer / Unit,"Target /
+Total","Flag
+Bar","Last
+Value","Current
+Value",Change,"Achieved
+%",Status,Auto-Flag,"Bottom
+Performer",Updated By,"Update
+Date",Remarks / Context / Pending Action,Rule,Key
+▣  SCHEMES  —  metric-based (fed from officer workbook),,,,,,,,,,,,,,,,,
+1.0,Punjab State Trader Commission (PSTC),📊 Total grievances,,,,,233.0,,,,,,,,All grievances received under PSTC across departments.,,
+,,📊 Final resolved,,,,,147.0,,,,,,,,63% of total. Implementation under process: 60; Not-agree: 5; Not-resolvable: 7.,,
+,,MCL — resolved,cases,52.0,41.6,,45.0,,0.8653846154,In Progress,,Auto,Gov Cell (report),05-06-2026,87% done | active 7 | 6 stale — Resolved of total received for this dept; active = open + under-implementation.,MIN,ACG-001
+,,Electricity (PSPCL) — resolved,cases,40.0,32.0,,25.0,,0.625,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,63% done | active 15 | 10 stale — Resolved of total received for this dept; active = open + under-implementation.,MIN,ACG-002
+,,Local Govt — resolved,cases,27.0,21.6,,18.0,,0.6666666667,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,67% done | active 9 | 9 stale — Resolved of total received for this dept; active = open + under-implementation.,MIN,ACG-003
+,,Others — resolved,cases,21.0,16.8,,14.0,,0.6666666667,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,67% done | active 7 | 6 stale — Resolved of total received for this dept; active = open + under-implementation.,MIN,ACG-004
+,,Rural Dev & Panchayat — resolved,cases,17.0,13.6,,4.0,,0.2352941176,Pending/Blocked,🔴 LOW,Auto,Gov Cell (report),05-06-2026,24% done | active 13 | 11 stale — Resolved of total received for this dept; active = open + under-implementation.,MIN,ACG-005
+,,Police — resolved,cases,44.0,35.2,,43.0,,0.9772727273,In Progress,,Auto,Gov Cell (report),05-06-2026,98% done | active 1 | 1 stale — Resolved of total received for this dept; active = open + under-implementation.,MIN,ACG-006
+,,District Food & Supply — resolved,cases,2.0,1.6,,2.0,,1,Completed,,Auto,Gov Cell (report),05-06-2026,100% done | active 0 | 0 stale — Resolved of total received for this dept; active = open + under-implementation.,MIN,ACG-007
+,,PWD — resolved,cases,4.0,3.2,,0.0,,0,Pending/Blocked,🔴 LOW,Auto,Gov Cell (report),05-06-2026,0% done | active 4 | 4 stale — Resolved of total received for this dept; active = open + under-implementation.,MIN,ACG-008
+,,Tax & Excise — resolved,cases,5.0,4.0,,4.0,,0.8,In Progress,,Auto,Gov Cell (report),05-06-2026,80% done | active 1 | 0 stale — Resolved of total received for this dept; active = open + under-implementation.,MIN,ACG-009
+,,Revenue — resolved,cases,0.0,,,0.0,,,Pending/Blocked,,Auto,Gov Cell (report),05-06-2026,0% done | active 0 | 0 stale — Resolved of total received for this dept; active = open + under-implementation.,MIN,ACG-010
+,,Mandi Board — resolved,cases,2.0,1.6,,2.0,,1,Completed,,Auto,Gov Cell (report),05-06-2026,100% done | active 0 | 0 stale — Resolved of total received for this dept; active = open + under-implementation.,MIN,ACG-011
+,,Pollution Control — resolved,cases,1.0,0.8,,1.0,,1,Completed,,Auto,Gov Cell (report),05-06-2026,100% done | active 0 | 0 stale — Resolved of total received for this dept; active = open + under-implementation.,MIN,ACG-012
+,,Total grievances (district),cases,,,,233.0,,,In Progress,,Auto,Gov Cell (report),05-06-2026,Resolved 147; under impl 60; not-agree 5; not-resolvable 7,,ACG-013
+,,% resolved — BDPO Ludhiana-1,%,0.8,0.8,,0.0,,0,Pending/Blocked,🔴 LOW,Auto,Gov Cell (report),05-06-2026,0 of 5 grievances resolved; 5 stale (4+ days no update). Actor to be called for review.,MIN,ACG-014
+,,% resolved — BDPO Payal,%,0.8,0.8,,0.0,,0,Pending/Blocked,🔴 LOW,Auto,Gov Cell (report),05-06-2026,0 of 1 grievances resolved; 1 stale (4+ days no update). Actor to be called for review.,MIN,ACG-015
+,,% resolved — BDPO Khanna,%,0.8,0.8,,0.25,,0.3125,Pending/Blocked,🔴 LOW,Auto,Gov Cell (report),05-06-2026,1 of 4 grievances resolved; 3 stale (4+ days no update). Actor to be called for review.,MIN,ACG-016
+,,% resolved — BDPO Dehlon,%,0.8,0.8,,0.33,,0.4125,Pending/Blocked,🔴 LOW,Auto,Gov Cell (report),05-06-2026,2 of 6 grievances resolved; 2 stale (4+ days no update). Actor to be called for review.,MIN,ACG-017
+,,% resolved — EO Jagraon,%,0.8,0.8,,0.5,,0.625,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,4 of 8 grievances resolved; 3 stale (4+ days no update). Actor to be called for review.,MIN,ACG-018
+,,% resolved — PSPCL XEN Ludhiana Central,%,0.8,0.8,,0.5,,0.625,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,5 of 10 grievances resolved; 4 stale (4+ days no update). Actor to be called for review.,MIN,ACG-019
+2.0,Dormant Accounts & Financial Bills,📊 Total dormant funds to reconcile,,,,,113.5,,,,,,,,"Rs 1.13 Cr across LAC 32L, DC Office 36L, ADC-G 28L, DEO 13L, Tehsil West 4.5L. Welfare Society file with DC.",,
+,,Total dormant funds to reconcile (Rs L),Rs lakh,,,,113.5,,,In Progress,,Auto,Gov Cell (report),05-06-2026,Welfare Society file put up to DC,,ACG-020
+,,LAC — reconciled? (Rs32L),Y/N,,,,,,,In Progress,,Auto,,,Welfare Society creation in progress,,ACG-021
+,,Tehsil West — reconciled? (Rs4.5L),Y/N,,,,,,,In Progress,,Auto,,,Welfare Society creation in progress,,ACG-022
+,,DC Office — reconciled? (Rs36L),Y/N,,,,,,,In Progress,,Auto,,,Welfare Society creation in progress,,ACG-023
+,,ADC G — reconciled? (Rs28L),Y/N,,,,,,,In Progress,,Auto,,,Welfare Society creation in progress,,ACG-024
+,,DEO — reconciled? (Rs13L),Y/N,,,,,,,In Progress,,Auto,,,Welfare Society creation in progress,,ACG-025
+▣  PRIORITY TASKS  —  qualitative / assigned tasks,,,,,,,,,,,,,,,,,
+3.0,Red Cross FD,FDs merged / interest mode,status,,,,,,,On Track,,Auto,,,6 FDs merged to 2; monthly interest from June,,ACG-026
+4.0,YnV Bills — Phase I & II,SAARC Knit & PP mismatch — meeting held? (Y/N),Y/N,,,,,,,In Progress,,Auto,,,Phase 1 complete; Phase 2 mtg 5/6 Jun,,ACG-027
+5.0,Court — Raikot Judicial Complex,Letter to D&S Judge — reply received? (Y/N),Y/N,,,,,,,Pending/Blocked,,Auto,,,Rs7 Cr for judicial infra land,,ACG-028
+6.0,Building Committee,Tree felling (multi-level parking) — application filed? (Y/N),Y/N,,,,,,,In Progress,,Auto,,,147 trees; application filed 17/05,,ACG-029
+7.0,Camera Court Complex — Smart City,Installation % complete,%,1.0,1.0,,,,,In Progress,,Auto,,,Smart City funds status pending,MIN,ACG-030

@@ -1,0 +1,98 @@
+ADC (RD)   —   Priority Agenda Review   |   DC Ludhiana (MASTER),,,,,,,,,,,,,,,,,
+Sr,Priority Agenda,KPI / Metric,Concerned Officer / Unit,"Target /
+Total","Flag
+Bar","Last
+Value","Current
+Value",Change,"Achieved
+%",Status,Auto-Flag,"Bottom
+Performer",Updated By,"Update
+Date",Remarks / Context / Pending Action,Rule,Key
+▣  SCHEMES  —  metric-based (fed from officer workbook),,,,,,,,,,,,,,,,,
+1.0,Mavan Dhiyan Satikar Yojana (MMMDSY),📊 Mahila Satkar Sakhis registered,,,,,14548.0,,,,,,,,"of 25,556 target (56.92%, was 55.29%). Remaining 11,008.",,
+,,📊 Anganwadi readiness,,,,,Paint 72.8% | Furniture 100%,,,,,,,,"Paintwork 1,810/2,487; chairs/tables/printing 100%. Nodals: BDPO 6/12, MCL 2/14.",,
+,,Mahila Satkar Sakhis — registered,sakhis,25556.0,20445.0,14107.0,14548.0,441,0.569259665,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,"Remaining 11,008 | 56.92% (was 55.29%)",MIN,ADCRD-001
+,,Anganwadi Centres — paintwork done,centres,2487.0,2238.0,1776.0,1810.0,34,0.7277844793,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,Remaining 677 | 72.77% (was 71.4%),MIN,ADCRD-002
+,,Anganwadi Centres — chairs supplied,centres,2487.0,2487.0,2487.0,2487.0,0,1,Completed,,Auto,Gov Cell (report),05-06-2026,100%,MIN,ADCRD-003
+,,Anganwadi Centres — tables supplied,centres,2487.0,2487.0,2487.0,2487.0,0,1,Completed,,Auto,Gov Cell (report),05-06-2026,100%,MIN,ADCRD-004
+,,Anganwadi Centres — printing material,centres,2487.0,2487.0,2487.0,2487.0,0,1,Completed,,Auto,Gov Cell (report),05-06-2026,100%,MIN,ADCRD-005
+,,BDPO Nodals appointed,nodals,12.0,12.0,0.0,6.0,6,0.5,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,50% (was 0%),MIN,ADCRD-006
+,,MCL Nodals appointed,nodals,14.0,14.0,2.0,2.0,0,0.1428571429,Pending/Blocked,🔴 LOW,Auto,Gov Cell (report),05-06-2026,14.2% — stalled,MIN,ADCRD-007
+2.0,Rangla Punjab — Phase I,📊 Total works proposed,,,,,433.0,,,,,,,,"District total, Phase I. Sanctioned amount Rs 34.99 Cr.",,
+,,📊 Works started,,,,,431.0,,,,,,,,431 of 433 started (Total − Not started).,,
+,,📊 Works in progress,,,,,326.0,,,,,,,,Currently under execution.,,
+,,📊 Works completed,,,,,105.0,,,,,,,,Physically complete.,,
+,,📊 Works NOT started,,,,,2.0,,,,,,,,DD Animal Husbandry (1) + XEN Prov. Divn B&R (1).,,
+,,Phase I — works completed (district),works,433.0,433.0,,105.0,,0.2424942263,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,326 in progress; 2 not started,MIN,ADCRD-008
+,,P-I completed — BDPO Doraha,works,34.0,1.0,,29.0,,0.8529411765,In Progress,,Auto,Gov Cell (report),05-06-2026,of 34 proposed — Phase-I works physically completed by this agency of its proposed total.,MIN,ADCRD-009
+,,P-I completed — BDPO Jagraon,works,42.0,1.0,,4.0,,0.09523809524,In Progress,,Auto,Gov Cell (report),05-06-2026,of 42 proposed — Phase-I works physically completed by this agency of its proposed total.,MIN,ADCRD-010
+,,P-I completed — BDPO Khanna,works,26.0,1.0,,0.0,,0,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,of 26 proposed — Phase-I works physically completed by this agency of its proposed total.,MIN,ADCRD-011
+,,P-I completed — BDPO Ludhiana One,works,76.0,1.0,,0.0,,0,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,of 76 proposed — Phase-I works physically completed by this agency of its proposed total.,MIN,ADCRD-012
+,,P-I completed — BDPO Ludhiana Two,works,48.0,1.0,,1.0,,0.02083333333,In Progress,,Auto,Gov Cell (report),05-06-2026,of 48 proposed — Phase-I works physically completed by this agency of its proposed total.,MIN,ADCRD-013
+,,P-I completed — BDPO Maloud,works,33.0,1.0,,19.0,,0.5757575758,In Progress,,Auto,Gov Cell (report),05-06-2026,of 33 proposed — Phase-I works physically completed by this agency of its proposed total.,MIN,ADCRD-014
+,,P-I completed — BDPO Raikot,works,21.0,1.0,,21.0,,1,In Progress,,Auto,Gov Cell (report),05-06-2026,of 21 proposed — Phase-I works physically completed by this agency of its proposed total.,MIN,ADCRD-015
+,,P-I completed — BDPO Samrala,works,34.0,1.0,,17.0,,0.5,In Progress,,Auto,Gov Cell (report),05-06-2026,of 34 proposed — Phase-I works physically completed by this agency of its proposed total.,MIN,ADCRD-016
+,,P-I completed — BDPO Sidhwan Bet,works,24.0,1.0,,10.0,,0.4166666667,In Progress,,Auto,Gov Cell (report),05-06-2026,of 24 proposed — Phase-I works physically completed by this agency of its proposed total.,MIN,ADCRD-017
+,,P-I completed — BDPO Sudhar,works,27.0,1.0,,0.0,,0,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,of 27 proposed — Phase-I works physically completed by this agency of its proposed total.,MIN,ADCRD-018
+,,P-I completed — BDPO Pakhowal,works,13.0,1.0,,1.0,,0.07692307692,In Progress,,Auto,Gov Cell (report),05-06-2026,of 13 proposed — Phase-I works physically completed by this agency of its proposed total.,MIN,ADCRD-019
+,,P-I completed — MCL,works,39.0,1.0,,0.0,,0,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,of 39 proposed — Phase-I works physically completed by this agency of its proposed total.,MIN,ADCRD-020
+3.0,Rangla Punjab — Phase II,📊 Total works proposed,,,,,400.0,,,,,,,,"District total, Phase II. Sanctioned amount Rs 31.79 Cr.",,
+,,📊 Works started,,,,,90.0,,,,,,,,90 of 400 started (Total − Not started).,,
+,,📊 Works in progress,,,,,79.0,,,,,,,,Currently under execution.,,
+,,📊 Works completed,,,,,11.0,,,,,,,,Physically complete.,,
+,,📊 Works NOT started,,,,,310.0,,,,,,,,"All to begin by 5 June. Largest: MCL 73, Jagraon 43, Dehlon 30, Khanna 28.",,
+,,Phase II — works completed (district),works,400.0,400.0,,11.0,,0.0275,Pending/Blocked,🔴 LOW,Auto,Gov Cell (report),05-06-2026,79 in progress; 310 NOT started,MIN,ADCRD-021
+,,Phase II — works NOT started (district),works,0.0,0.0,,310.0,,,Pending/Blocked,🔴 HIGH,Auto,Gov Cell (report),05-06-2026,To start by 5 Jun,MAX,ADCRD-022
+,,P-II not started — MCL,works,0.0,20.0,,73.0,,,Pending/Blocked,🔴 HIGH,Auto,Gov Cell (report),05-06-2026,of 73 proposed — Phase-II works not yet started by this agency of its proposed total.,MAX,ADCRD-023
+,,P-II not started — BDPO Jagraon,works,0.0,20.0,,43.0,,,Pending/Blocked,🔴 HIGH,Auto,Gov Cell (report),05-06-2026,of 44 proposed — Phase-II works not yet started by this agency of its proposed total.,MAX,ADCRD-024
+,,P-II not started — BDPO Khanna,works,0.0,20.0,,28.0,,,Pending/Blocked,🔴 HIGH,Auto,Gov Cell (report),05-06-2026,of 28 proposed — Phase-II works not yet started by this agency of its proposed total.,MAX,ADCRD-025
+,,P-II not started — BDPO Dehlon,works,0.0,20.0,,30.0,,,Pending/Blocked,🔴 HIGH,Auto,Gov Cell (report),05-06-2026,of 30 proposed — Phase-II works not yet started by this agency of its proposed total.,MAX,ADCRD-026
+,,P-II not started — BDPO Ludhiana One,works,0.0,20.0,,21.0,,,Pending/Blocked,🔴 HIGH,Auto,Gov Cell (report),05-06-2026,of 21 proposed — Phase-II works not yet started by this agency of its proposed total.,MAX,ADCRD-027
+,,P-II not started — BDPO Doraha,works,0.0,20.0,,19.0,,,Pending/Blocked,,Auto,Gov Cell (report),05-06-2026,of 43 proposed — Phase-II works not yet started by this agency of its proposed total.,MAX,ADCRD-028
+,,P-II not started — BDPO Samrala,works,0.0,20.0,,19.0,,,Pending/Blocked,,Auto,Gov Cell (report),05-06-2026,of 19 proposed — Phase-II works not yet started by this agency of its proposed total.,MAX,ADCRD-029
+,,P-II not started — BDPO Maloud,works,0.0,20.0,,16.0,,,Pending/Blocked,,Auto,Gov Cell (report),05-06-2026,of 19 proposed — Phase-II works not yet started by this agency of its proposed total.,MAX,ADCRD-030
+,,P-II not started — BDPO Ludhiana Two,works,0.0,20.0,,47.0,,,Pending/Blocked,🔴 HIGH,Auto,Gov Cell (report),05-06-2026,of 48 proposed — Phase-II works not yet started by this agency of its proposed total.,MAX,ADCRD-031
+,,P-II not started — BDPO Machhiwara,works,0.0,20.0,,4.0,,,Pending/Blocked,,Auto,Gov Cell (report),05-06-2026,of 33 proposed — Phase-II works not yet started by this agency of its proposed total.,MAX,ADCRD-032
+,,P-II not started — EONC Khanna,works,0.0,20.0,,3.0,,,Pending/Blocked,,Auto,Gov Cell (report),05-06-2026,of 3 proposed — Phase-II works not yet started by this agency of its proposed total.,MAX,ADCRD-033
+,,P-II not started — EONC Raikot,works,0.0,20.0,,6.0,,,Pending/Blocked,,Auto,Gov Cell (report),05-06-2026,of 7 proposed — Phase-II works not yet started by this agency of its proposed total.,MAX,ADCRD-034
+4.0,Mission Chardi Kalan,📊 Schools,,,,,9 proj | tender 9 | started 9 | done 0,,,,,,,,Civil structure almost complete; UC & post-work photos pending from DEO.,,
+,,📊 Hospitals,,,,,6 proj | tender 4 | started 0 | done 0,,,,,,,,2 tenders pending; 2 file-approved on portal; 2 estimates pending from XEN. PWD Kanech tender pending.,,
+,,Schools — tender done,proj,9.0,9.0,,9.0,,1,In Progress,,Auto,Gov Cell (report),05-06-2026,9 projects; work started 9,MIN,ADCRD-035
+,,Schools — work completed,proj,9.0,9.0,,0.0,,0,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,UC submitted 0; civil almost done,MIN,ADCRD-036
+,,Hospitals — tender done,proj,6.0,6.0,,4.0,,0.6666666667,Pending/Blocked,🔴 LOW,Auto,Gov Cell (report),05-06-2026,6 projects,MIN,ADCRD-037
+,,Hospitals — work started,proj,6.0,6.0,,0.0,,0,Pending/Blocked,🔴 LOW,Auto,Gov Cell (report),05-06-2026,PWD Kanech tender pending,MIN,ADCRD-038
+5.0,Meri Yogyata Meri Pehchan,Applications received,apps,,,,1544.0,,,Not Started,,Auto,Gov Cell (report),05-06-2026,291 name boards ready for installation,,ADCRD-040
+,,Installations done,no.,1544.0,772.0,,291.0,,0.1884715026,Not Started,🔴 LOW,Auto,Gov Cell (report),05-06-2026,Pilot village planned; Rs8L budget,MIN,ADCRD-041
+6.0,Dengue & Vector Borne Disease,📊 Houses visited (district),,,,,34565.0,,,,,,,,"Containers checked 66,456 | Positive 13 | Breeding-in-houses 11 | Challans 15 | Camps 206.",,
+,,Houses visited (district),houses,,,,34565.0,,,In Progress,,Auto,Gov Cell (report),05-06-2026,Block-wise survey,,ADCRD-042
+,,Containers checked,no.,,,,66456.0,,,In Progress,,Auto,Gov Cell (report),05-06-2026,,,ADCRD-043
+,,Positive containers,no.,0.0,0.0,,13.0,,,In Progress,🔴 HIGH,Auto,Gov Cell (report),05-06-2026,,MAX,ADCRD-044
+,,Breeding found in houses,cases,0.0,0.0,,11.0,,,In Progress,🔴 HIGH,Auto,Gov Cell (report),05-06-2026,,MAX,ADCRD-045
+,,Challans issued (health),no.,,,,15.0,,,In Progress,,Auto,Gov Cell (report),05-06-2026,,,ADCRD-046
+,,Camps organised,no.,,,,206.0,,,In Progress,,Auto,Gov Cell (report),05-06-2026,,,ADCRD-047
+,,Block: Raikot — houses visited,houses,500.0,200.0,,0.0,,0,Pending/Blocked,🔴 LOW,Auto,Gov Cell (report),05-06-2026,Zero activity — flag,MIN,ADCRD-048
+,,Block: Khanna — houses visited,houses,500.0,200.0,,256.0,,0.512,In Progress,,Auto,Gov Cell (report),05-06-2026,,MIN,ADCRD-049
+,,Block: Dehlon — houses visited,houses,500.0,200.0,,314.0,,0.628,In Progress,,Auto,Gov Cell (report),05-06-2026,,MIN,ADCRD-050
+,,Medicine stock adequate? (Y/N),Y/N,,,,,,,On Track,,Auto,,,SDP kit demand raised to Director MOHFW,,ADCRD-051
+7.0,"Parks, Playgrounds & Anganwadis",Anganwadi Centres — completed,centres,87.0,87.0,,87.0,,1,Completed,,Auto,Gov Cell (report),05-06-2026,100%,MIN,ADCRD-052
+,,Playgrounds Phase 2 — ready for inauguration,grounds,,,,12.0,,,On Track,,Auto,Gov Cell (report),05-06-2026,Phase-1: 8 handed over 04.05,,ADCRD-053
+,,Parks Phase 2 (of 100) initiated? (Y/N),Y/N,,,,,,,In Progress,,Auto,,,JC Vineet Rs5 Cr proposal,,ADCRD-054
+8.0,Socio-Economic Drug Census,📊 Survey completed (district),,,,,72079.0,,,,,,,,"of 7,31,750 target (9.9%). Active supervisors 137; enumerators 998.",,
+,,Survey — completed (district),houses,731750.0,73175.0,,72079.0,,0.0985022207,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,9.9% | active supervisors 137; enumerators 998,MIN,ADCRD-057
+,,Survey completed — Jagraon,houses,48500.0,4850.0,,3417.0,,0.07045360825,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,"7.0% of 48,500 — Drug-census houses surveyed of this assembly's target.",MIN,ADCRD-058
+,,Survey completed — Dakha,houses,54250.0,5425.0,,12345.0,,0.2275576037,In Progress,,Auto,Gov Cell (report),05-06-2026,"22.8% of 54,250 — Drug-census houses surveyed of this assembly's target.",MIN,ADCRD-059
+,,Survey completed — Raikot,houses,47000.0,4700.0,,11686.0,,0.2486382979,In Progress,,Auto,Gov Cell (report),05-06-2026,"24.9% of 47,000 — Drug-census houses surveyed of this assembly's target.",MIN,ADCRD-060
+,,Survey completed — Gill,houses,74500.0,7450.0,,13633.0,,0.1829932886,In Progress,,Auto,Gov Cell (report),05-06-2026,"18.3% of 74,500 — Drug-census houses surveyed of this assembly's target.",MIN,ADCRD-061
+,,Survey completed — Ldh-East,houses,55500.0,5550.0,,708.0,,0.01275675676,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,"1.3% of 55,500 — Drug-census houses surveyed of this assembly's target.",MIN,ADCRD-062
+,,Survey completed — Sahnewal,houses,69750.0,6975.0,,2425.0,,0.03476702509,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,"3.5% of 69,750 — Drug-census houses surveyed of this assembly's target.",MIN,ADCRD-063
+,,Survey completed — Samrala,houses,54500.0,5450.0,,4706.0,,0.08634862385,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,"8.6% of 54,500 — Drug-census houses surveyed of this assembly's target.",MIN,ADCRD-064
+,,Survey completed — Khanna,houses,48000.0,4800.0,,4405.0,,0.09177083333,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,"9.2% of 48,000 — Drug-census houses surveyed of this assembly's target.",MIN,ADCRD-065
+,,Survey completed — Payal,houses,51750.0,5175.0,,13952.0,,0.2696038647,In Progress,,Auto,Gov Cell (report),05-06-2026,"27.0% of 51,750 — Drug-census houses surveyed of this assembly's target.",MIN,ADCRD-066
+,,Survey completed — Ldh-South,houses,43500.0,4350.0,,199.0,,0.004574712644,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,"0.5% of 43,500 — Drug-census houses surveyed of this assembly's target.",MIN,ADCRD-067
+,,Survey completed — Ldh-Central,houses,44500.0,4450.0,,465.0,,0.0104494382,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,"1.0% of 44,500 — Drug-census houses surveyed of this assembly's target.",MIN,ADCRD-068
+,,Survey completed — Ldh-West,houses,48000.0,4800.0,,288.0,,0.006,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,"0.6% of 48,000 — Drug-census houses surveyed of this assembly's target.",MIN,ADCRD-069
+,,Survey completed — Ldh-North,houses,50250.0,5025.0,,164.0,,0.003263681592,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,"0.3% of 50,250 — Drug-census houses surveyed of this assembly's target.",MIN,ADCRD-070
+,,Survey completed — Atam Nagar,houses,41750.0,4175.0,,3686.0,,0.08828742515,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,"8.8% of 41,750 — Drug-census houses surveyed of this assembly's target.",MIN,ADCRD-071
+▣  PRIORITY TASKS  —  qualitative / assigned tasks,,,,,,,,,,,,,,,,,
+9.0,Punjab Nirman,Status update / UCs from BDPOs,status,,,,,,,In Progress,,Auto,,,Pending,,ADCRD-039
+10.0,Dhanasu / Gow Shala,Dhanasu — amount released (of Rs18L),Rs lakh,18.0,18.0,,10.0,,0.5555555556,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,Rs2.74L sanctioned further,MIN,ADCRD-055
+,,Gow Shala Mar-26 payment (Rs15.47L) released? (Y/N),Y/N,,,,,,,Pending/Blocked,,Auto,,,To be released by MCL,,ADCRD-056

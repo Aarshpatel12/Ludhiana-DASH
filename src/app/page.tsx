@@ -1,65 +1,184 @@
-import Image from "next/image";
+import { fetchMasterDashboard } from '@/lib/dataFetcher';
+import Link from 'next/link';
+import MasterCharts from '@/components/MasterCharts';
 
-export default function Home() {
+export default async function Home() {
+  const { data, metadata } = await fetchMasterDashboard();
+
+  let totalItems = 0;
+  let completed = 0;
+  let inProgress = 0;
+  let atRisk = 0;
+  let redFlags = 0;
+
+  data.forEach((row) => {
+    totalItems += parseInt(row['Total KPIs']) || 0;
+    completed += parseInt(row['Completed']) || 0;
+    inProgress += parseInt(row['In Progress']) || parseInt(row['On Track']) || 0;
+    atRisk += parseInt(row['Pending/Blocked']) || 0;
+    redFlags += parseInt(row['Flags']) || 0;
+  });
+
+  const percentDone = totalItems > 0 ? ((completed / totalItems) * 100).toFixed(1) : '0.0';
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="max-w-6xl mx-auto space-y-6 pb-12 transition-colors">
+      <div className="flex flex-col gap-2">
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">{metadata.title || 'Executive Overview'}</h1>
+        <p className="text-sm text-slate-500 dark:text-slate-400">
+          {metadata.subtitle || `District priority agenda roll-up across ${data.length} officers · ${totalItems} tracked items`}
+        </p>
+        {metadata.thresholdInfo && (
+          <div className="inline-block bg-slate-100 dark:bg-slate-800 text-xs text-slate-600 dark:text-slate-300 px-3 py-1.5 rounded-md font-medium border border-slate-200 dark:border-slate-700 max-w-fit">
+            <span className="mr-1">⚙</span> {metadata.thresholdInfo}
+          </div>
+        )}
+      </div>
+
+      {/* KPI Cards */}
+      <div className="grid grid-cols-5 gap-4">
+        <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm transition-colors">
+          <div className="text-xs font-bold text-slate-500 dark:text-slate-400 tracking-wider mb-2 uppercase">Total Items</div>
+          <div className="text-4xl font-black text-slate-900 dark:text-slate-100 mb-1">{totalItems}</div>
+          <div className="text-sm text-slate-500 dark:text-slate-400">across {data.length} officers</div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        
+        <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm transition-colors">
+          <div className="text-xs font-bold text-slate-500 dark:text-slate-400 tracking-wider mb-2 uppercase">Completed</div>
+          <div className="text-4xl font-black text-emerald-600 dark:text-emerald-400 mb-1">{completed}</div>
+          <div className="text-sm text-slate-500 dark:text-slate-400">{percentDone}% done</div>
         </div>
-      </main>
+        
+        <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm transition-colors">
+          <div className="text-xs font-bold text-slate-500 dark:text-slate-400 tracking-wider mb-2 uppercase">In Progress</div>
+          <div className="text-4xl font-black text-blue-600 dark:text-blue-400 mb-1">{inProgress}</div>
+          <div className="text-sm text-slate-500 dark:text-slate-400">marked on-track</div>
+        </div>
+
+        <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm transition-colors">
+          <div className="text-xs font-bold text-slate-500 dark:text-slate-400 tracking-wider mb-2 uppercase">At Risk</div>
+          <div className="text-4xl font-black text-amber-500 dark:text-amber-400 mb-1">{atRisk}</div>
+          <div className="text-sm text-slate-500 dark:text-slate-400">low progress / stale</div>
+        </div>
+
+        <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm border-t-4 border-t-red-500 dark:border-t-red-500 transition-colors">
+          <div className="flex items-center gap-1.5 text-xs font-bold text-slate-800 dark:text-slate-200 tracking-wider mb-2 uppercase">
+            <span className="w-2 h-2 rounded-full bg-red-500"></span>
+            Red Flags
+          </div>
+          <div className="text-4xl font-black text-red-600 dark:text-red-400 mb-1">{redFlags}</div>
+          <div className="text-sm text-slate-500 dark:text-slate-400">pending / blocked / below bar</div>
+        </div>
+      </div>
+
+      {/* Legend */}
+      <div className="flex gap-6 text-sm text-slate-600 dark:text-slate-300 font-medium transition-colors">
+        <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-emerald-500"></span> On Track / Completed</div>
+        <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-blue-500"></span> In Progress</div>
+        <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-slate-400"></span> Not Started</div>
+        <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-amber-500"></span> At Risk (low %, stagnant, or no update {'>'}7d)</div>
+        <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-red-500"></span> Critical (auto-flag / pending / blocked)</div>
+      </div>
+
+      {/* District Analytics */}
+      <MasterCharts 
+        completed={completed} 
+        inProgress={inProgress} 
+        atRisk={atRisk} 
+        officerData={data} 
+      />
+
+      {/* Leaderboard */}
+      <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden transition-colors">
+        <div className="px-6 py-4 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-slate-50/50 dark:bg-slate-800/30">
+          <div>
+            <h2 className="font-bold text-slate-900 dark:text-slate-100">Officer Leaderboard</h2>
+            <p className="text-xs text-slate-500 dark:text-slate-400">click an officer for the full drill-down</p>
+          </div>
+        </div>
+        
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-100 dark:border-slate-800 text-left text-xs font-bold text-slate-500 dark:text-slate-400 tracking-wider">
+              <th className="px-6 py-3 font-semibold uppercase">Officer</th>
+              <th className="px-6 py-3 font-semibold uppercase text-right">Items</th>
+              <th className="px-6 py-3 font-semibold uppercase min-w-[150px]">% Done</th>
+              <th className="px-6 py-3 font-semibold uppercase">Status Mix</th>
+              <th className="px-6 py-3 font-semibold uppercase text-center"><span className="inline-block w-2 h-2 rounded-full bg-amber-400 mr-1"></span>At Risk</th>
+              <th className="px-6 py-3 font-semibold uppercase text-center"><span className="inline-block w-2 h-2 rounded-full bg-red-500 mr-1"></span>Flags ↓</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+            {data.sort((a, b) => (parseInt(b['Flags']) || 0) - (parseInt(a['Flags']) || 0)).map((row, idx) => {
+              const kpis = parseInt(row['Total KPIs']) || 0;
+              const comp = parseInt(row['Completed']) || 0;
+              const inProg = parseInt(row['In Progress']) || parseInt(row['On Track']) || 0;
+              const notStart = parseInt(row['Not Started']) || 0;
+              const pend = parseInt(row['Pending/Blocked']) || 0;
+              const flags = parseInt(row['Flags']) || 0;
+              const bottomPerf = row['Bottom Performer'] || '0';
+              
+              const pct = kpis > 0 ? ((comp / kpis) * 100).toFixed(1) : '0.0';
+              
+              return (
+                <tr key={idx} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-colors group">
+                  <td className="px-6 py-4 font-bold text-slate-900 dark:text-slate-100">
+                    <Link href={`/officer/${encodeURIComponent(row['Officer / Tab'])}`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors block">
+                      {row['Officer / Tab']}
+                    </Link>
+                  </td>
+                  <td className="px-6 py-4 text-right font-medium text-slate-700 dark:text-slate-300">{kpis}</td>
+                  <td className="px-6 py-4">
+                    <div className="flex flex-col gap-1.5">
+                      <div className="flex items-center justify-between text-xs font-semibold text-slate-600 dark:text-slate-300">
+                        <span>{pct}%</span>
+                        <span className="text-slate-400 dark:text-slate-500 font-normal">({comp}/{kpis})</span>
+                      </div>
+                      <div className="h-1.5 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                        <div className="h-full bg-blue-500 rounded-full" style={{ width: `${pct}%` }}></div>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4">
+                    <div className="flex items-center gap-1.5 text-xs font-bold flex-wrap">
+                      {comp > 0 && (
+                        <span className="flex items-center gap-1 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 px-2 py-0.5 rounded-full border border-emerald-100 dark:border-emerald-800">
+                          {comp} <span className="text-[10px]">✓</span>
+                        </span>
+                      )}
+                      {inProg > 0 && (
+                        <span className="flex items-center gap-1 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 px-2 py-0.5 rounded-full border border-blue-100 dark:border-blue-800">
+                          {inProg} <span className="text-[10px]">•••</span>
+                        </span>
+                      )}
+                      {notStart > 0 && (
+                        <span className="flex items-center gap-1 bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-400 px-2 py-0.5 rounded-full border border-slate-200 dark:border-slate-700">
+                          {notStart} <span className="text-[10px]">○</span>
+                        </span>
+                      )}
+                      {pend > 0 && (
+                        <span className="flex items-center gap-1 bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-400 px-2 py-0.5 rounded-full border border-red-100 dark:border-red-800">
+                          {pend} <span className="text-[10px]">✋</span>
+                        </span>
+                      )}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="inline-block bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-400 font-bold px-2.5 py-1 rounded-md min-w-[32px]">
+                      {bottomPerf}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <span className="inline-block bg-red-50 dark:bg-red-900/40 text-red-600 dark:text-red-400 font-bold px-2.5 py-1 rounded-md min-w-[32px]">
+                      {flags}
+                    </span>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

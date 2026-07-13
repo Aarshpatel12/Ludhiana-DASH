@@ -1,0 +1,28 @@
+,DATA CONNECTIONS — linking officer workbooks into this master (Google Sheets),
+,,
+,How it works,Each officer keeps their own Google Sheet workbook. That workbook has a tab called 'MASTER FEED' listing every KPI with a unique Key + live Current / Status / Auto-Flag. This master pulls those values by Key using IMPORTRANGE + VLOOKUP.
+,One-time setup,"1) Upload each officer workbook to Google Drive and open as a Google Sheet.  2) Copy its URL.  3) In the formulas below, replace <OFFICER_URL> with that URL.  4) Paste the formula into the officer's tab here, in the Current Value (H), Status (K) and Auto-Flag (L) columns of each SCHEME/TASK row.  5) The first time, click the cell → 'Allow access' to authorise the link."
+,Key column,"Every row in this master carries a hidden Key in column R (e.g. ADCG-001). The officer workbook's MASTER FEED uses the same Keys, so values match even if rows are reordered."
+,,
+,FORMULA TEMPLATES (paste into the matching column cell of each scheme/task row),
+,Current Value (col H),
+,Status (col K),
+,Auto-Flag (col L),
+,Remarks (col P),
+,,
+,OFFICER WORKBOOKS,
+,ADC (G),Key prefix: ADCG-***   |   workbook: ✓ built   |   paste its URL into the templates above for this officer's tab.
+,ADC (RD),Key prefix: ADCRD-***   |   workbook: ✓ built   |   paste its URL into the templates above for this officer's tab.
+,ADC (UD),Key prefix: ADCUD-***   |   workbook: ✓ built   |   paste its URL into the templates above for this officer's tab.
+,ADC (J),Key prefix: ADCJ-***   |   workbook: ✓ built   |   paste its URL into the templates above for this officer's tab.
+,ADC (K),Key prefix: ADCK-***   |   workbook: ✓ built   |   paste its URL into the templates above for this officer's tab.
+,CMFO,Key prefix: CMFO-***   |   workbook: ✓ built   |   paste its URL into the templates above for this officer's tab.
+,AC (G),Key prefix: ACG-***   |   workbook: ✓ built   |   paste its URL into the templates above for this officer's tab.
+,DRO,Key prefix: DRO-***   |   workbook: ✓ built   |   paste its URL into the templates above for this officer's tab.
+,SDM Samrala,Key prefix: SAMR-***   |   workbook: ✓ built   |   paste its URL into the templates above for this officer's tab.
+,SDM Jagraon,Key prefix: JAGR-***   |   workbook: ✓ built   |   paste its URL into the templates above for this officer's tab.
+,SDM Payal,Key prefix: PAYL-***   |   workbook: ✓ built   |   paste its URL into the templates above for this officer's tab.
+,SDM East,Key prefix: EAST-***   |   workbook: ✓ built   |   paste its URL into the templates above for this officer's tab.
+,SDM West,Key prefix: WEST-***   |   workbook: ✓ built   |   paste its URL into the templates above for this officer's tab.
+,SDM Raikot,Key prefix: RAIK-***   |   workbook: ✓ built   |   paste its URL into the templates above for this officer's tab.
+,RTA,Key prefix: RTA-***   |   workbook: ✓ built   |   paste its URL into the templates above for this officer's tab.

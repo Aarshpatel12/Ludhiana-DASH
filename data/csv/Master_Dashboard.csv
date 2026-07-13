@@ -1,0 +1,28 @@
+,"MASTER DASHBOARD — DISTRICT PRIORITY AGENDA REVIEW, LUDHIANA",,,,,,,,
+,Auto roll-up | Data as on 05-06-2026 | Cadence: every 3–4 days / before each weekly review,,,,,,,,
+,⚙ Auto-Flag Threshold (× Flag-Bar for achievement rules):,,,,,,,,
+,1.0,1.00 = flag anyone below the Flag-Bar; lower (e.g. 0.90) for stricter.,,,,,,,
+,,,,,,,,,
+#,Officer / Tab,Total KPIs,Completed,On Track,In Progress,Pending/Blocked,Not Started,% Done,🔴 Flags
+1.0,ADC (G),111,1,10,82,18,0,0.0990990991,54
+2.0,ADC (RD),71,4,2,44,19,2,0.08450704225,36
+3.0,ADC (UD),9,0,0,6,3,0,0,2
+4.0,ADC (J),12,1,0,5,6,0,0.08333333333,3
+5.0,ADC (K),10,0,0,6,4,0,0,5
+6.0,CMFO,39,0,0,13,26,0,0,20
+7.0,AC (G),30,3,1,18,8,0,0.1333333333,11
+8.0,DRO,18,0,0,13,5,0,0,5
+9.0,SDM Samrala,6,0,0,1,5,0,0,2
+10.0,SDM Jagraon,6,0,0,2,4,0,0,1
+11.0,SDM Payal,6,0,0,5,1,0,0,1
+12.0,SDM East,9,0,0,3,6,0,0,0
+13.0,SDM West,10,0,0,5,5,0,0,3
+14.0,SDM Raikot,7,1,0,4,2,0,0.1428571429,1
+15.0,RTA,5,0,0,5,0,0,0,0
+,DISTRICT TOTAL,349,10,13,212,112,2,0.0659025788,144
+,,,,,,,,,
+,WEEKLY MEETING FOCUS,,,,,,,,
+,"• Each officer tab shows SCHEMES (metrics) first, then PRIORITY TASKS — take highest 🔴 Flags + Pending first.",,,,,,,,
+,• Each scheme opens with a 📊 SNAPSHOT band of headline totals.,,,,,,,,
+,• Filter any tab's 'Auto-Flag' for 🔴 to list that officer's at-risk items.,,,,,,,,
+,• Connect officer workbooks via the 'Data Connections' tab to make figures auto-refresh.,,,,,,,,

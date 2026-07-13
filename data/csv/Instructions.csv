@@ -1,0 +1,12 @@
+,"OFFICE OF THE DEPUTY COMMISSIONER-CUM-DISTRICT MAGISTRATE, LUDHIANA",
+,MASTER PRIORITY AGENDA — REVIEW & TRACKING (DC consolidated),
+,,
+,Purpose,DC's consolidated view of all priority agendas. Data is fed up from each officer's own workbook (see 'Data Connections' tab). The DC runs the weekly review from here + the Master Dashboard.
+,Two-tier design,Each officer maintains their OWN workbook (one tab per scheme + a Priority Tasks tab). Those cells link into this master via IMPORTRANGE. Update once in the officer workbook → flows up here.
+,,
+,Each officer tab is split,"▣ SCHEMES (metric-based) — quantitative agendas with targets, shown FIRST under a blue banner.  ▣ PRIORITY TASKS (qualitative) — assigned tasks, shown BELOW under a gold banner."
+,,
+,📊 SNAPSHOT band,Each scheme opens with light-blue bold headline totals (e.g. Rangla P-I: Total/Started/In Progress/Completed/Not Started).
+,Auto bottom-performer flag,🔴 LOW (below Flag-Bar) / 🔴 HIGH (above pendency ceiling). Threshold on Master Dashboard B4. Manual override via 'Bottom Performer' column (Auto/Yes/No).
+,Linking,"Until officer workbook URLs are pasted (Data Connections tab), the figures here are the 04–05 Jun headline values. After linking, Current/Status/Flag auto-refresh from each officer workbook."
+,MLA Works,MLA constituency works remain in the separate linked MLA Works List sheet (unchanged).

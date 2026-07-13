@@ -1,0 +1,30 @@
+DRO   —   Priority Agenda Review   |   DC Ludhiana (MASTER),,,,,,,,,,,,,,,,,
+Sr,Priority Agenda,KPI / Metric,Concerned Officer / Unit,"Target /
+Total","Flag
+Bar","Last
+Value","Current
+Value",Change,"Achieved
+%",Status,Auto-Flag,"Bottom
+Performer",Updated By,"Update
+Date",Remarks / Context / Pending Action,Rule,Key
+▣  SCHEMES  —  metric-based (fed from officer workbook),,,,,,,,,,,,,,,,,
+1.0,Svamitva — Abadi Deh (Urban Property Cards),Map-1 estates being finalised,estates,,,,3.0,,,In Progress,,Auto,Gov Cell (report),05-06-2026,"Haibowal Kalan, Jawaddi Khurd, Ayali Khurd",,DRO-001
+,,Map-2 awaited from SOI,estates,0.0,0.0,,4.0,,,Pending/Blocked,🔴 HIGH,Auto,Gov Cell (report),05-06-2026,"Dugri, Rajpura, Barewal Awana, Sunet",MAX,DRO-002
+,,Ground Truthing sent to SOI,estates,,,,8.0,,,In Progress,,Auto,Gov Cell (report),05-06-2026,,,DRO-003
+,,Ground Truthing PENDING,estates,0.0,0.0,,5.0,,,Pending/Blocked,🔴 HIGH,Auto,Gov Cell (report),05-06-2026,"Dhandari Kalan, Noorwala, Kulewal, Jamalpur Awana, Ludhiana City",MAX,DRO-004
+,,Estates with No Laal Lakir,estates,,,,3.0,,,In Progress,,Auto,Gov Cell (report),05-06-2026,"Karabara, Mahal Bhagat, Phamra",,DRO-005
+2.0,Svamitva — Rural Ground Truthing Pendency,📊 Tehsils with NO change ~1.5 months,,,,,4.0,,,,,,,,"Ludhiana Central, Dehlon, Mullanpur Dakha, Maloud — immediate follow-up needed.",,
+,,GT pending — T Ludhiana West,cases,0.0,5.0,23.0,18.0,-5,,Pending/Blocked,🔴 HIGH,Auto,Gov Cell (report),05-06-2026,,MAX,DRO-006
+,,GT pending — NT Koom Kalan,cases,0.0,5.0,12.0,12.0,0,,Pending/Blocked,🔴 HIGH,Auto,Gov Cell (report),05-06-2026,,MAX,DRO-007
+,,GT pending — T Central,cases,0.0,5.0,6.0,5.0,-1,,In Progress,,Auto,Gov Cell (report),05-06-2026,No change ~1.5 months,MAX,DRO-008
+,,GT pending — NT Dehlon,cases,0.0,5.0,4.0,4.0,0,,In Progress,,Auto,Gov Cell (report),05-06-2026,No change ~1.5 months,MAX,DRO-009
+,,GT pending — NT Mullanpur Dakha,cases,0.0,5.0,9.0,4.0,-5,,In Progress,,Auto,Gov Cell (report),05-06-2026,No change ~1.5 months,MAX,DRO-010
+,,GT pending — NT Maloud,cases,0.0,5.0,4.0,4.0,0,,In Progress,,Auto,Gov Cell (report),05-06-2026,No change ~1.5 months,MAX,DRO-011
+,,GT pending — T Jagraon,cases,0.0,5.0,11.0,3.0,-8,,In Progress,,Auto,Gov Cell (report),05-06-2026,,MAX,DRO-012
+,,GT pending — NT Sidhwan Bet,cases,0.0,5.0,12.0,3.0,-9,,In Progress,,Auto,Gov Cell (report),05-06-2026,,MAX,DRO-013
+,,GT pending — T Khanna,cases,0.0,5.0,7.0,1.0,-6,,In Progress,,Auto,Gov Cell (report),05-06-2026,,MAX,DRO-014
+▣  PRIORITY TASKS  —  qualitative / assigned tasks,,,,,,,,,,,,,,,,,
+3.0,NHAI Package 1 — Ropar–Ludhiana,Amount pending (Rs Cr),Rs Cr,0.0,0.0,,28.0,,,Pending/Blocked,🔴 HIGH,Auto,Gov Cell (report),05-06-2026,Talwandi Kalan & 3G-1,MAX,DRO-015
+4.0,Kabja Karwai (Possession),Possession actions this week,no.,,,,,,,In Progress,,Auto,,,Regular monitoring,,DRO-016
+5.0,Action vs Kanungo Jaspreet Dhaka,Departmental proceedings status,status,,,,,,,In Progress,,Auto,,,Confirm status,,DRO-017
+6.0,PM Pragati Portal,Pending packages,no.,0.0,0.0,,,,,In Progress,,Auto,,,Timely submission,MAX,DRO-018

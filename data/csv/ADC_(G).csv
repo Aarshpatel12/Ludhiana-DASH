@@ -1,0 +1,134 @@
+ADC (G)   —   Priority Agenda Review   |   DC Ludhiana (MASTER),,,,,,,,,,,,,,,,,
+Sr,Priority Agenda,KPI / Metric,Concerned Officer / Unit,"Target /
+Total","Flag
+Bar","Last
+Value","Current
+Value",Change,"Achieved
+%",Status,Auto-Flag,"Bottom
+Performer",Updated By,"Update
+Date",Remarks / Context / Pending Action,Rule,Key
+▣  SCHEMES  —  metric-based (fed from officer workbook),,,,,,,,,,,,,,,,,
+1.0,MMSBY — Sehat Bima Yojna,📊 Total cards made — cumulative 26 May–04 Jun,,,,,7669.0,,,,,,,,"District total across all ACs incl. not-mapped (5,917 dept-channel + 1,752 Sewa-Kendra).",,
+,,📊 Cards made today — 04 Jun,,,,,921.0,,,,,,,,All channels combined on 04 Jun (674 dept + 247 Sewa-Kendra).,,
+,,📊 Cards NOT mapped to any AC,,,,,186.0,,,,,,,,Generated but not yet linked to an Assembly Constituency — to be reassigned.,,
+,,📊 Nodals yet to fill Phase-18 sheet,,,,,6.0,,,,,,,,"Sahnewal, Payal, Khanna, Dakha, Samrala, Atam Nagar.",,
+,,Total cards — 04 Jun (single day),cards,,,,921.0,,,In Progress,,Auto,Gov Cell (report),05-06-2026,674 dept + 247 SK,,ADCG-001
+,,Total cards — cumulative 26 May–04 Jun,cards,,,,7669.0,,,In Progress,,Auto,Gov Cell (report),05-06-2026,5917 dept + 1752 SK,,ADCG-002
+,,Channel — DM CSC (04 Jun),cards,,,832.0,795.0,-37,,In Progress,,Auto,Gov Cell (report),05-06-2026,Prev day 832 — Cards generated via DM-CSC (Common Service Centre) channel that day.,,ADCG-003
+,,Channel — Dr Cooperation / PACS (04 Jun),cards,,,18.0,20.0,2,,In Progress,,Auto,Gov Cell (report),05-06-2026,Cards via Dr Cooperation / PACS societies that day.,,ADCG-004
+,,Channel — Agriculture Dept (04 Jun),cards,,,16.0,19.0,3,,In Progress,,Auto,Gov Cell (report),05-06-2026,Cards via Agriculture Dept that day.,,ADCG-005
+,,Channel — ASHA cards (04 Jun),cards,,,511.0,582.0,71,,In Progress,,Auto,Gov Cell (report),05-06-2026,Sharp drop since 08 May (was 3961 on 28 Apr) — Cards by ASHA workers that day.,,ADCG-006
+,,Channel — Hospital total (04 Jun),cards,,,51.0,40.0,-11,,In Progress,,Auto,Gov Cell (report),05-06-2026,Govt 33 / Private 7 — Cards issued at hospitals that day (Govt + Private).,,ADCG-007
+,,Govt hospital cards (04 Jun),cards,,,47.0,33.0,-14,,In Progress,,Auto,Gov Cell (report),05-06-2026,Issuance at govt facilities (DH/SDH/AAC) that day.,,ADCG-008
+,,Private hospital cards (04 Jun),cards,20.0,15.0,2.0,7.0,5,0.35,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,Private penetration low — Private-hospital issuance that day — low penetration.,MIN,ADCG-009
+,,Not-Mapped cards (to reconcile),cards,,100.0,,186.0,,,Pending/Blocked,🔴 HIGH,Auto,Gov Cell (report),05-06-2026,Cumulative not-mapped pool,MAX,ADCG-010
+,,Phase-18 sheet — nodals NOT filled,nodals,6.0,0.0,,6.0,,1,Pending/Blocked,🔴 HIGH,Auto,Gov Cell (report),05-06-2026,"Sahnewal, Payal, Khanna, Dakha, Samrala, Atam Nagar",MAX,ADCG-011
+,,Cards — Atam Nagar (04 Jun),cards,50.0,50.0,,25.0,,0.5,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,25 cards + 0 SK — Total MMSBY cards in this AC on 04 Jun (incl. Sewa-Kendra).,MIN,ADCG-012
+,,Cards — Dakha (04 Jun),cards,50.0,50.0,,21.0,,0.42,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,21 cards + 0 SK — Total MMSBY cards in this AC on 04 Jun (incl. Sewa-Kendra).,MIN,ADCG-013
+,,Cards — Gill (04 Jun),cards,50.0,50.0,,79.0,,1.58,In Progress,,Auto,Gov Cell (report),05-06-2026,28 cards + 51 SK — Total MMSBY cards in this AC on 04 Jun (incl. Sewa-Kendra).,MIN,ADCG-014
+,,Cards — Jagraon (04 Jun),cards,50.0,50.0,,117.0,,2.34,In Progress,,Auto,Gov Cell (report),05-06-2026,68 cards + 49 SK — Total MMSBY cards in this AC on 04 Jun (incl. Sewa-Kendra).,MIN,ADCG-015
+,,Cards — Khanna (04 Jun),cards,50.0,50.0,,36.0,,0.72,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,36 cards + 0 SK — Total MMSBY cards in this AC on 04 Jun (incl. Sewa-Kendra).,MIN,ADCG-016
+,,Cards — Ludhiana Central (04 Jun),cards,50.0,50.0,,89.0,,1.78,In Progress,,Auto,Gov Cell (report),05-06-2026,53 cards + 36 SK — Total MMSBY cards in this AC on 04 Jun (incl. Sewa-Kendra).,MIN,ADCG-017
+,,Cards — Ludhiana East (04 Jun),cards,50.0,50.0,,62.0,,1.24,In Progress,,Auto,Gov Cell (report),05-06-2026,48 cards + 14 SK — Total MMSBY cards in this AC on 04 Jun (incl. Sewa-Kendra).,MIN,ADCG-018
+,,Cards — Ludhiana North (04 Jun),cards,50.0,50.0,,22.0,,0.44,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,19 cards + 3 SK — Total MMSBY cards in this AC on 04 Jun (incl. Sewa-Kendra).,MIN,ADCG-019
+,,Cards — Ludhiana South (04 Jun),cards,50.0,50.0,,15.0,,0.3,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,15 cards + 0 SK — Total MMSBY cards in this AC on 04 Jun (incl. Sewa-Kendra).,MIN,ADCG-020
+,,Cards — Ludhiana West (04 Jun),cards,50.0,50.0,,61.0,,1.22,In Progress,,Auto,Gov Cell (report),05-06-2026,60 cards + 1 SK — Total MMSBY cards in this AC on 04 Jun (incl. Sewa-Kendra).,MIN,ADCG-021
+,,Cards — Payal (04 Jun),cards,50.0,50.0,,28.0,,0.56,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,28 cards + 0 SK — Total MMSBY cards in this AC on 04 Jun (incl. Sewa-Kendra).,MIN,ADCG-022
+,,Cards — Raikot (04 Jun),cards,50.0,50.0,,19.0,,0.38,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,19 cards + 0 SK — Total MMSBY cards in this AC on 04 Jun (incl. Sewa-Kendra).,MIN,ADCG-023
+,,Cards — Sahnewal (04 Jun),cards,50.0,50.0,,42.0,,0.84,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,34 cards + 8 SK — Total MMSBY cards in this AC on 04 Jun (incl. Sewa-Kendra).,MIN,ADCG-024
+,,Cards — Samrala (04 Jun),cards,50.0,50.0,,119.0,,2.38,In Progress,,Auto,Gov Cell (report),05-06-2026,81 cards + 38 SK — Total MMSBY cards in this AC on 04 Jun (incl. Sewa-Kendra).,MIN,ADCG-025
+2.0,AAC & SDH (Aam Aadmi Clinics / SDH),📊 AAC Phase 8/9/10 — total sites,,,,,48.0,,,,,,,,Inaugurated 17 | Work in progress 30 | Problematic 1.,,
+,,📊 SHC→AAC Phase 11 — total sites,,,,,32.0,,,,,,,,Work orders given 28 | In re-tendering 4 (all PHSC). 8 each across IT/Mandi/Panch Raj/PHSC.,,
+,,AAC Ph 8/9/10 — inaugurated,sites,48.0,48.0,,17.0,,0.3541666667,Completed,🔴 LOW,Auto,Gov Cell (report),05-06-2026,of 48 total,MIN,ADCG-035
+,,AAC Ph 8/9/10 — work in progress,sites,,,,30.0,,,In Progress,,Auto,Gov Cell (report),05-06-2026,,,ADCG-036
+,,AAC — at >=95% completion,sites,,,,10.0,,,In Progress,,Auto,Gov Cell (report),05-06-2026,,,ADCG-037
+,,AAC — at 90% completion,sites,,,,2.0,,,In Progress,,Auto,Gov Cell (report),05-06-2026,,,ADCG-038
+,,AAC — at 80% completion,sites,,,,4.0,,,In Progress,,Auto,Gov Cell (report),05-06-2026,,,ADCG-039
+,,AAC — at 70% completion,sites,,,,7.0,,,In Progress,,Auto,Gov Cell (report),05-06-2026,,,ADCG-040
+,,AAC — at 60% completion,sites,,,,6.0,,,In Progress,,Auto,Gov Cell (report),05-06-2026,,,ADCG-041
+,,AAC — problematic site,sites,0.0,0.0,,1.0,,,Pending/Blocked,🔴 HIGH,Auto,Gov Cell (report),05-06-2026,,MAX,ADCG-042
+,,SHC->AAC Ph 11 — work orders given,sites,32.0,32.0,,28.0,,0.875,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,IT 8 / Mandi 8 / Panch Raj 8 / PHSC 4,MIN,ADCG-043
+,,SHC->AAC — in re-tendering,sites,0.0,0.0,,4.0,,,Pending/Blocked,🔴 HIGH,Auto,Gov Cell (report),05-06-2026,"All 4 at PHSC: 2 work orders pending at Chief PHSC, 2 cancelled by MD PHSC & re-tendering. Threeke alt site — Sarpanch NOC awaited.",MAX,ADCG-044
+3.0,Census 2026 — HLB Progress,📊 Total HLBs (House Listing Blocks),,,,,3778.0,,,,,,,,"All 3,778 in progress; 0 not started. Completed: 1,408 (37%).",,
+,,📊 Census houses — expected vs listed,,,,,718019.0,,,,,,,,"7,18,019 of 8,59,510 expected houses listed (84%).",,
+,,District — HLBs completed,HLBs,3778.0,1889.0,,1408.0,,0.3726839598,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,All 3778 in progress; 0 not started,MIN,ADCG-045
+,,District — census houses listed,houses,859510.0,773559.0,,718019.0,,0.8353817873,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,84% against expected,MIN,ADCG-046
+,,HLBs completed — Tehsil Samrala,HLBs,348.0,174.0,,196.0,,0.5632183908,In Progress,,Auto,Gov Cell (report),05-06-2026,"Houses 61,278/65,019 (94%)",MIN,ADCG-047
+,,HLBs completed — Tehsil Khanna,HLBs,158.0,79.0,,135.0,,0.8544303797,In Progress,,Auto,Gov Cell (report),05-06-2026,"Houses 32,959/32,579 (101%)",MIN,ADCG-048
+,,HLBs completed — Tehsil Payal,HLBs,302.0,151.0,,139.0,,0.4602649007,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,"Houses 57,331/64,602 (89%)",MIN,ADCG-049
+,,HLBs completed — Tehsil Ludhiana East,HLBs,994.0,497.0,,230.0,,0.23138833,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,"Houses 159,534/211,624 (75%)",MIN,ADCG-050
+,,HLBs completed — Tehsil Ludhiana West,HLBs,679.0,340.0,,16.0,,0.0235640648,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,"Houses 133,747/189,633 (71%)",MIN,ADCG-051
+,,HLBs completed — Tehsil Raikot,HLBs,274.0,137.0,,122.0,,0.4452554745,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,"Houses 56,132/60,791 (92%)",MIN,ADCG-052
+,,HLBs completed — Tehsil Jagraon,HLBs,435.0,218.0,,278.0,,0.6390804598,In Progress,,Auto,Gov Cell (report),05-06-2026,"Houses 91,305/96,859 (94%)",MIN,ADCG-053
+,,HLBs completed — MC Macchhiwara,HLBs,49.0,24.0,,33.0,,0.6734693878,In Progress,,Auto,Gov Cell (report),05-06-2026,"Houses 11,625/12,156 (96%)",MIN,ADCG-054
+,,HLBs completed — MC Samrala,HLBs,38.0,19.0,,30.0,,0.7894736842,In Progress,,Auto,Gov Cell (report),05-06-2026,"Houses 9,706/9,628 (101%)",MIN,ADCG-055
+,,HLBs completed — MC Khanna,HLBs,224.0,112.0,,125.0,,0.5580357143,In Progress,,Auto,Gov Cell (report),05-06-2026,"Houses 37,058/43,958 (84%)",MIN,ADCG-056
+,,HLBs completed — MC Payal,HLBs,12.0,6.0,,8.0,,0.6666666667,In Progress,,Auto,Gov Cell (report),05-06-2026,"Houses 2,867/2,959 (97%)",MIN,ADCG-057
+,,HLBs completed — MC Maloud,HLBs,13.0,6.0,,4.0,,0.3076923077,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,"Houses 2,942/3,413 (86%)",MIN,ADCG-058
+,,HLBs completed — MC Doraha,HLBs,42.0,21.0,,37.0,,0.880952381,In Progress,,Auto,Gov Cell (report),05-06-2026,"Houses 9,840/9,835 (100%)",MIN,ADCG-059
+,,HLBs completed — MC Sahnewal,HLBs,45.0,22.0,,12.0,,0.2666666667,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,"Houses 10,360/11,226 (92%)",MIN,ADCG-060
+,,HLBs completed — MC Mullanpur Dakha,HLBs,39.0,20.0,,13.0,,0.3333333333,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,"Houses 8,503/8,273 (103%)",MIN,ADCG-061
+,,HLBs completed — MC Raikot,HLBs,39.0,20.0,,14.0,,0.358974359,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,"Houses 12,701/12,838 (99%)",MIN,ADCG-062
+,,HLBs completed — MC Jagraon,HLBs,87.0,44.0,,16.0,,0.183908046,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,"Houses 20,131/24,117 (83%)",MIN,ADCG-063
+4.0,SIR — Electors Mapped (AC-wise),📊 Total electors (district),,,,,2685915.0,,,,,,,,"Mapped 20,21,328 (75.26%) | Not mapped 6,64,587. 8 ACs below the 75% bar.",,
+,,57-Khanna — electors mapped,electors,174276.0,130707.0,,134167.0,,0.7698535656,On Track,,Auto,Gov Cell (report),05-06-2026,"Not mapped 40,109 (77.0%) — Electors mapped of total in this AC; bar = 75% of total electors.",MIN,ADCG-064
+,,58-Samrala — electors mapped,electors,176828.0,132621.0,,154962.0,,0.8763431131,On Track,,Auto,Gov Cell (report),05-06-2026,"Not mapped 21,866 (87.6%) — Electors mapped of total in this AC; bar = 75% of total electors.",MIN,ADCG-065
+,,59-Sahnewal — electors mapped,electors,274011.0,205508.0,,193740.0,,0.7070519067,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,"Not mapped 80,271 (70.7%) — Electors mapped of total in this AC; bar = 75% of total electors.",MIN,ADCG-066
+,,60-Ludhiana East — electors mapped,electors,228802.0,171602.0,,156290.0,,0.6830796934,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,"Not mapped 72,512 (68.3%) — Electors mapped of total in this AC; bar = 75% of total electors.",MIN,ADCG-067
+,,61-Ludhiana South — electors mapped,electors,183343.0,137507.0,,109236.0,,0.5958013123,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,"Not mapped 74,107 (59.6%) — Electors mapped of total in this AC; bar = 75% of total electors.",MIN,ADCG-068
+,,62-Atam Nagar — electors mapped,electors,160607.0,120455.0,,106731.0,,0.6645476225,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,"Not mapped 53,876 (66.5%) — Electors mapped of total in this AC; bar = 75% of total electors.",MIN,ADCG-069
+,,63-Ludhiana Central — electors mapped,electors,149728.0,112296.0,,103728.0,,0.6927762342,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,"Not mapped 46,000 (69.3%) — Electors mapped of total in this AC; bar = 75% of total electors.",MIN,ADCG-070
+,,64-Ludhiana West — electors mapped,electors,169596.0,127197.0,,112402.0,,0.6627632727,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,"Not mapped 57,194 (66.3%) — Electors mapped of total in this AC; bar = 75% of total electors.",MIN,ADCG-071
+,,65-Ludhiana North — electors mapped,electors,203121.0,152341.0,,142413.0,,0.7011239606,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,"Not mapped 60,708 (70.1%) — Electors mapped of total in this AC; bar = 75% of total electors.",MIN,ADCG-072
+,,66-Gill — electors mapped,electors,284384.0,213288.0,,212563.0,,0.7474506301,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,"Not mapped 71,821 (74.8%) — Electors mapped of total in this AC; bar = 75% of total electors.",MIN,ADCG-073
+,,67-Payal — electors mapped,electors,166556.0,124917.0,,147687.0,,0.886710776,On Track,,Auto,Gov Cell (report),05-06-2026,"Not mapped 18,869 (88.7%) — Electors mapped of total in this AC; bar = 75% of total electors.",MIN,ADCG-074
+,,68-Dakha — electors mapped,electors,184119.0,138089.0,,160838.0,,0.8735546033,On Track,,Auto,Gov Cell (report),05-06-2026,"Not mapped 23,281 (87.4%) — Electors mapped of total in this AC; bar = 75% of total electors.",MIN,ADCG-075
+,,69-Raikot — electors mapped,electors,147891.0,110918.0,,132789.0,,0.8978842526,On Track,,Auto,Gov Cell (report),05-06-2026,"Not mapped 15,102 (89.8%) — Electors mapped of total in this AC; bar = 75% of total electors.",MIN,ADCG-076
+,,70-Jagraon — electors mapped,electors,182653.0,136990.0,,153782.0,,0.8419352543,On Track,,Auto,Gov Cell (report),05-06-2026,"Not mapped 28,871 (84.2%) — Electors mapped of total in this AC; bar = 75% of total electors.",MIN,ADCG-077
+,,District — electors mapped,electors,2685915.0,2014436.0,,2021328.0,,0.7525658854,In Progress,,Auto,Gov Cell (report),05-06-2026,"Not mapped 664,587 (75.26%) — Electors mapped of total in this AC; bar = 75% of total electors.",MIN,ADCG-078
+5.0,SIR — EFDIATRIBUTED (AC-wise),📊 Total electors (district),,,,,2685915.0,,,,,,,,"Mapped 20,21,328 (75.26%) | Not mapped 6,64,587. 8 ACs below the 75% bar.",,
+,,57-Khanna — electors mapped,electors,174276.0,130707.0,,134167.0,,0.7698535656,On Track,,Auto,Gov Cell (report),05-06-2026,"Not mapped 40,109 (77.0%) — Electors mapped of total in this AC; bar = 75% of total electors.",MIN,ADCG-064
+,,58-Samrala — electors mapped,electors,176828.0,132621.0,,154962.0,,0.8763431131,On Track,,Auto,Gov Cell (report),05-06-2026,"Not mapped 21,866 (87.6%) — Electors mapped of total in this AC; bar = 75% of total electors.",MIN,ADCG-065
+,,59-Sahnewal — electors mapped,electors,274011.0,205508.0,,193740.0,,0.7070519067,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,"Not mapped 80,271 (70.7%) — Electors mapped of total in this AC; bar = 75% of total electors.",MIN,ADCG-066
+,,60-Ludhiana East — electors mapped,electors,228802.0,171602.0,,156290.0,,0.6830796934,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,"Not mapped 72,512 (68.3%) — Electors mapped of total in this AC; bar = 75% of total electors.",MIN,ADCG-067
+,,61-Ludhiana South — electors mapped,electors,183343.0,137507.0,,109236.0,,0.5958013123,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,"Not mapped 74,107 (59.6%) — Electors mapped of total in this AC; bar = 75% of total electors.",MIN,ADCG-068
+,,62-Atam Nagar — electors mapped,electors,160607.0,120455.0,,106731.0,,0.6645476225,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,"Not mapped 53,876 (66.5%) — Electors mapped of total in this AC; bar = 75% of total electors.",MIN,ADCG-069
+,,63-Ludhiana Central — electors mapped,electors,149728.0,112296.0,,103728.0,,0.6927762342,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,"Not mapped 46,000 (69.3%) — Electors mapped of total in this AC; bar = 75% of total electors.",MIN,ADCG-070
+,,64-Ludhiana West — electors mapped,electors,169596.0,127197.0,,112402.0,,0.6627632727,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,"Not mapped 57,194 (66.3%) — Electors mapped of total in this AC; bar = 75% of total electors.",MIN,ADCG-071
+,,65-Ludhiana North — electors mapped,electors,203121.0,152341.0,,142413.0,,0.7011239606,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,"Not mapped 60,708 (70.1%) — Electors mapped of total in this AC; bar = 75% of total electors.",MIN,ADCG-072
+,,66-Gill — electors mapped,electors,284384.0,213288.0,,212563.0,,0.7474506301,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,"Not mapped 71,821 (74.8%) — Electors mapped of total in this AC; bar = 75% of total electors.",MIN,ADCG-073
+,,67-Payal — electors mapped,electors,166556.0,124917.0,,147687.0,,0.886710776,On Track,,Auto,Gov Cell (report),05-06-2026,"Not mapped 18,869 (88.7%) — Electors mapped of total in this AC; bar = 75% of total electors.",MIN,ADCG-074
+,,68-Dakha — electors mapped,electors,184119.0,138089.0,,160838.0,,0.8735546033,On Track,,Auto,Gov Cell (report),05-06-2026,"Not mapped 23,281 (87.4%) — Electors mapped of total in this AC; bar = 75% of total electors.",MIN,ADCG-075
+6.0,Stubble Burning,📊 Environmental Compensation cases,,,,,93.0,,,,,,,,"EC imposed Rs 4,90,000 | Red entries 67 | FIRs 1 | Field visits pending 108.",,
+,,Environmental Compensation — cases,cases,,,,93.0,,,In Progress,,Auto,Gov Cell (report),05-06-2026,"Total EC imposed Rs 4,90,000",,ADCG-094
+,,Red entries (as on 17.05),entries,0.0,0.0,,67.0,,,Pending/Blocked,🔴 HIGH,Auto,Gov Cell (report),05-06-2026,Raikot & Jagraon flagged,MAX,ADCG-095
+,,FIRs filed,FIRs,,,,1.0,,,In Progress,,Auto,Gov Cell (report),05-06-2026,,,ADCG-096
+,,Visits pending (of incidents),visits,0.0,0.0,,108.0,,,Pending/Blocked,🔴 HIGH,Auto,Gov Cell (report),05-06-2026,,MAX,ADCG-097
+7.0,Revenue — Uncontested Mutation Pendency,📊 Highest pendency officer,,,,,653.0,,,,,,,,NT Ludhiana East (653) is the single highest in the district. Target: keep each below 200.,,
+,,Mutations pending — NT Ludhiana East,cases,,200.0,688.0,653.0,-35,,Pending/Blocked,🔴 HIGH,Auto,Gov Cell (report),05-06-2026,Uncontested mutations pending with this officer; Change = movement since last review.,MAX,ADCG-100
+,,Mutations pending — NT Ludhiana West,cases,,200.0,207.0,220.0,13,,Pending/Blocked,🔴 HIGH,Auto,Gov Cell (report),05-06-2026,Uncontested mutations pending with this officer; Change = movement since last review.,MAX,ADCG-101
+,,Mutations pending — T Ludhiana West,cases,,200.0,175.0,201.0,26,,Pending/Blocked,🔴 HIGH,Auto,Gov Cell (report),05-06-2026,Uncontested mutations pending with this officer; Change = movement since last review.,MAX,ADCG-102
+,,Mutations pending — NT Ludhiana South,cases,,200.0,180.0,180.0,0,,In Progress,,Auto,Gov Cell (report),05-06-2026,Uncontested mutations pending with this officer; Change = movement since last review.,MAX,ADCG-103
+,,Mutations pending — T Raikot,cases,,200.0,48.0,166.0,118,,In Progress,,Auto,Gov Cell (report),05-06-2026,Sharp rise +118 — immediate attention — Uncontested mutations pending with this officer; Change = movement since last review.,MAX,ADCG-104
+,,Mutations pending — T Ludhiana South,cases,,200.0,123.0,119.0,-4,,In Progress,,Auto,Gov Cell (report),05-06-2026,Uncontested mutations pending with this officer; Change = movement since last review.,MAX,ADCG-105
+,,Mutations pending — NT Sidhwan Bet,cases,,200.0,61.0,82.0,21,,In Progress,,Auto,Gov Cell (report),05-06-2026,Uncontested mutations pending with this officer; Change = movement since last review.,MAX,ADCG-106
+,,Mutations pending — NT-2 Sahnewal,cases,,200.0,79.0,69.0,-10,,In Progress,,Auto,Gov Cell (report),05-06-2026,Uncontested mutations pending with this officer; Change = movement since last review.,MAX,ADCG-107
+,,Mutations pending — NT Raikot,cases,,200.0,135.0,67.0,-68,,In Progress,,Auto,Gov Cell (report),05-06-2026,Uncontested mutations pending with this officer; Change = movement since last review.,MAX,ADCG-108
+,,Mutations pending — NT Koom Kalan,cases,,200.0,44.0,57.0,13,,In Progress,,Auto,Gov Cell (report),05-06-2026,Uncontested mutations pending with this officer; Change = movement since last review.,MAX,ADCG-109
+8.0,Revenue — Family Partition & Svamitva GT,Family Partition — pending (district),cases,0.0,5.0,,11.0,,,In Progress,🔴 HIGH,Auto,Gov Cell (report),05-06-2026,"Total 16: appr 3, rej 2; Samrala 6, Maloud 4, Jagraon 2; 8 tehsils NIL",MAX,ADCG-110
+,,Svamitva GT pending — T Ludhiana West,cases,0.0,10.0,23.0,18.0,-5,,Pending/Blocked,🔴 HIGH,Auto,Gov Cell (report),05-06-2026,,MAX,ADCG-111
+,,Svamitva GT pending — NT Koom Kalan,cases,0.0,10.0,12.0,12.0,0,,In Progress,🔴 HIGH,Auto,Gov Cell (report),05-06-2026,No change,MAX,ADCG-112
+,,Svamitva GT — tehsils with no change ~1.5 months,tehsils,0.0,0.0,,4.0,,,Pending/Blocked,🔴 HIGH,Auto,Gov Cell (report),05-06-2026,"Central, Dehlon, Mullanpur Dakha, Maloud",MAX,ADCG-113
+▣  PRIORITY TASKS  —  qualitative / assigned tasks,,,,,,,,,,,,,,,,,
+9.0,PSTC — Supervision (owned by AC-G),Overall resolution % (monitor AC-G),%,0.8,0.8,,0.63,,0.7875,Pending/Blocked,🔴 LOW,Auto,Gov Cell (report),05-06-2026,Execution owned by AC(G). 147 of 233 grievances resolved (63%). See AC(G) workbook → PSTC tab.,MIN,ADCG-026
+,,Bottom departments to escalate,status,,,,,,,Pending/Blocked,,Auto,,,"Rural Dev & Panchayat 24%, PWD 0%, Revenue 0%, Electricity 63% — pursue via AC(G).",,ADCG-027
+,,Stale grievances (4+ days) — monitor,no.,,10.0,,,,,In Progress,,Auto,,,Track weekly through AC(G) feed; ensure ATRs filed.,MAX,ADCG-028
+10.0,Desilting Sites — NGT / Meowal / Mandala,NGT court case — next hearing date,date,,,,,,,Pending/Blocked,,Auto,,,Tender done; Forest DFO NOC pending; non-forest not started,,ADCG-029
+,,Forest DFO NOC received? (Y/N),Y/N,,,,,,,Pending/Blocked,,Auto,,,Update pending,,ADCG-030
+,,Drainage proceeds sent to HQ (DRA)? (Y/N),Y/N,,,,,,,Pending/Blocked,,Auto,,,Flood Review minutes pending,,ADCG-031
+11.0,Flood Protection & Embankments,Sasrali Geotubes installed,tubes,448.0,448.0,,51.0,,0.1138392857,Pending/Blocked,🔴 LOW,Auto,Gov Cell (report),05-06-2026,35% work; 12 tippers running; work closed 23.05 by XEN Mining,MIN,ADCG-032
+,,Rahon Road — pole shifting pending (mtrs),mtrs,0.0,0.0,,3500.0,,,In Progress,🔴 HIGH,Auto,Gov Cell (report),05-06-2026,3 km done; 4 underpasses done,MAX,ADCG-033
+,,Flood Control Room operational? (Y/N),Y/N,,,,,,,In Progress,,Auto,,,From 11 May,,ADCG-034
+12.0,Flood Compensation — Survey & Disbursal,Cases verified & disbursed,cases,,,,,,,In Progress,,Auto,,,SDM East / XEN Adesh — notice; DMA suspension query,,ADCG-098
+,,Flood compensation lock — status,status,,,,,,,Pending/Blocked,,Auto,,,Confirm status,,ADCG-099
+13.0,DDMA,DDMA — pending actions,status,,,,,,,In Progress,,Auto,,,To be populated,,ADCG-114

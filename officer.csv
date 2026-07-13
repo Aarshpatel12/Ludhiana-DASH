@@ -1,0 +1,19 @@
+ADC (UD)   —   Priority Agenda Review   |   DC Ludhiana (MASTER),,,,,,,,,,,,,,,,,
+Sr,Priority Agenda,KPI / Metric,Concerned Officer / Unit,"Target /
+Total","Flag
+Bar","Last
+Value","Current
+Value",Change,"Achieved
+%",Status,Auto-Flag,"Bottom
+Performer",Updated By,"Update
+Date",Remarks / Context / Pending Action,Rule,Key
+▣  PRIORITY TASKS  —  qualitative / assigned tasks,,,,,,,,,,,,,,,,,
+1,MM Tirath Yatra Yojana,Bills pending (count),bills,,,,0,,,In Progress,,Auto,Gov Cell (report),05-06-2026,Cleared till 04 May 2026; none pending,,ADCUD-001
+,,All bills up to date cleared? (Y/N),Y/N,,,,,,,In Progress,,Auto,,,,,ADCUD-002
+2,Buddha Dariya — NGT / Dairies / CBG,Dairies identified (Rajpur/Haibowal),no.,,,,6,,,In Progress, ,Auto,Gov Cell (report),05-06-2026,Disconnection done; MCL direction passed,,ADCUD-003
+,,Tajpur — dairies disconnected,no.,21,21,,16,,76.2%,In Progress,🔴 LOW,Auto,Gov Cell (report),05-06-2026,21 dairies out of complex,MIN,ADCUD-004
+,,CBG plant — site identified? (Y/N),Y/N,,,,,,,Pending/Blocked,,Auto,,,Jamalpur dump site found for carcass,,ADCUD-005
+,,CETP/STP — ATR report submitted? (Y/N),Y/N,,,,,,,In Progress,,Auto,,,STP under construction at MC Raikot,,ADCUD-006
+3,WTP — Water Treatment Plant,WTPs with NO land available,sites,0,0,,3,,,Pending/Blocked,🔴 HIGH,Auto,Gov Cell (report),05-06-2026,"MC Doraha, Maloud, Sahnewal",MAX,ADCUD-007
+,,Mullanpur Dakha — completion status,status,,,,,,,In Progress,,Auto,,,Priority; Council land pending,,ADCUD-008
+4,IT / MC Land Price Fixation,Price Fixation Committee meeting held? (Y/N),Y/N,,,,,,,Pending/Blocked,,Auto,,,IT case under process,,ADCUD-009
