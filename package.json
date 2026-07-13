@@ -5,7 +5,6 @@
   "scripts": {
     "predev": "python convert_excel.py",
     "dev": "next dev",
-    "prebuild": "python convert_excel.py",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
