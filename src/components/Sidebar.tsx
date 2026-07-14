@@ -17,7 +17,7 @@ export default async function Sidebar() {
   }
 
   return (
-    <div className="w-64 bg-slate-50 dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-300 flex flex-col h-screen shrink-0 overflow-y-auto transition-colors">
+    <div className="w-64 bg-slate-50 dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 text-slate-900 dark:text-slate-300 flex flex-col h-screen shrink-0 overflow-y-auto transition-colors print:hidden">
       {/* Header */}
       <div className="p-6 border-b border-slate-200 dark:border-slate-800">
         <div className="flex items-center gap-3 text-slate-900 dark:text-white font-bold text-xl mb-1">

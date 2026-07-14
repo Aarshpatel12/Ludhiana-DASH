@@ -1,13 +1,22 @@
 "use client";
 
 import React, { useState } from 'react';
-import { AlertCircle, CheckCircle2, ChevronDown, ChevronUp } from 'lucide-react';
+import { AlertCircle, CheckCircle2, ChevronDown, ChevronUp, Search } from 'lucide-react';
 
 export default function OfficerAgendas({ data }: { data: any[] }) {
   const [filter, setFilter] = useState<'all' | 'flagged' | 'completed' | 'in-progress'>('all');
+  const [searchQuery, setSearchQuery] = useState('');
 
-  // Filter data first based on selected filter
+  // Filter data first based on selected filter and search
   const filteredData = data.filter(row => {
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      const matchKpi = (row['KPI / Metric'] || '').toLowerCase().includes(q);
+      const matchRemarks = (row['Remarks / Context'] || '').toLowerCase().includes(q);
+      const matchOfficer = (row['Concerned Officer'] || '').toLowerCase().includes(q);
+      if (!matchKpi && !matchRemarks && !matchOfficer) return false;
+    }
+
     if (filter === 'all') return true;
     
     const hasFlag = row['Auto-Flag'] && row['Auto-Flag'].trim() !== '';
@@ -40,31 +49,45 @@ export default function OfficerAgendas({ data }: { data: any[] }) {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-3 mt-8">
-        <div className="flex items-center gap-2">
-          <h2 className="text-lg font-bold text-slate-900 dark:text-slate-100 tracking-tight uppercase">▣ Agendas & Tasks</h2>
-          <span className="text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2 py-0.5 rounded-full">{filteredData.length} Items</span>
+      <div className="flex flex-col gap-4 border-b border-slate-200 dark:border-slate-800 pb-4 mt-8 print:hidden">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <h2 className="text-lg font-bold text-slate-900 dark:text-slate-100 tracking-tight uppercase">▣ Agendas & Tasks</h2>
+            <span className="text-xs font-semibold bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-2 py-0.5 rounded-full">{filteredData.length} Items</span>
+          </div>
+          
+          {/* Filter Bar */}
+          <div className="flex flex-wrap items-center gap-2">
+            <button onClick={() => setFilter('all')} className={`px-3 py-1.5 text-xs font-bold rounded-md transition-colors ${filter === 'all' ? 'bg-slate-800 text-white dark:bg-slate-200 dark:text-slate-900' : 'bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-slate-700'}`}>
+              All
+            </button>
+            <button onClick={() => setFilter('flagged')} className={`px-3 py-1.5 text-xs font-bold rounded-md transition-colors flex items-center gap-1 ${filter === 'flagged' ? 'bg-red-500 text-white shadow-sm' : 'bg-red-50 text-red-600 hover:bg-red-100 dark:bg-red-900/30 dark:text-red-400 dark:hover:bg-red-900/50'}`}>
+              <AlertCircle className="w-3.5 h-3.5" /> Flagged
+            </button>
+            <button onClick={() => setFilter('in-progress')} className={`px-3 py-1.5 text-xs font-bold rounded-md transition-colors flex items-center gap-1 ${filter === 'in-progress' ? 'bg-amber-500 text-white shadow-sm' : 'bg-amber-50 text-amber-700 hover:bg-amber-100 dark:bg-amber-900/30 dark:text-amber-400 dark:hover:bg-amber-900/50'}`}>
+              In Progress
+            </button>
+            <button onClick={() => setFilter('completed')} className={`px-3 py-1.5 text-xs font-bold rounded-md transition-colors flex items-center gap-1 ${filter === 'completed' ? 'bg-emerald-500 text-white shadow-sm' : 'bg-emerald-50 text-emerald-700 hover:bg-emerald-100 dark:bg-emerald-900/30 dark:text-emerald-400 dark:hover:bg-emerald-900/50'}`}>
+              <CheckCircle2 className="w-3.5 h-3.5" /> Completed
+            </button>
+          </div>
         </div>
-        
-        {/* Filter Bar */}
-        <div className="flex flex-wrap items-center gap-2">
-          <button onClick={() => setFilter('all')} className={`px-3 py-1.5 text-xs font-bold rounded-md transition-colors ${filter === 'all' ? 'bg-slate-800 text-white dark:bg-slate-200 dark:text-slate-900' : 'bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-slate-700'}`}>
-            All
-          </button>
-          <button onClick={() => setFilter('flagged')} className={`px-3 py-1.5 text-xs font-bold rounded-md transition-colors flex items-center gap-1 ${filter === 'flagged' ? 'bg-red-500 text-white shadow-sm' : 'bg-red-50 text-red-600 hover:bg-red-100 dark:bg-red-900/30 dark:text-red-400 dark:hover:bg-red-900/50'}`}>
-            <AlertCircle className="w-3.5 h-3.5" /> Flagged
-          </button>
-          <button onClick={() => setFilter('in-progress')} className={`px-3 py-1.5 text-xs font-bold rounded-md transition-colors flex items-center gap-1 ${filter === 'in-progress' ? 'bg-amber-500 text-white shadow-sm' : 'bg-amber-50 text-amber-700 hover:bg-amber-100 dark:bg-amber-900/30 dark:text-amber-400 dark:hover:bg-amber-900/50'}`}>
-            In Progress
-          </button>
-          <button onClick={() => setFilter('completed')} className={`px-3 py-1.5 text-xs font-bold rounded-md transition-colors flex items-center gap-1 ${filter === 'completed' ? 'bg-emerald-500 text-white shadow-sm' : 'bg-emerald-50 text-emerald-700 hover:bg-emerald-100 dark:bg-emerald-900/30 dark:text-emerald-400 dark:hover:bg-emerald-900/50'}`}>
-            <CheckCircle2 className="w-3.5 h-3.5" /> Completed
-          </button>
+
+        {/* Search Bar */}
+        <div className="relative">
+          <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+          <input 
+            type="text" 
+            placeholder="Search tasks, remarks, or officers..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full pl-9 pr-4 py-2 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-lg text-sm text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-shadow"
+          />
         </div>
       </div>
       
       {Object.entries(groupedData).map(([agenda, groupItems]: [string, any], groupIdx) => {
-        const isExpanded = expandedGroups[agenda];
+        const isExpanded = (searchQuery.length > 0) || expandedGroups[agenda];
 
         return (
           <div key={groupIdx} className="bg-slate-50 dark:bg-slate-900/30 rounded-2xl border border-slate-200 dark:border-slate-800 mb-6 overflow-hidden">
