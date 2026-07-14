@@ -14,7 +14,7 @@ export default function OfficerAgendas({ data }: { data: any[] }) {
 
   // Initialize all sections as collapsed
   const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>(
-    Object.keys(groupedData).reduce((acc, key) => ({ ...acc, [key]: false }), {})
+    Object.keys(groupedData).reduce((acc, key) => ({ ...acc, [key]: true }), {})
   );
 
   const toggleGroup = (agenda: string) => {
@@ -37,10 +37,21 @@ export default function OfficerAgendas({ data }: { data: any[] }) {
               onClick={() => toggleGroup(agenda)}
               className="w-full flex items-center justify-between p-5 hover:bg-slate-100 dark:hover:bg-slate-800/50 transition-colors text-left"
             >
-              <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100 flex items-center gap-2">
-                <span className="w-1.5 h-6 bg-blue-500 rounded-full"></span>
-                {agenda} <span className="text-sm font-normal text-slate-500">({groupItems.length})</span>
-              </h3>
+              <div className="flex flex-col gap-2">
+                <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100 flex items-center gap-2">
+                  <span className="w-1.5 h-6 bg-blue-500 rounded-full"></span>
+                  {agenda}
+                </h3>
+                <div className="flex items-center gap-2 text-[11px] font-semibold tracking-wide ml-3.5">
+                  <span className="bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-2 py-0.5 rounded-full">{groupItems.length} ITEMS</span>
+                  {groupItems.filter((r: any) => r['Auto-Flag']?.trim() !== '').length > 0 && (
+                    <span className="bg-red-100 dark:bg-red-900/50 text-red-700 dark:text-red-400 px-2 py-0.5 rounded-full flex items-center gap-1"><AlertCircle className="w-3 h-3"/> {groupItems.filter((r: any) => r['Auto-Flag']?.trim() !== '').length} FLAGGED</span>
+                  )}
+                  {groupItems.filter((r: any) => r['Status']?.toLowerCase() === 'completed').length > 0 && (
+                    <span className="bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 px-2 py-0.5 rounded-full flex items-center gap-1"><CheckCircle2 className="w-3 h-3"/> {groupItems.filter((r: any) => r['Status']?.toLowerCase() === 'completed').length} COMPLETED</span>
+                  )}
+                </div>
+              </div>
               <div className="text-slate-400">
                 {isExpanded ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
               </div>
