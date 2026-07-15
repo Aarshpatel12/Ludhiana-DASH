@@ -33,11 +33,10 @@ workbook.SheetNames.forEach(sheetName => {
   } else {
     output += `Could not automatically detect headers. First 3 rows:\n`;
     for(let i = 0; i < Math.min(3, json.length); i++) {
-       output += `- \`${JSON.stringify(json[i])}\`\n`;
+      output += `- \`${JSON.stringify(json[i])}\`\n`;
     }
     output += '\n';
   }
 });
-
 fs.writeFileSync('excel_review.md', output);
 console.log('excel_review.md generated.');
