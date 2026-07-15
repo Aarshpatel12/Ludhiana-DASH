@@ -1,4 +1,4 @@
-import { fetchMasterDashboard } from '@/lib/dataFetcher';
+import { fetchMasterDashboard, SHEET_ID, SHEET_GIDS } from '@/lib/dataFetcher';
 import Link from 'next/link';
 import MasterCharts from '@/components/MasterCharts';
 
@@ -21,10 +21,24 @@ export default async function Home() {
 
   const percentDone = totalItems > 0 ? ((completed / totalItems) * 100).toFixed(1) : '0.0';
 
+  const sheetGid = (SHEET_GIDS as any)['Master Dashboard'] || '0';
+  const editUrl = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/edit#gid=${sheetGid}`;
+
   return (
     <div className="max-w-6xl mx-auto space-y-6 pb-12 transition-colors">
       <div className="flex flex-col gap-2">
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">{metadata.title || 'Executive Overview'}</h1>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">{metadata.title || 'Executive Overview'}</h1>
+          <a 
+            href={editUrl} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="flex items-center gap-2 px-3 py-2 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 dark:bg-emerald-900/30 dark:text-emerald-400 dark:hover:bg-emerald-900/50 rounded-md font-bold transition-colors shadow-sm print:hidden text-sm"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M8 13h2"/><path d="M8 17h2"/><path d="M14 13h2"/><path d="M14 17h2"/></svg>
+            Edit Master Excel
+          </a>
+        </div>
         <p className="text-sm text-slate-500 dark:text-slate-400">
           {metadata.subtitle || `District priority agenda roll-up across ${data.length} officers · ${totalItems} tracked items`}
         </p>
