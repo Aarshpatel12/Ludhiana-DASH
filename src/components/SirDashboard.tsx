@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Loader2, Users, FileText, AlertTriangle, FileWarning, PieChart as PieChartIcon } from 'lucide-react';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend, ComposedChart, Line, PieChart, Pie, Cell, AreaChart, Area } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend, ComposedChart, Line, PieChart, Pie, Cell, AreaChart, Area, Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis } from 'recharts';
 
 export default function SirDashboard() {
   const [data, setData] = useState<any[]>([]);
@@ -99,6 +99,28 @@ export default function SirDashboard() {
   const pieData = [
     { name: 'Digitized', value: totalDigitized, color: '#8b5cf6' },
     { name: 'Not Digitized', value: totalNotDigitized, color: '#f43f5e' },
+  ];
+
+  // Radar Chart Data: District Overview
+  const radarData = [
+    { subject: 'Electors', A: parseNum(totalRow['Total El ectors']), fullMark: 3000000 },
+    { subject: 'EFs Printed', A: parseNum(totalRow['EFs Printed']), fullMark: 3000000 },
+    { subject: 'Distributed', A: parseNum(totalRow['EFs Distri buted']), fullMark: 3000000 },
+    { subject: 'Digitized', A: parseNum(totalRow['EFs Digi tized']), fullMark: 3000000 },
+  ];
+
+  // Chart Data: Printed vs Distributed Gap
+  const gapData = acRows.map((r: any) => ({
+    name: str(r['AC No. & Name']).replace(/^[0-9]+-/, ''),
+    printed: parseNum(r['EFs Printed']),
+    distributed: parseNum(r['EFs Distri buted']),
+  }));
+
+  // Pie Chart: Anomalies Breakdown
+  const anomaliesBreakdown = [
+    { name: 'Anomalies', value: totalAnomalies, color: '#ef4444' },
+    { name: 'Uncollectable', value: parseNum(totalRow['Total Uncolle ctable Forms']), color: '#f59e0b' },
+    { name: 'ASD', value: parseNum(totalRow['Electors with ASD Discrep ancies']), color: '#8b5cf6' },
   ];
 
   return (
@@ -276,6 +298,57 @@ export default function SirDashboard() {
             <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none pb-8">
               <PieChartIcon className="w-6 h-6 text-slate-300 dark:text-slate-600 mb-1" />
             </div>
+          </div>
+        </div>
+
+        {/* Chart 7: District Pipeline (Radar) */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">District Conversion Pipeline</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <RadarChart cx="50%" cy="50%" outerRadius="80%" data={radarData}>
+                <PolarGrid stroke="#e2e8f0" />
+                <PolarAngleAxis dataKey="subject" tick={{ fill: '#64748b', fontSize: 11 }} />
+                <PolarRadiusAxis angle={30} domain={[0, 'auto']} tick={false} axisLine={false} />
+                <Radar name="Count" dataKey="A" stroke="#10b981" fill="#10b981" fillOpacity={0.4} />
+                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+              </RadarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Chart 8: Printed vs Distributed Line */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">Printed vs Distributed EFs Gap</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <ComposedChart data={gapData} margin={{ top: 10, right: 10, left: 10, bottom: 25 }}>
+                <XAxis dataKey="name" tick={{ fontSize: 10, fill: '#64748b' }} angle={-45} textAnchor="end" interval={0} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} tickFormatter={(v) => `${v/1000}k`} />
+                <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px' }} />
+                <Bar dataKey="printed" fill="#94a3b8" name="Printed" radius={[4, 4, 0, 0]} barSize={20} />
+                <Line type="monotone" dataKey="distributed" stroke="#10b981" strokeWidth={2} dot={{ r: 3 }} name="Distributed" />
+              </ComposedChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Chart 9: Anomalies Breakdown Pie */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">Issues Breakdown (District Level)</h3>
+          <div className="h-64 flex items-center justify-center relative">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie data={anomaliesBreakdown} cx="50%" cy="45%" innerRadius={0} outerRadius={80} paddingAngle={2} dataKey="value" stroke="none">
+                  {anomaliesBreakdown.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Pie>
+                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Legend verticalAlign="bottom" height={36} iconType="circle" wrapperStyle={{ fontSize: '12px' }} />
+              </PieChart>
+            </ResponsiveContainer>
           </div>
         </div>
       </div>
