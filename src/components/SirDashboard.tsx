@@ -140,6 +140,24 @@ export default function SirDashboard() {
     value: parseNum(r['EFs Not Digitize d']),
   })).sort((a, b) => b.value - a.value).slice(0, 5); // Top 5
   
+  // Chart Data: BLO Workload
+  const bloWorkloadData = acRows.map((r: any) => {
+    const blo = parseNum(r['Tota l BLO']);
+    const electors = parseNum(r['Total El ectors']);
+    const workload = blo > 0 ? (electors / blo) : 0;
+    return {
+      name: str(r['AC No. & Name']).replace(/^[0-9]+-/, ''),
+      workload: parseFloat(workload.toFixed(0)),
+    };
+  });
+
+  // Chart Data: Distributed vs Digitized Gap
+  const distDigiGapData = acRows.map((r: any) => ({
+    name: str(r['AC No. & Name']).replace(/^[0-9]+-/, ''),
+    distributed: parseNum(r['EFs Distri buted']),
+    digitized: parseNum(r['EFs Digi tized']),
+  }));
+
   const pieColors = ['#f43f5e', '#ef4444', '#f97316', '#f59e0b', '#eab308'];
 
   return (
@@ -427,6 +445,38 @@ export default function SirDashboard() {
                 <Area type="monotone" dataKey="submitted" stroke="#14b8a6" fillOpacity={1} fill="url(#colorSub)" name="Total Submitted" strokeWidth={2} />
                 <Area type="monotone" dataKey="unverified" stroke="#f43f5e" fillOpacity={1} fill="url(#colorUnv)" name="Not Verified" strokeWidth={2} />
               </AreaChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Chart 13: BLO Workload (Electors per BLO) */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">BLO Workload (Electors per BLO)</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={bloWorkloadData} margin={{ top: 10, right: 10, left: 10, bottom: 25 }}>
+                <XAxis dataKey="name" tick={{ fontSize: 10, fill: '#64748b' }} angle={-45} textAnchor="end" interval={0} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} />
+                <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Bar dataKey="workload" fill="#8b5cf6" name="Electors per BLO" radius={[4, 4, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Chart 14: Distributed vs Digitized Line */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">Distributed vs Digitized Gap</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <ComposedChart data={distDigiGapData} margin={{ top: 10, right: 10, left: 10, bottom: 25 }}>
+                <XAxis dataKey="name" tick={{ fontSize: 10, fill: '#64748b' }} angle={-45} textAnchor="end" interval={0} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} tickFormatter={(v) => `${v/1000}k`} />
+                <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px' }} />
+                <Bar dataKey="distributed" fill="#cbd5e1" name="Distributed" radius={[4, 4, 0, 0]} barSize={20} />
+                <Line type="monotone" dataKey="digitized" stroke="#8b5cf6" strokeWidth={2} dot={{ r: 3 }} name="Digitized" />
+              </ComposedChart>
             </ResponsiveContainer>
           </div>
         </div>
