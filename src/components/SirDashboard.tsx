@@ -123,6 +123,25 @@ export default function SirDashboard() {
     { name: 'ASD', value: parseNum(totalRow['Electors with ASD Discrep ancies']), color: '#8b5cf6' },
   ];
 
+  // Chart Data: Anomalies Rate per Elector
+  const anomaliesRateData = acRows.map((r: any) => {
+    const electors = parseNum(r['Total El ectors']);
+    const anomalies = parseNum(r['Total Ano malies']);
+    const rate = electors > 0 ? (anomalies / electors) * 100 : 0;
+    return {
+      name: str(r['AC No. & Name']).replace(/^[0-9]+-/, ''),
+      rate: parseFloat(rate.toFixed(2)),
+    };
+  });
+
+  // Chart Data: Top Offenders for Not Digitized
+  const notDigitizedOffenders = acRows.map((r: any) => ({
+    name: str(r['AC No. & Name']).replace(/^[0-9]+-/, ''),
+    value: parseNum(r['EFs Not Digitize d']),
+  })).sort((a, b) => b.value - a.value).slice(0, 5); // Top 5
+  
+  const pieColors = ['#f43f5e', '#ef4444', '#f97316', '#f59e0b', '#eab308'];
+
   return (
     <div className="space-y-6">
       <div className="flex justify-end mb-4">
@@ -348,6 +367,66 @@ export default function SirDashboard() {
                 <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
                 <Legend verticalAlign="bottom" height={36} iconType="circle" wrapperStyle={{ fontSize: '12px' }} />
               </PieChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Chart 10: Anomalies Rate per Elector */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">Anomalies per Elector (%)</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={anomaliesRateData} margin={{ top: 10, right: 10, left: 10, bottom: 25 }}>
+                <XAxis dataKey="name" tick={{ fontSize: 10, fill: '#64748b' }} angle={-45} textAnchor="end" interval={0} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} tickFormatter={(v) => `${v}%`} />
+                <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Bar dataKey="rate" fill="#ef4444" name="Anomalies %" radius={[4, 4, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Chart 11: Top 5 Not Digitized */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">Top 5 ACs: Pending Digitization</h3>
+          <div className="h-64 flex items-center justify-center relative">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie data={notDigitizedOffenders} cx="50%" cy="45%" innerRadius={50} outerRadius={80} paddingAngle={2} dataKey="value" stroke="none">
+                  {notDigitizedOffenders.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={pieColors[index % pieColors.length]} />
+                  ))}
+                </Pie>
+                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Legend verticalAlign="bottom" height={36} iconType="circle" wrapperStyle={{ fontSize: '11px' }} />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Chart 12: Submitted vs Unverified Area */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">Verified vs Unverified Submissions</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={verificationData} margin={{ top: 10, right: 10, left: 10, bottom: 25 }}>
+                <defs>
+                  <linearGradient id="colorSub" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#14b8a6" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="#14b8a6" stopOpacity={0}/>
+                  </linearGradient>
+                  <linearGradient id="colorUnv" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#f43f5e" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="#f43f5e" stopOpacity={0}/>
+                  </linearGradient>
+                </defs>
+                <XAxis dataKey="name" tick={{ fontSize: 10, fill: '#64748b' }} angle={-45} textAnchor="end" interval={0} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} />
+                <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px' }} />
+                <Area type="monotone" dataKey="submitted" stroke="#14b8a6" fillOpacity={1} fill="url(#colorSub)" name="Total Submitted" strokeWidth={2} />
+                <Area type="monotone" dataKey="unverified" stroke="#f43f5e" fillOpacity={1} fill="url(#colorUnv)" name="Not Verified" strokeWidth={2} />
+              </AreaChart>
             </ResponsiveContainer>
           </div>
         </div>
