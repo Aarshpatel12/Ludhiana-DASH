@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { AlertCircle, CheckCircle2, ChevronDown, ChevronUp, Search } from 'lucide-react';
 import DrugCensusDashboard from './DrugCensusDashboard';
+import SirDashboard from './SirDashboard';
 
 export default function OfficerAgendas({ data }: { data: any[] }) {
   const [filter, setFilter] = useState<'all' | 'flagged' | 'completed' | 'in-progress'>('all');
@@ -161,8 +162,8 @@ export default function OfficerAgendas({ data }: { data: any[] }) {
                     <DrugCensusDashboard />
                   </div>
                 ) : agenda === 'SIR' ? (
-                  <div className="pt-4 min-h-[300px] flex items-center justify-center border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-xl m-2 bg-black dark:bg-black">
-                    <span className="text-slate-400 font-medium">Pending Data...</span>
+                  <div className="pt-4 pb-2">
+                    <SirDashboard />
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-4 items-start">
