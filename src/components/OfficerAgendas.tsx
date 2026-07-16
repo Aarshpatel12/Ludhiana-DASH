@@ -33,7 +33,9 @@ export default function OfficerAgendas({ data }: { data: any[] }) {
 
   // Group filtered data by Priority Agenda
   const groupedData = filteredData.reduce((acc, row) => {
-    const agenda = row['Priority Agenda'] || 'Other';
+    let agenda = row['Priority Agenda'] || 'Other';
+    if (agenda.startsWith('SIR')) agenda = 'SIR';
+    
     if (!acc[agenda]) acc[agenda] = [];
     acc[agenda].push(row);
     return acc;
@@ -47,6 +49,8 @@ export default function OfficerAgendas({ data }: { data: any[] }) {
   const sortedAgendas = Object.entries(groupedData).sort(([agendaA], [agendaB]) => {
     if (agendaA === 'Socio-Economic Drug Census') return -1;
     if (agendaB === 'Socio-Economic Drug Census') return 1;
+    if (agendaA === 'SIR') return -1;
+    if (agendaB === 'SIR') return 1;
     return 0; // maintain original order for the rest
   });
 
@@ -124,7 +128,7 @@ export default function OfficerAgendas({ data }: { data: any[] }) {
               </div>
 
               {/* Mini Metrics Tag Cloud */}
-              {agenda !== 'Socio-Economic Drug Census' && (
+              {agenda !== 'Socio-Economic Drug Census' && agenda !== 'SIR' && (
                 <div className="mt-4 ml-3.5 flex flex-wrap gap-2">
                   {groupItems.map((row: any, idx: number) => {
                     const title = row['KPI / Metric'];
@@ -155,6 +159,10 @@ export default function OfficerAgendas({ data }: { data: any[] }) {
                 {agenda === 'Socio-Economic Drug Census' ? (
                   <div className="pt-4 pb-2">
                     <DrugCensusDashboard />
+                  </div>
+                ) : agenda === 'SIR' ? (
+                  <div className="pt-4 min-h-[300px] flex items-center justify-center border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-xl m-2">
+                    <span className="text-slate-400 font-medium">Pending Data...</span>
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-4 items-start">
