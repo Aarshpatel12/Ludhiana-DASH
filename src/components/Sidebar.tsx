@@ -55,9 +55,6 @@ export default async function Sidebar() {
         </Link>
       </div>
 
-      {/* Upload Dropzone */}
-      <UploadDropzone />
-
       {/* Officers List */}
       <div className="px-4 py-2 flex-1">
         <div className="text-xs font-semibold text-slate-500 tracking-wider mb-2 px-3">
@@ -124,6 +121,11 @@ export default async function Sidebar() {
             Data Connections
           </Link>
         </div>
+      </div>
+      
+      {/* Upload Dropzone */}
+      <div className="border-t border-slate-200 dark:border-slate-800 bg-slate-100/50 dark:bg-slate-900 pb-4">
+        <UploadDropzone />
       </div>
     </div>
   );
