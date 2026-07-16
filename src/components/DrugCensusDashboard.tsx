@@ -9,7 +9,8 @@ export default function DrugCensusDashboard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/data/drug_census.json')
+    // Adding a cache buster to ensure the latest data is always fetched
+    fetch(`/data/drug_census.json?v=${Date.now()}`)
       .then(res => res.json())
       .then(json => {
         setData(json);
@@ -101,6 +102,13 @@ export default function DrugCensusDashboard() {
     enumGap: parseFloat(str(r['Enum. Gap'])) || 0,
     supGap: parseFloat(str(r['Supervisor Gap'])) || 0,
   })).filter((d: any) => d.enumGap > 0 || d.supGap > 0);
+
+  // Prepare Booth Data by AC
+  const boothChartData = boothRows.map((r: any) => ({
+    name: str(r['Assembly Constituency']).replace('Ldh-', 'L-'),
+    unstarted: parseFloat(str(r['Booths with 0 Surveys'])) || 0,
+    total: parseFloat(str(r['Total Booths']).replace(/,/g, '')) || 0,
+  })).filter((d: any) => d.unstarted > 0);
 
   return (
     <div className="space-y-6">
@@ -265,6 +273,21 @@ export default function DrugCensusDashboard() {
                 <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px' }} />
                 <Bar dataKey="enumGap" stackId="a" fill="#ef4444" name="Idle Enumerators" radius={[0, 0, 0, 0]} />
                 <Bar dataKey="supGap" stackId="a" fill="#f59e0b" name="Missing Supervisors" radius={[4, 4, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Chart 7: Unstarted Booths */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">Unstarted Booths (0 Surveys) by AC</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={boothChartData} margin={{ top: 10, right: 10, left: -20, bottom: 25 }}>
+                <XAxis dataKey="name" tick={{ fontSize: 10, fill: '#64748b' }} angle={-45} textAnchor="end" interval={0} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} />
+                <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Bar dataKey="unstarted" fill="#f59e0b" name="Unstarted Booths" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
