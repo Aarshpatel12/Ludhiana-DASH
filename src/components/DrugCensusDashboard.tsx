@@ -152,6 +152,18 @@ export default function DrugCensusDashboard() {
   return (
     <div className="space-y-6">
       
+      <div className="flex justify-end mb-4">
+        <a 
+          href="https://docs.google.com/spreadsheets/d/1I7Bc_ryaUeUzxdTPBSR0UHZI8IeVHIB4T4IdqL5BFYU/edit" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="flex items-center gap-2 px-3 py-2 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 dark:bg-emerald-900/30 dark:text-emerald-400 dark:hover:bg-emerald-900/50 rounded-md font-bold transition-colors shadow-sm print:hidden text-sm"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M8 13h2"/><path d="M8 17h2"/><path d="M14 13h2"/><path d="M14 17h2"/></svg>
+          Edit Excel Data
+        </a>
+      </div>
+
       {/* Overview Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         
