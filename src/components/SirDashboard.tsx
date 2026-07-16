@@ -39,13 +39,13 @@ export default function SirDashboard() {
   // Safe str helper
   const str = (val: any) => (val === undefined || val === null ? '' : String(val));
   const parseNum = (val: any) => {
-    const s = str(val).split('(')[0].replace(/,/g, '').trim();
+    const s = str(val).split('(')[0].replace(/,/g, '').replace(/\n/g, '').replace(/\s/g, '');
     return parseFloat(s) || 0;
   };
 
   // Filter out the 'Total' row at the bottom
   const acRows = data.filter(r => str(r['AC No. & Name']).toLowerCase() !== 'nan' && r['AC No. & Name'] !== '');
-  const totalRow = data.find(r => str(r['District Name']).toLowerCase() === 'total') || {};
+  const totalRow = data.find(r => str(r['S. No.']).toLowerCase() === 'total') || {};
 
   // Metrics
   const totalElectors = parseNum(totalRow['Total El ectors']);
