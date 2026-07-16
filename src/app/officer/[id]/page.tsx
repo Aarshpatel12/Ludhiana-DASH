@@ -2,6 +2,7 @@ import { fetchOfficerData, SHEET_ID, SHEET_GIDS } from '@/lib/dataFetcher';
 import Link from 'next/link';
 import OfficerCharts from '@/components/OfficerCharts';
 import OfficerAgendas from '@/components/OfficerAgendas';
+import InstructButton from '@/components/InstructButton';
 
 export default async function OfficerPage({
   params,
@@ -48,15 +49,21 @@ export default async function OfficerPage({
         </div>
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-1">
           <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100">{decodedId} Review</h1>
-          <a 
-            href={editUrl} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="flex items-center gap-2 px-3 py-2 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 dark:bg-emerald-900/30 dark:text-emerald-400 dark:hover:bg-emerald-900/50 rounded-md font-bold transition-colors shadow-sm print:hidden text-sm"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M8 13h2"/><path d="M8 17h2"/><path d="M14 13h2"/><path d="M14 17h2"/></svg>
-            Edit Excel Data
-          </a>
+          <div className="flex items-center gap-3">
+            <InstructButton 
+              officerName={decodedId} 
+              dataSummary={{ totalItems, flaggedItems, completedItems, pendingItems }} 
+            />
+            <a 
+              href={editUrl} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="flex items-center gap-2 px-3 py-2 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 dark:bg-emerald-900/30 dark:text-emerald-400 dark:hover:bg-emerald-900/50 rounded-md font-bold transition-colors shadow-sm print:hidden text-sm"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M8 13h2"/><path d="M8 17h2"/><path d="M14 13h2"/><path d="M14 17h2"/></svg>
+              Edit Excel Data
+            </a>
+          </div>
         </div>
         <p className="text-slate-500 dark:text-slate-400 mt-1">
           Tracking {data.length} total items ({schemes.length} schemes and {tasks.length} priority tasks).
