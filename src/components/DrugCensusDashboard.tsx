@@ -73,7 +73,7 @@ export default function DrugCensusDashboard() {
   const allBoothRows = data.booth_analysis || [];
   const boothTotalRow = allBoothRows.find((r: any) => str(r['Assembly Constituency']).toUpperCase().includes('TOTAL')) || allBoothRows[allBoothRows.length - 1];
   
-  let boothPieData = [];
+  let boothPieData: any[] = [];
   if (boothTotalRow) {
     const totalBooths = parseFloat(str(boothTotalRow['Total Booths']).replace(/,/g, '')) || 0;
     const unstarted = parseFloat(str(boothTotalRow['Booths with 0 Surveys']).replace(/,/g, '')) || 0;
