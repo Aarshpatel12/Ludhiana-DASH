@@ -1,14 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
-import { 
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, 
-  ComposedChart, Line
-} from 'recharts';
-import { Activity, Users, CheckCircle, AlertTriangle } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Loader2, Users, Target, Activity, AlertTriangle, Building, Map } from 'lucide-react';
 
 export default function DrugCensusDashboard() {
-  const [data, setData] = useState<{ assembly_summary: any[], booths: any[] } | null>(null);
+  const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -19,162 +15,224 @@ export default function DrugCensusDashboard() {
         setLoading(false);
       })
       .catch(err => {
-        console.error("Error fetching drug census data:", err);
+        console.error("Failed to load drug census data", err);
         setLoading(false);
       });
   }, []);
 
   if (loading) {
-    return <div className="p-8 text-center text-slate-500 animate-pulse">Loading detailed census analytics...</div>;
-  }
-
-  if (!data || !data.assembly_summary || data.assembly_summary.length === 0) {
     return (
-      <div className="p-8 text-center text-slate-500 bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800">
-        No census data available. Please ensure the extraction script has been run.
+      <div className="flex flex-col items-center justify-center min-h-[300px] text-slate-500">
+        <Loader2 className="w-8 h-8 animate-spin mb-4 text-blue-500" />
+        <p className="font-medium animate-pulse">Loading Live Census Data...</p>
       </div>
     );
   }
 
-  // Calculate totals from summary
-  const summary = data.assembly_summary;
-  const totalTarget = summary.reduce((acc, row) => acc + (row.target || 0), 0);
-  const totalCompleted = summary.reduce((acc, row) => acc + (row.completed || 0), 0);
-  const totalPending = summary.reduce((acc, row) => acc + (row.pending || 0), 0);
-  const overallPct = totalTarget > 0 ? ((totalCompleted / totalTarget) * 100).toFixed(1) : '0';
+  if (!data || !data.tracker || data.tracker.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[300px] text-slate-500">
+        <AlertTriangle className="w-10 h-10 mb-4 text-amber-500 opacity-50" />
+        <p className="font-medium">No Data Available.</p>
+        <p className="text-sm">Please run the fetch script to generate data.</p>
+      </div>
+    );
+  }
+
+  // Extract District Totals (Usually the last row in tracker, labeled 'DISTRICT TOTAL')
+  const trackerRows = data.tracker.filter((r: any) => str(r['Assembly Constituency']).lower() != 'nan');
+  const districtTotalRow = trackerRows.find((r: any) => str(r['Assembly Constituency']).toUpperCase().includes('TOTAL')) || trackerRows[trackerRows.length - 1];
   
-  // Calculate QC totals
-  const totalQCTarget = summary.reduce((acc, row) => acc + (row.qc_target || 0), 0);
-  const totalQCCompleted = summary.reduce((acc, row) => acc + (row.qc_completed || 0), 0);
-  const overallQCPct = totalQCTarget > 0 ? ((totalQCCompleted / totalQCTarget) * 100).toFixed(1) : '0';
+  // Filter out the total row for the AC list
+  const acRows = trackerRows.filter((r: any) => !str(r['Assembly Constituency']).toUpperCase().includes('TOTAL') && str(r['Assembly Constituency']) !== 'nan');
 
-  // Format data for chart
-  const chartData = summary.map(row => ({
-    name: row.assembly,
-    Target: row.target,
-    Completed: row.completed,
-    QC_Completed: row.qc_completed,
-    ProgressPct: row.percentage
-  })).sort((a, b) => b.Completed - a.Completed);
+  // Helper safely format strings
+  function str(val: any) {
+    return val !== undefined && val !== null ? String(val) : '';
+  }
 
-  // Booth insights
-  const booths = data.booths || [];
-  const activeSurveyors = new Set(booths.map(b => b.surveyor).filter(Boolean)).size;
-  const worstBooths = [...booths].sort((a, b) => a.percentage - b.percentage).filter(b => b.target > 0).slice(0, 5);
-  const topBooths = [...booths].sort((a, b) => b.percentage - a.percentage).filter(b => b.target > 0).slice(0, 5);
+  // Find manpower gaps
+  const gapRows = (data.deployment_gaps || []).filter((r: any) => !str(r['Assembly Constituency']).toUpperCase().includes('TOTAL') && str(r['Assembly Constituency']) !== 'nan');
+  const criticalGaps = gapRows.filter((r: any) => parseFloat(str(r['Enum. Gap']) || '0') > 0 || parseFloat(str(r['Supervisor Gap']) || '0') > 0);
+
+  // Find booth issues
+  const boothRows = (data.booth_analysis || []).filter((r: any) => !str(r['Assembly Constituency']).toUpperCase().includes('TOTAL') && str(r['Assembly Constituency']) !== 'nan');
+  const criticalBooths = boothRows.filter((r: any) => parseFloat(str(r['Booths with 0 Surveys']) || '0') > 0 || parseFloat(str(r['Booths with NO Surveyor Mapped']) || '0') > 0);
 
   return (
-    <div className="space-y-6 w-full">
-      {/* Top Overview Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl p-5 text-white shadow-md">
-          <div className="flex items-center gap-2 mb-2 opacity-80">
-            <Users className="w-5 h-5" />
-            <h3 className="text-sm font-semibold uppercase tracking-wider">Total Target</h3>
-          </div>
-          <div className="text-3xl font-black">{totalTarget.toLocaleString()}</div>
-          <div className="text-sm mt-1 opacity-90">households mapped</div>
-        </div>
+    <div className="space-y-6">
+      
+      {/* Overview Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         
-        <div className="bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl p-5 text-white shadow-md">
-          <div className="flex items-center gap-2 mb-2 opacity-80">
-            <CheckCircle className="w-5 h-5" />
-            <h3 className="text-sm font-semibold uppercase tracking-wider">Surveys Done</h3>
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-sm">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="p-2 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg">
+              <Target className="w-5 h-5" />
+            </div>
+            <h3 className="text-sm font-semibold text-slate-500 dark:text-slate-400">Total Survey Target</h3>
           </div>
-          <div className="text-3xl font-black">{totalCompleted.toLocaleString()}</div>
-          <div className="text-sm mt-1 opacity-90">{overallPct}% of total target</div>
-        </div>
-        
-        <div className="bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl p-5 text-white shadow-md">
-          <div className="flex items-center gap-2 mb-2 opacity-80">
-            <Activity className="w-5 h-5" />
-            <h3 className="text-sm font-semibold uppercase tracking-wider">QC Progress</h3>
+          <div className="text-2xl font-black text-slate-900 dark:text-slate-100">
+            {str(districtTotalRow['Survey Target'])}
           </div>
-          <div className="text-3xl font-black">{totalQCCompleted.toLocaleString()}</div>
-          <div className="text-sm mt-1 opacity-90">{overallQCPct}% QC completion</div>
         </div>
 
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-sm">
-          <div className="flex items-center gap-2 mb-2 text-slate-500 dark:text-slate-400">
-            <AlertTriangle className="w-5 h-5" />
-            <h3 className="text-sm font-semibold uppercase tracking-wider">Pending</h3>
+          <div className="flex items-center gap-3 mb-2">
+            <div className="p-2 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-lg">
+              <Activity className="w-5 h-5" />
+            </div>
+            <h3 className="text-sm font-semibold text-slate-500 dark:text-slate-400">Completed Surveys</h3>
           </div>
-          <div className="text-3xl font-black text-slate-800 dark:text-slate-100">{totalPending.toLocaleString()}</div>
-          <div className="text-sm mt-1 text-slate-500">surveys left to complete</div>
+          <div className="flex items-end gap-2">
+            <div className="text-2xl font-black text-slate-900 dark:text-slate-100">
+              {str(districtTotalRow['Completed (16-Jul)'])}
+            </div>
+            <div className="text-sm font-bold text-emerald-500 mb-1">
+              ({str(districtTotalRow['Completed %'])})
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-sm">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="p-2 bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 rounded-lg">
+              <AlertTriangle className="w-5 h-5" />
+            </div>
+            <h3 className="text-sm font-semibold text-slate-500 dark:text-slate-400">Pending Surveys</h3>
+          </div>
+          <div className="text-2xl font-black text-slate-900 dark:text-slate-100">
+            {str(districtTotalRow['Pending'])}
+          </div>
+        </div>
+
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 shadow-sm">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="p-2 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-lg">
+              <Users className="w-5 h-5" />
+            </div>
+            <h3 className="text-sm font-semibold text-slate-500 dark:text-slate-400">Total Enumerators</h3>
+          </div>
+          <div className="flex items-end gap-2">
+            <div className="text-2xl font-black text-slate-900 dark:text-slate-100">
+              {str(districtTotalRow['Enum. Assigned'])}
+            </div>
+            {parseFloat(str(districtTotalRow['Enum. NOT Assigned']) || '0') > 0 && (
+              <div className="text-sm font-bold text-red-500 mb-1">
+                ({str(districtTotalRow['Enum. NOT Assigned'])} Idle)
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Main Chart */}
-        <div className="lg:col-span-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm">
-          <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100 mb-6">Assembly-wise Survey Progress</h3>
-          <div className="h-80 w-full">
-            <ResponsiveContainer width="100%" height="100%">
-              <ComposedChart data={chartData} margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
-                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#64748b' }} />
-                <YAxis yAxisId="left" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#64748b' }} tickFormatter={(val) => `${val / 1000}k`} />
-                <YAxis yAxisId="right" orientation="right" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#64748b' }} />
-                <Tooltip 
-                  contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
-                  formatter={(value: number, name: string) => [name.includes('Pct') ? `${value}%` : value.toLocaleString(), name.replace('_', ' ')]}
-                />
-                <Legend iconType="circle" />
-                <Bar yAxisId="left" dataKey="Target" fill="#e2e8f0" radius={[4, 4, 0, 0]} barSize={20} />
-                <Bar yAxisId="left" dataKey="Completed" fill="#3b82f6" radius={[4, 4, 0, 0]} barSize={20} />
-                <Line yAxisId="right" type="monotone" dataKey="ProgressPct" stroke="#10b981" strokeWidth={3} dot={{ r: 4, strokeWidth: 2 }} activeDot={{ r: 6 }} />
-              </ComposedChart>
-            </ResponsiveContainer>
+      {/* Main Leaderboard Table */}
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden">
+        <div className="px-5 py-4 border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 flex justify-between items-center">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100">AC-Wise Leaderboard</h3>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm text-left">
+            <thead className="bg-slate-50/50 dark:bg-slate-800/20 text-slate-500 dark:text-slate-400 text-xs uppercase font-bold">
+              <tr>
+                <th className="px-4 py-3">Rank</th>
+                <th className="px-4 py-3">Constituency</th>
+                <th className="px-4 py-3">Target</th>
+                <th className="px-4 py-3">Completed</th>
+                <th className="px-4 py-3 w-48">Progress</th>
+                <th className="px-4 py-3">Pace / Day</th>
+                <th className="px-4 py-3">Status</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-100 dark:divide-slate-800/50">
+              {acRows.map((row: any, idx: number) => {
+                const pctStr = str(row['Completed %']).replace('%', '');
+                const pct = parseFloat(pctStr) || 0;
+                
+                return (
+                  <tr key={idx} className="hover:bg-slate-50 dark:hover:bg-slate-800/20 transition-colors">
+                    <td className="px-4 py-3 font-semibold text-slate-700 dark:text-slate-300">#{str(row['Rank']).replace('.0','')}</td>
+                    <td className="px-4 py-3 font-bold text-slate-900 dark:text-slate-100">{str(row['Assembly Constituency'])}</td>
+                    <td className="px-4 py-3 text-slate-600 dark:text-slate-400">{str(row['Survey Target'])}</td>
+                    <td className="px-4 py-3 text-emerald-600 dark:text-emerald-400 font-semibold">{str(row['Completed (16-Jul)'])}</td>
+                    <td className="px-4 py-3">
+                      <div className="flex items-center gap-2">
+                        <div className="h-2 flex-1 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                          <div 
+                            className={`h-full rounded-full ${pct >= 80 ? 'bg-emerald-500' : pct >= 40 ? 'bg-amber-500' : 'bg-red-500'}`}
+                            style={{ width: \`\${Math.min(100, Math.max(0, pct))}%\` }}
+                          />
+                        </div>
+                        <span className="text-xs font-bold w-10 text-right">{pct.toFixed(1)}%</span>
+                      </div>
+                    </td>
+                    <td className="px-4 py-3 text-slate-600 dark:text-slate-400">{str(row['Per Enumerator per Day'])}</td>
+                    <td className="px-4 py-3">
+                      <span className={`text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider
+                        ${str(row['Status']).includes('CRITICAL') ? 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400' : 
+                          str(row['Status']).includes('course') ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400' : 
+                          'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400'}
+                      `}>
+                        {str(row['Status'])}
+                      </span>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Bottlenecks Section */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        
+        {/* Manpower Gaps */}
+        <div className="bg-red-50/50 dark:bg-red-900/10 border border-red-100 dark:border-red-900/30 rounded-xl overflow-hidden shadow-sm">
+          <div className="px-5 py-3 border-b border-red-100 dark:border-red-900/30 bg-red-100/50 dark:bg-red-900/20 flex items-center gap-2 text-red-800 dark:text-red-400 font-bold">
+            <Users className="w-4 h-4" /> Manpower Gaps (Idle Staff)
+          </div>
+          <div className="p-4 space-y-3">
+            {criticalGaps.length === 0 ? (
+              <p className="text-sm text-emerald-600 dark:text-emerald-400 font-medium">All enumerators and supervisors deployed!</p>
+            ) : (
+              criticalGaps.map((row: any, i: number) => (
+                <div key={i} className="flex justify-between items-center text-sm p-2 bg-white/60 dark:bg-slate-900/40 rounded border border-red-50 dark:border-red-900/20">
+                  <span className="font-semibold text-slate-800 dark:text-slate-200">{str(row['Assembly Constituency'])}</span>
+                  <div className="flex gap-3 text-red-600 dark:text-red-400 font-medium">
+                    {parseFloat(str(row['Enum. Gap']) || '0') > 0 && <span>{str(row['Enum. Gap'])} Idle Enums</span>}
+                    {parseFloat(str(row['Supervisor Gap']) || '0') > 0 && <span>{str(row['Supervisor Gap'])} Missing Supvs</span>}
+                  </div>
+                </div>
+              ))
+            )}
           </div>
         </div>
 
-        {/* Booth Insights */}
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 shadow-sm flex flex-col">
-          <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100 mb-1">Booth & Surveyor Insights</h3>
-          <p className="text-xs text-slate-500 mb-6">Tracking {booths.length} booths and {activeSurveyors} active surveyors.</p>
-          
-          <div className="flex-1 space-y-6">
-            <div>
-              <h4 className="text-sm font-semibold text-red-600 dark:text-red-400 mb-3 flex items-center gap-1.5 uppercase tracking-wide">
-                <AlertTriangle className="w-4 h-4" /> Needs Attention (Lowest %)
-              </h4>
-              <div className="space-y-3">
-                {worstBooths.map((b, i) => (
-                  <div key={i} className="flex flex-col gap-1 text-sm border-l-2 border-red-500 pl-3">
-                    <div className="flex justify-between font-semibold text-slate-800 dark:text-slate-200">
-                      <span className="truncate pr-2" title={b.booth_name}>{b.booth_name} ({b.assembly})</span>
-                      <span className="text-red-600">{b.percentage.toFixed(1)}%</span>
-                    </div>
-                    <div className="flex justify-between text-xs text-slate-500">
-                      <span>{b.surveyor || 'Unknown Surveyor'}</span>
-                      <span>{b.completed} / {b.target} done</span>
-                    </div>
+        {/* Booth Bottlenecks */}
+        <div className="bg-amber-50/50 dark:bg-amber-900/10 border border-amber-100 dark:border-amber-900/30 rounded-xl overflow-hidden shadow-sm">
+          <div className="px-5 py-3 border-b border-amber-100 dark:border-amber-900/30 bg-amber-100/50 dark:bg-amber-900/20 flex items-center gap-2 text-amber-800 dark:text-amber-400 font-bold">
+            <Building className="w-4 h-4" /> Booth Bottlenecks
+          </div>
+          <div className="p-4 space-y-3">
+            {criticalBooths.length === 0 ? (
+              <p className="text-sm text-emerald-600 dark:text-emerald-400 font-medium">No booth issues found.</p>
+            ) : (
+              criticalBooths.map((row: any, i: number) => (
+                <div key={i} className="flex flex-col gap-1 text-sm p-2 bg-white/60 dark:bg-slate-900/40 rounded border border-amber-50 dark:border-amber-900/20">
+                  <div className="flex justify-between items-center">
+                    <span className="font-semibold text-slate-800 dark:text-slate-200">{str(row['Assembly Constituency'])}</span>
+                    <span className="text-amber-600 dark:text-amber-400 font-bold">{str(row['Booths with 0 Surveys'])} Booths Unstarted</span>
                   </div>
-                ))}
-              </div>
-            </div>
-            
-            <div className="pt-4 border-t border-slate-100 dark:border-slate-800">
-              <h4 className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 mb-3 flex items-center gap-1.5 uppercase tracking-wide">
-                <CheckCircle className="w-4 h-4" /> Top Performers (Highest %)
-              </h4>
-              <div className="space-y-3">
-                {topBooths.map((b, i) => (
-                  <div key={i} className="flex flex-col gap-1 text-sm border-l-2 border-emerald-500 pl-3">
-                    <div className="flex justify-between font-semibold text-slate-800 dark:text-slate-200">
-                      <span className="truncate pr-2" title={b.booth_name}>{b.booth_name} ({b.assembly})</span>
-                      <span className="text-emerald-600">{b.percentage.toFixed(1)}%</span>
-                    </div>
-                    <div className="flex justify-between text-xs text-slate-500">
-                      <span>{b.surveyor || 'Unknown Surveyor'}</span>
-                      <span>{b.completed} / {b.target} done</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+                  {parseFloat(str(row['Booths with NO Surveyor Mapped']) || '0') > 0 && (
+                     <div className="text-xs text-red-500 font-medium">{str(row['Booths with NO Surveyor Mapped'])} have NO surveyor mapped!</div>
+                  )}
+                </div>
+              ))
+            )}
           </div>
         </div>
+
       </div>
     </div>
   );

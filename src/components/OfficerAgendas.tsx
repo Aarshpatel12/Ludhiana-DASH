@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { AlertCircle, CheckCircle2, ChevronDown, ChevronUp, Search } from 'lucide-react';
+import DrugCensusDashboard from './DrugCensusDashboard';
 
 export default function OfficerAgendas({ data }: { data: any[] }) {
   const [filter, setFilter] = useState<'all' | 'flagged' | 'completed' | 'in-progress'>('all');
@@ -152,8 +153,8 @@ export default function OfficerAgendas({ data }: { data: any[] }) {
             {isExpanded && (
               <div className="p-5 pt-0 border-t border-slate-200 dark:border-slate-800/50 mt-1">
                 {agenda === 'Socio-Economic Drug Census' ? (
-                  <div className="pt-4 min-h-[300px] flex items-center justify-center border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-xl m-2">
-                    {/* Blank state ready for new data as requested */}
+                  <div className="pt-4 pb-2">
+                    <DrugCensusDashboard />
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-4 items-start">
