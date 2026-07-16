@@ -141,6 +141,14 @@ export default function DrugCensusDashboard() {
     effort: parseFloat(str(r['Effort (per enum/day)'])) || 0,
   })).filter((d: any) => d.effort > 0);
 
+  // Prepare Extra Data
+  const extraChartData = acRows.map((r: any) => ({
+    name: str(r['Assembly Constituency']).replace('Ldh-', 'L-'),
+    target: parseFloat(str(r['Survey Target']).replace(/,/g, '')) || 0,
+    completed: parseFloat(str(r['Completed (16-Jul)']).replace(/,/g, '')) || 0,
+    unassigned: parseFloat(str(r['Enum. NOT Assigned'])) || 0,
+  }));
+
   return (
     <div className="space-y-6">
       
@@ -403,6 +411,38 @@ export default function DrugCensusDashboard() {
                 <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
                 <Bar dataKey="effort" fill="#8b5cf6" name="Effort (Surveys per Enum)" radius={[4, 4, 0, 0]} />
               </ComposedChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Chart 13: Target vs Completed */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">Target vs Completed (Raw Volume)</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={extraChartData} margin={{ top: 10, right: 10, left: 10, bottom: 25 }}>
+                <XAxis dataKey="name" tick={{ fontSize: 10, fill: '#64748b' }} angle={-45} textAnchor="end" interval={0} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} tickFormatter={(v) => `${v/1000}k`} />
+                <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px' }} />
+                <Bar dataKey="completed" stackId="a" fill="#10b981" name="Completed" />
+                <Bar dataKey="target" stackId="a" fill="#94a3b8" name="Total Target (Base)" radius={[4, 4, 0, 0]} opacity={0.3} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Chart 14: Unassigned Enumerators */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">Unassigned Enumerators by AC</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={extraChartData} margin={{ top: 10, right: 10, left: -20, bottom: 25 }}>
+                <XAxis dataKey="name" tick={{ fontSize: 10, fill: '#64748b' }} angle={-45} textAnchor="end" interval={0} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} />
+                <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Bar dataKey="unassigned" fill="#f43f5e" name="Idle (Unassigned) Enumerators" radius={[4, 4, 0, 0]} />
+              </BarChart>
             </ResponsiveContainer>
           </div>
         </div>
