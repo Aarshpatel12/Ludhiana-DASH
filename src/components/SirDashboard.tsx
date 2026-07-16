@@ -177,6 +177,23 @@ export default function SirDashboard() {
     { stage: 'Digitized EFs', count: parseNum(totalRow['EFs Digi tized']) },
   ];
 
+  // Chart Data: BLO Efficiency (Digitized per BLO)
+  const bloEfficiencyData = acRows.map((r: any) => {
+    const digitized = parseNum(r['EFs Digi tized']);
+    const blo = parseNum(r['Total BLO']);
+    const efficiency = blo > 0 ? digitized / blo : 0;
+    return {
+      name: str(r['AC No. & Name']).replace(/^[0-9]+-/, ''),
+      efficiency: parseFloat(efficiency.toFixed(1)),
+    };
+  }).sort((a, b) => b.efficiency - a.efficiency);
+
+  // Chart Data: Forms Not Digitized Heat
+  const notDigitizedData = acRows.map((r: any) => ({
+    name: str(r['AC No. & Name']).replace(/^[0-9]+-/, ''),
+    notDigitized: parseNum(r['EFs Not Digi tized']),
+  })).sort((a, b) => b.notDigitized - a.notDigitized);
+
   const pieColors = ['#f43f5e', '#ef4444', '#f97316', '#f59e0b', '#eab308'];
 
   return (
@@ -536,6 +553,45 @@ export default function SirDashboard() {
                   ))}
                 </Bar>
               </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Chart 17: BLO Efficiency (Digitized per BLO) */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">BLO Efficiency (Digitized Forms / BLO)</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={bloEfficiencyData} layout="vertical" margin={{ top: 10, right: 10, left: 30, bottom: 5 }}>
+                <XAxis type="number" tick={{ fontSize: 10, fill: '#64748b' }} axisLine={false} tickLine={false} />
+                <YAxis dataKey="name" type="category" tick={{ fontSize: 10, fill: '#64748b' }} axisLine={false} tickLine={false} width={80} />
+                <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Bar dataKey="efficiency" fill="#3b82f6" name="Digitized per BLO" radius={[0, 4, 4, 0]}>
+                  {bloEfficiencyData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={index < 3 ? '#2563eb' : '#60a5fa'} />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Chart 18: Forms Not Digitized Heat */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5 lg:col-span-2">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">Forms Not Digitized (Volume Backlog)</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <ComposedChart data={notDigitizedData} margin={{ top: 10, right: 10, left: 10, bottom: 25 }}>
+                <XAxis dataKey="name" tick={{ fontSize: 10, fill: '#64748b' }} angle={-45} textAnchor="end" interval={0} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} tickFormatter={(v) => `${(v/1000).toFixed(0)}k`} />
+                <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Bar dataKey="notDigitized" fill="#ef4444" name="Forms Not Digitized" radius={[4, 4, 0, 0]} barSize={30}>
+                  {notDigitizedData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={index < 3 ? '#b91c1c' : '#f87171'} />
+                  ))}
+                </Bar>
+                <Line type="monotone" dataKey="notDigitized" stroke="#991b1b" strokeWidth={2} dot={false} name="Trend" />
+              </ComposedChart>
             </ResponsiveContainer>
           </div>
         </div>
