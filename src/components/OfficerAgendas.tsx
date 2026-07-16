@@ -34,7 +34,7 @@ export default function OfficerAgendas({ data }: { data: any[] }) {
   // Group filtered data by Priority Agenda
   const groupedData = filteredData.reduce((acc, row) => {
     let agenda = row['Priority Agenda'] || 'Other';
-    if (agenda.startsWith('SIR')) agenda = 'SIR';
+    if (agenda.trim().toUpperCase().startsWith('SIR')) agenda = 'SIR';
     
     if (!acc[agenda]) acc[agenda] = [];
     acc[agenda].push(row);
@@ -161,7 +161,7 @@ export default function OfficerAgendas({ data }: { data: any[] }) {
                     <DrugCensusDashboard />
                   </div>
                 ) : agenda === 'SIR' ? (
-                  <div className="pt-4 min-h-[300px] flex items-center justify-center border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-xl m-2">
+                  <div className="pt-4 min-h-[300px] flex items-center justify-center border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-xl m-2 bg-black dark:bg-black">
                     <span className="text-slate-400 font-medium">Pending Data...</span>
                   </div>
                 ) : (
