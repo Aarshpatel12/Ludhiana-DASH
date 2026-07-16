@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Loader2, Users, FileText, AlertTriangle, FileWarning } from 'lucide-react';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend, ComposedChart, Line } from 'recharts';
+import { Loader2, Users, FileText, AlertTriangle, FileWarning, PieChart as PieChartIcon } from 'lucide-react';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend, ComposedChart, Line, PieChart, Pie, Cell, AreaChart, Area } from 'recharts';
 
 export default function SirDashboard() {
   const [data, setData] = useState<any[]>([]);
@@ -68,6 +68,38 @@ export default function SirDashboard() {
     uncollectable: parseNum(r['Total Uncolle ctable Forms']),
     anomalies: parseNum(r['Total Ano malies']),
   }));
+
+  // Chart Data: BLO vs Electors
+  const bloData = acRows.map((r: any) => ({
+    name: str(r['AC No. & Name']).replace(/^[0-9]+-/, ''),
+    blo: parseNum(r['Tota l BLO']),
+    electors: parseNum(r['Total El ectors']),
+  }));
+
+  // Chart Data: Pending Verifications
+  const verificationData = acRows.map((r: any) => ({
+    name: str(r['AC No. & Name']).replace(/^[0-9]+-/, ''),
+    submitted: parseNum(r['EFs Sub mitted by Elector']),
+    unverified: parseNum(r['EFs Sub mitted by Elector (Not Verified by BLO)']),
+  }));
+
+  // Chart Data: Digitization Rate
+  const digitRateData = acRows.map((r: any) => {
+    const printed = parseNum(r['EFs Printed']);
+    const digitized = parseNum(r['EFs Digi tized']);
+    const rate = printed > 0 ? (digitized / printed) * 100 : 0;
+    return {
+      name: str(r['AC No. & Name']).replace(/^[0-9]+-/, ''),
+      rate: parseFloat(rate.toFixed(1)),
+    };
+  });
+
+  // Pie Chart: Overall Digitization
+  const totalNotDigitized = parseNum(totalRow['EFs Not Digitize d']);
+  const pieData = [
+    { name: 'Digitized', value: totalDigitized, color: '#8b5cf6' },
+    { name: 'Not Digitized', value: totalNotDigitized, color: '#f43f5e' },
+  ];
 
   return (
     <div className="space-y-6">
@@ -167,6 +199,83 @@ export default function SirDashboard() {
                 <Bar dataKey="anomalies" stackId="a" fill="#ef4444" name="Anomalies" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Chart 3: BLO vs Electors */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">Workforce (BLO) vs Electors Load</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <ComposedChart data={bloData} margin={{ top: 10, right: 10, left: 10, bottom: 25 }}>
+                <XAxis dataKey="name" tick={{ fontSize: 10, fill: '#64748b' }} angle={-45} textAnchor="end" interval={0} axisLine={false} tickLine={false} />
+                <YAxis yAxisId="left" tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} />
+                <YAxis yAxisId="right" orientation="right" tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} tickFormatter={(v) => `${v/1000}k`} />
+                <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px' }} />
+                <Bar yAxisId="left" dataKey="blo" fill="#0ea5e9" name="Total BLOs" radius={[4, 4, 0, 0]} />
+                <Line yAxisId="right" type="monotone" dataKey="electors" stroke="#64748b" strokeWidth={2} dot={{ r: 3 }} name="Total Electors" />
+              </ComposedChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Chart 4: Pending Verifications */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">Pending Elector Verifications</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={verificationData} margin={{ top: 10, right: 10, left: 10, bottom: 25 }}>
+                <XAxis dataKey="name" tick={{ fontSize: 10, fill: '#64748b' }} angle={-45} textAnchor="end" interval={0} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} />
+                <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px' }} />
+                <Bar dataKey="submitted" fill="#14b8a6" name="Submitted by Elector" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="unverified" fill="#f43f5e" name="Not Verified by BLO" radius={[4, 4, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Chart 5: Digitization Pace Area */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">Digitization Completion (%)</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={digitRateData} margin={{ top: 10, right: 10, left: -20, bottom: 25 }}>
+                <defs>
+                  <linearGradient id="colorRate" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0}/>
+                  </linearGradient>
+                </defs>
+                <XAxis dataKey="name" tick={{ fontSize: 10, fill: '#64748b' }} angle={-45} textAnchor="end" interval={0} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} tickFormatter={(v) => `${v}%`} />
+                <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Area type="monotone" dataKey="rate" stroke="#8b5cf6" fillOpacity={1} fill="url(#colorRate)" name="% Digitized" strokeWidth={2} />
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Chart 6: Overall Status Pie */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">Overall District Digitization</h3>
+          <div className="h-64 flex items-center justify-center relative">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie data={pieData} cx="50%" cy="45%" innerRadius={60} outerRadius={80} paddingAngle={5} dataKey="value" stroke="none">
+                  {pieData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Pie>
+                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Legend verticalAlign="bottom" height={36} iconType="circle" wrapperStyle={{ fontSize: '12px' }} />
+              </PieChart>
+            </ResponsiveContainer>
+            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none pb-8">
+              <PieChartIcon className="w-6 h-6 text-slate-300 dark:text-slate-600 mb-1" />
+            </div>
           </div>
         </div>
       </div>
