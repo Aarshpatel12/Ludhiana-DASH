@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Loader2, Users, TrendingUp, CalendarDays, Activity } from 'lucide-react';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend, ComposedChart, Line, AreaChart, Area } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend, ComposedChart, Line, AreaChart, Area, PieChart, Pie, Cell } from 'recharts';
 
 export default function MmmdsyDashboard() {
   const [data, setData] = useState<any[]>([]);
@@ -59,6 +59,37 @@ export default function MmmdsyDashboard() {
     w4: r.Prog_W4,
     total: r.Reg_W4,
   })).sort((a, b) => b.total - a.total);
+
+  // Pie Chart: AC Share of Total Registrations
+  const pieData = acRows.map((r: any) => ({
+    name: r.Constituency.replace('Ludhiana ', 'L-'),
+    value: r.Reg_W4,
+  })).sort((a, b) => b.value - a.value);
+  
+  const COLORS = ['#f43f5e', '#ec4899', '#d946ef', '#a855f7', '#8b5cf6', '#6366f1', '#3b82f6', '#0ea5e9', '#06b6d4', '#14b8a6', '#10b981', '#22c55e', '#84cc16', '#eab308'];
+
+  // Line Chart: Phase 4 Growth Rate (%)
+  const growthRateData = acRows.map((r: any) => {
+    const prev = r.Reg_W3;
+    const current = r.Reg_W4;
+    const rate = prev > 0 ? ((current - prev) / prev) * 100 : 0;
+    return {
+      name: r.Constituency.replace('Ludhiana ', 'L-'),
+      rate: parseFloat(rate.toFixed(2))
+    };
+  }).sort((a, b) => b.rate - a.rate);
+
+  // Horizontal Bar: Phase 4 Best Performers (Absolute Progress)
+  const p4Performers = acRows.map((r: any) => ({
+    name: r.Constituency.replace('Ludhiana ', 'L-'),
+    progress: r.Prog_W4
+  })).sort((a, b) => b.progress - a.progress);
+
+  // Area Chart: Momentum (Phase 4 vs Phase 3)
+  const momentumData = acRows.map((r: any) => ({
+    name: r.Constituency.replace('Ludhiana ', 'L-'),
+    momentum: r.Prog_W4 - r.Prog_W3
+  }));
 
   return (
     <div className="space-y-6">
@@ -157,7 +188,7 @@ export default function MmmdsyDashboard() {
         </div>
 
         {/* Chart 3: Total Registrations by AC */}
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5 lg:col-span-2">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5">
           <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">Total Current Registrations by AC</h3>
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
@@ -165,9 +196,81 @@ export default function MmmdsyDashboard() {
                 <XAxis dataKey="name" tick={{ fontSize: 10, fill: '#64748b' }} angle={-45} textAnchor="end" interval={0} axisLine={false} tickLine={false} />
                 <YAxis tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} tickFormatter={(v) => `${(v/1000).toFixed(0)}k`} />
                 <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
-                <Bar dataKey="total" fill="#f43f5e" name="Total Registrations" radius={[4, 4, 0, 0]} barSize={30} />
+                <Bar dataKey="total" fill="#f43f5e" name="Total Registrations" radius={[4, 4, 0, 0]} barSize={20} />
                 <Line type="monotone" dataKey="total" stroke="#fda4af" strokeWidth={2} dot={{ r: 4, fill: '#e11d48' }} name="Trend" />
               </ComposedChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Chart 4: AC Share of Total Registrations */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">Constituency Share (Total Registrations)</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie data={pieData} cx="50%" cy="50%" innerRadius={60} outerRadius={90} paddingAngle={2} dataKey="value" stroke="none">
+                  {pieData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                  ))}
+                </Pie>
+                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Chart 5: Phase 4 Growth Rate (%) */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">Phase 4 Growth Rate (%)</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <ComposedChart data={growthRateData} margin={{ top: 10, right: 10, left: 10, bottom: 25 }}>
+                <XAxis dataKey="name" tick={{ fontSize: 10, fill: '#64748b' }} angle={-45} textAnchor="end" interval={0} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} tickFormatter={(v) => `${v}%`} />
+                <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Line type="monotone" dataKey="rate" stroke="#8b5cf6" strokeWidth={3} dot={{ r: 4, fill: '#6d28d9' }} name="Growth Rate" />
+              </ComposedChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Chart 6: Phase 4 Best Performers */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">Phase 4 Best Performers (Absolute Progress)</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={p4Performers} layout="vertical" margin={{ top: 10, right: 10, left: 40, bottom: 5 }}>
+                <XAxis type="number" tick={{ fontSize: 10, fill: '#64748b' }} axisLine={false} tickLine={false} />
+                <YAxis dataKey="name" type="category" tick={{ fontSize: 10, fill: '#64748b' }} axisLine={false} tickLine={false} width={80} />
+                <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Bar dataKey="progress" fill="#10b981" name="Phase 4 Progress" radius={[0, 4, 4, 0]}>
+                  {p4Performers.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={index < 3 ? '#059669' : '#34d399'} />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Chart 7: Registration Momentum */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5 lg:col-span-2">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">Registration Momentum (Phase 4 vs Phase 3 Progress)</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={momentumData} margin={{ top: 10, right: 10, left: 10, bottom: 25 }}>
+                <defs>
+                  <linearGradient id="colorMomentum" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#0ea5e9" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="#0ea5e9" stopOpacity={0}/>
+                  </linearGradient>
+                </defs>
+                <XAxis dataKey="name" tick={{ fontSize: 10, fill: '#64748b' }} angle={-45} textAnchor="end" interval={0} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} />
+                <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Area type="monotone" dataKey="momentum" stroke="#0ea5e9" fillOpacity={1} fill="url(#colorMomentum)" name="Momentum (Net Gain/Loss)" strokeWidth={2} />
+              </AreaChart>
             </ResponsiveContainer>
           </div>
         </div>
