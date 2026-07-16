@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Loader2, Users, Target, Activity, AlertTriangle, Building, Map } from 'lucide-react';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend, ComposedChart, Line } from 'recharts';
 
 export default function DrugCensusDashboard() {
   const [data, setData] = useState<any>(null);
@@ -65,7 +65,26 @@ export default function DrugCensusDashboard() {
     name: str(r['Assembly Constituency']).replace('Ldh-', 'L-'), // Abbreviate for chart
     completionPct: parseFloat(str(r['Completed %']).replace('%', '')) || 0,
     pace: parseFloat(str(r['Per Enumerator per Day'])) || 0,
+    pending: parseFloat(str(r['Pending']).replace(/,/g, '')) || 0,
   }));
+
+  // Prepare Booth Pie Chart Data
+  const allBoothRows = data.booth_analysis || [];
+  const boothTotalRow = allBoothRows.find((r: any) => str(r['Assembly Constituency']).toUpperCase().includes('TOTAL')) || allBoothRows[allBoothRows.length - 1];
+  
+  let boothPieData = [];
+  if (boothTotalRow) {
+    const totalBooths = parseFloat(str(boothTotalRow['Total Booths']).replace(/,/g, '')) || 0;
+    const unstarted = parseFloat(str(boothTotalRow['Booths with 0 Surveys']).replace(/,/g, '')) || 0;
+    const completed = parseFloat(str(boothTotalRow['Booths at 100%']).replace(/,/g, '')) || 0;
+    const inProgress = Math.max(0, totalBooths - unstarted - completed);
+    
+    boothPieData = [
+      { name: 'Completed', value: completed, color: '#10b981' },
+      { name: 'In Progress', value: inProgress, color: '#3b82f6' },
+      { name: 'Not Started', value: unstarted, color: '#f59e0b' },
+    ];
+  }
 
   return (
     <div className="space-y-6">
@@ -160,6 +179,39 @@ export default function DrugCensusDashboard() {
                 <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
                 <Bar dataKey="pace" fill="#10b981" radius={[4, 4, 0, 0]} name="Pace" />
               </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">Pending Workload vs Completion %</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <ComposedChart data={chartData} margin={{ top: 10, right: 10, left: 10, bottom: 25 }}>
+                <XAxis dataKey="name" tick={{ fontSize: 10, fill: '#64748b' }} angle={-45} textAnchor="end" interval={0} axisLine={false} tickLine={false} />
+                <YAxis yAxisId="left" tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} tickFormatter={(v) => `${v/1000}k`} />
+                <YAxis yAxisId="right" orientation="right" tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} />
+                <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Bar yAxisId="left" dataKey="pending" fill="#8b5cf6" radius={[4, 4, 0, 0]} name="Pending Surveys" />
+                <Line yAxisId="right" type="monotone" dataKey="completionPct" stroke="#f43f5e" strokeWidth={2} dot={{ r: 3, fill: '#f43f5e' }} name="Completion %" />
+              </ComposedChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">Overall Booth Status</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie data={boothPieData} cx="50%" cy="45%" innerRadius={60} outerRadius={80} paddingAngle={5} dataKey="value">
+                  {boothPieData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.color} />
+                  ))}
+                </Pie>
+                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Legend verticalAlign="bottom" height={36} iconType="circle" wrapperStyle={{ fontSize: '12px' }} />
+              </PieChart>
             </ResponsiveContainer>
           </div>
         </div>
