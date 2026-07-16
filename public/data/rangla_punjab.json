@@ -1,0 +1,422 @@
+{
+  "Phase I": [
+    {
+      "Agency": "BDPO DORAHA",
+      "Total": 34,
+      "InProgress": 4,
+      "Completed": 30,
+      "NotStarted": 0,
+      "Status": "ONGOING"
+    },
+    {
+      "Agency": "BDPO JAGRAON",
+      "Total": 42,
+      "InProgress": 30,
+      "Completed": 12,
+      "NotStarted": 0,
+      "Status": "ONGOING"
+    },
+    {
+      "Agency": "BDPO KHANNA",
+      "Total": 26,
+      "InProgress": 26,
+      "Completed": 0,
+      "NotStarted": 0,
+      "Status": "ONGOING"
+    },
+    {
+      "Agency": "BDPO LUDHIANA ONE",
+      "Total": 76,
+      "InProgress": 76,
+      "Completed": 0,
+      "NotStarted": 0,
+      "Status": "ONGOING"
+    },
+    {
+      "Agency": "BDPO LUDHIANA TWO",
+      "Total": 24,
+      "InProgress": 16,
+      "Completed": 8,
+      "NotStarted": 0,
+      "Status": "ONGOING"
+    },
+    {
+      "Agency": "BDPO KOOM KALAN",
+      "Total": 24,
+      "InProgress": 16,
+      "Completed": 8,
+      "NotStarted": 0,
+      "Status": "ONGOING"
+    },
+    {
+      "Agency": "BDPO MACHHIWARA SAHIB",
+      "Total": 2,
+      "InProgress": 2,
+      "Completed": 0,
+      "NotStarted": 0,
+      "Status": "ONGOING"
+    },
+    {
+      "Agency": "BDPO MALOUD",
+      "Total": 33,
+      "InProgress": 12,
+      "Completed": 21,
+      "NotStarted": 0,
+      "Status": "ONGOING"
+    },
+    {
+      "Agency": "BDPO PAKHOWAL",
+      "Total": 13,
+      "InProgress": 9,
+      "Completed": 4,
+      "NotStarted": 0,
+      "Status": "ONGOING"
+    },
+    {
+      "Agency": "BDPO RAIKOT",
+      "Total": 21,
+      "InProgress": 0,
+      "Completed": 21,
+      "NotStarted": 0,
+      "Status": "COMPLETED"
+    },
+    {
+      "Agency": "BDPO SAMRALA",
+      "Total": 34,
+      "InProgress": 16,
+      "Completed": 18,
+      "NotStarted": 0,
+      "Status": "ONGOING"
+    },
+    {
+      "Agency": "BDPO SIDHWAN BET",
+      "Total": 24,
+      "InProgress": 10,
+      "Completed": 14,
+      "NotStarted": 0,
+      "Status": "ONGOING"
+    },
+    {
+      "Agency": "BDPO SUDHAR",
+      "Total": 27,
+      "InProgress": 22,
+      "Completed": 5,
+      "NotStarted": 0,
+      "Status": "ONGOING"
+    },
+    {
+      "Agency": "DEPUTY DIRECTOR ANIMAL HUSBANDRY",
+      "Total": 1,
+      "InProgress": 0,
+      "Completed": 1,
+      "NotStarted": 0,
+      "Status": "COMPLETED"
+    },
+    {
+      "Agency": "XEN PROVISIONAL DIVISION B&R LUDHIANA",
+      "Total": 1,
+      "InProgress": 1,
+      "Completed": 0,
+      "NotStarted": 0,
+      "Status": "ONGOING"
+    },
+    {
+      "Agency": "EONC KHANNA",
+      "Total": 4,
+      "InProgress": 4,
+      "Completed": 0,
+      "NotStarted": 0,
+      "Status": "ONGOING"
+    },
+    {
+      "Agency": "EONC RAIKOT",
+      "Total": 8,
+      "InProgress": 3,
+      "Completed": 5,
+      "NotStarted": 0,
+      "Status": "ONGOING"
+    },
+    {
+      "Agency": "LUDHIANA EAST",
+      "Total": 3,
+      "InProgress": 3,
+      "Completed": 0,
+      "NotStarted": 0,
+      "Status": "ONGOING"
+    },
+    {
+      "Agency": "LUDHIANA SOUTH",
+      "Total": 9,
+      "InProgress": 9,
+      "Completed": 0,
+      "NotStarted": 0,
+      "Status": "ONGOING"
+    },
+    {
+      "Agency": "LUDHIANA CENTRAL",
+      "Total": 5,
+      "InProgress": 5,
+      "Completed": 0,
+      "NotStarted": 0,
+      "Status": "ONGOING"
+    },
+    {
+      "Agency": "LUDHIANA WEST",
+      "Total": 15,
+      "InProgress": 15,
+      "Completed": 0,
+      "NotStarted": 0,
+      "Status": "ONGOING"
+    },
+    {
+      "Agency": "LUDHIANA NORTH",
+      "Total": 4,
+      "InProgress": 4,
+      "Completed": 0,
+      "NotStarted": 0,
+      "Status": "ONGOING"
+    },
+    {
+      "Agency": "ATAM NAGAR",
+      "Total": 3,
+      "InProgress": 3,
+      "Completed": 0,
+      "NotStarted": 0,
+      "Status": "ONGOING"
+    }
+  ],
+  "Phase II": [
+    {
+      "Agency": "BDPO DEHLON",
+      "Total": 30,
+      "InProgress": 29,
+      "Completed": 0,
+      "NotStarted": 1,
+      "Status": "PENDING"
+    },
+    {
+      "Agency": "BDPO DORAHA",
+      "Total": 43,
+      "InProgress": 37,
+      "Completed": 6,
+      "NotStarted": 0,
+      "Status": "ONGOING"
+    },
+    {
+      "Agency": "BDPO JAGRAON",
+      "Total": 44,
+      "InProgress": 39,
+      "Completed": 5,
+      "NotStarted": 0,
+      "Status": "ONGOING"
+    },
+    {
+      "Agency": "BDPO KHANNA",
+      "Total": 28,
+      "InProgress": 28,
+      "Completed": 0,
+      "NotStarted": 0,
+      "Status": "ONGOING"
+    },
+    {
+      "Agency": "BDPO LUDHIANA ONE",
+      "Total": 21,
+      "InProgress": 21,
+      "Completed": 0,
+      "NotStarted": 0,
+      "Status": "ONGOING"
+    },
+    {
+      "Agency": "BDPO LUDHIANA TWO",
+      "Total": 21,
+      "InProgress": 19,
+      "Completed": 2,
+      "NotStarted": 0,
+      "Status": "ONGOING"
+    },
+    {
+      "Agency": "KOOM KALAN",
+      "Total": 27,
+      "InProgress": 26,
+      "Completed": 1,
+      "NotStarted": 0,
+      "Status": "ONGOING"
+    },
+    {
+      "Agency": "BDPO MACHHIWARA SAHIB",
+      "Total": 33,
+      "InProgress": 33,
+      "Completed": 0,
+      "NotStarted": 0,
+      "Status": "ONGOING"
+    },
+    {
+      "Agency": "BDPO MALOUD",
+      "Total": 19,
+      "InProgress": 17,
+      "Completed": 2,
+      "NotStarted": 0,
+      "Status": "ONGOING"
+    },
+    {
+      "Agency": "BDPO RAIKOT",
+      "Total": 31,
+      "InProgress": 30,
+      "Completed": 1,
+      "NotStarted": 0,
+      "Status": "ONGOING"
+    },
+    {
+      "Agency": "BDPO SAMRALA",
+      "Total": 19,
+      "InProgress": 19,
+      "Completed": 0,
+      "NotStarted": 0,
+      "Status": "ONGOING"
+    },
+    {
+      "Agency": "EONC KHANNA",
+      "Total": 3,
+      "InProgress": 0,
+      "Completed": 0,
+      "NotStarted": 3,
+      "Status": "100% Not Started"
+    },
+    {
+      "Agency": "EONC RAIKOT",
+      "Total": 7,
+      "InProgress": 6,
+      "Completed": 1,
+      "NotStarted": 0,
+      "Status": "86% Not Started"
+    },
+    {
+      "Agency": "EONP MALOUD",
+      "Total": 1,
+      "InProgress": 0,
+      "Completed": 0,
+      "NotStarted": 1,
+      "Status": "100% Not Started"
+    },
+    {
+      "Agency": "LUDHIANA EAST",
+      "Total": 3,
+      "InProgress": 2,
+      "Completed": 0,
+      "NotStarted": 1,
+      "Status": "33% Not Started"
+    },
+    {
+      "Agency": "LUDHIANA SOUTH",
+      "Total": 7,
+      "InProgress": 0,
+      "Completed": 0,
+      "NotStarted": 7,
+      "Status": "100% Not Started"
+    },
+    {
+      "Agency": "LUDHIANA CENTRAL",
+      "Total": 4,
+      "InProgress": 0,
+      "Completed": 0,
+      "NotStarted": 4,
+      "Status": "100% Not Started"
+    },
+    {
+      "Agency": "LUDHIANA WEST",
+      "Total": 19,
+      "InProgress": 0,
+      "Completed": 0,
+      "NotStarted": 19,
+      "Status": "100% Not Started"
+    },
+    {
+      "Agency": "LUDHIANA NORTH",
+      "Total": 29,
+      "InProgress": 0,
+      "Completed": 0,
+      "NotStarted": 29,
+      "Status": "100% Not Started"
+    },
+    {
+      "Agency": "ATAM NAGAR",
+      "Total": 11,
+      "InProgress": 0,
+      "Completed": 0,
+      "NotStarted": 11,
+      "Status": "100% Not Started"
+    }
+  ],
+  "Phase III": [
+    {
+      "Constituency": "Khanna",
+      "Proposal_MLA": "No",
+      "Approved_DLC": "No"
+    },
+    {
+      "Constituency": "Samrala",
+      "Proposal_MLA": "No",
+      "Approved_DLC": "No"
+    },
+    {
+      "Constituency": "Sahnewal",
+      "Proposal_MLA": "Yes",
+      "Approved_DLC": "No"
+    },
+    {
+      "Constituency": "Ludhiana East",
+      "Proposal_MLA": "No",
+      "Approved_DLC": "No"
+    },
+    {
+      "Constituency": "Ludhiana West",
+      "Proposal_MLA": "No",
+      "Approved_DLC": "No"
+    },
+    {
+      "Constituency": "Ludhiana South",
+      "Proposal_MLA": "Yes",
+      "Approved_DLC": "Yes"
+    },
+    {
+      "Constituency": "Ludhiana Central",
+      "Proposal_MLA": "No",
+      "Approved_DLC": "No"
+    },
+    {
+      "Constituency": "Ludhiana North",
+      "Proposal_MLA": "Yes",
+      "Approved_DLC": "No"
+    },
+    {
+      "Constituency": "Atam Nagar",
+      "Proposal_MLA": "Yes",
+      "Approved_DLC": "Yes"
+    },
+    {
+      "Constituency": "Gill (SC)",
+      "Proposal_MLA": "No",
+      "Approved_DLC": "No"
+    },
+    {
+      "Constituency": "Payal (SC)",
+      "Proposal_MLA": "No",
+      "Approved_DLC": "No"
+    },
+    {
+      "Constituency": "Raikot (SC)",
+      "Proposal_MLA": "No",
+      "Approved_DLC": "No"
+    },
+    {
+      "Constituency": "Jagraon (SC)",
+      "Proposal_MLA": "Yes",
+      "Approved_DLC": "No"
+    },
+    {
+      "Constituency": "Dakha",
+      "Proposal_MLA": "Not reflected",
+      "Approved_DLC": "Not reflected"
+    }
+  ]
+}
