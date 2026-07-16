@@ -55,6 +55,8 @@ export default function OfficerAgendas({ data }: { data: any[] }) {
     if (agendaB === 'Socio-Economic Drug Census') return 1;
     if (agendaA === 'SIR') return -1;
     if (agendaB === 'SIR') return 1;
+    if (agendaA === 'PSTC — Supervision (owned by AC-G)') return -1;
+    if (agendaB === 'PSTC — Supervision (owned by AC-G)') return 1;
     return 0; // maintain original order for the rest
   });
 
