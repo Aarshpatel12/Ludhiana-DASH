@@ -165,6 +165,10 @@ export default function OfficerAgendas({ data }: { data: any[] }) {
                   <div className="pt-4 pb-2">
                     <SirDashboard />
                   </div>
+                ) : agenda.includes('MMMDSY') ? (
+                  <div className="pt-4 min-h-[300px] flex items-center justify-center border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-xl m-2 bg-black dark:bg-black">
+                    <span className="text-slate-400 dark:text-slate-500 font-medium tracking-wide">Pending Data...</span>
+                  </div>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-4 items-start">
                   {groupItems.map((row: any, idx: number) => {
