@@ -129,7 +129,7 @@ export default function OfficerAgendas({ data }: { data: any[] }) {
               </div>
 
               {/* Mini Metrics Tag Cloud */}
-              {agenda !== 'Socio-Economic Drug Census' && agenda !== 'SIR' && (
+              {agenda !== 'Socio-Economic Drug Census' && agenda !== 'SIR' && !agenda.includes('MMMDSY') && (
                 <div className="mt-4 ml-3.5 flex flex-wrap gap-2">
                   {groupItems.map((row: any, idx: number) => {
                     const title = row['KPI / Metric'];
