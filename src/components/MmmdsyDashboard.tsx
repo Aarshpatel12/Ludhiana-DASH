@@ -139,7 +139,7 @@ export default function MmmdsyDashboard() {
           </p>
         </div>
         <a 
-          href="https://docs.google.com/spreadsheets/d/12J6Rmk96GDp2NUSQ57zV3cdOFBD0smzrISS7D_WjGPg/edit?gid=0#gid=0"
+          href="https://docs.google.com/spreadsheets/d/12J6Rmk96Gdp2NUSQ57zV3cdOFBD0smzrISS7D_WjGPg/edit?gid=0#gid=0"
           target="_blank"
           rel="noreferrer"
           className="flex items-center gap-2 px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-white font-medium rounded-lg shadow-sm transition-all text-sm whitespace-nowrap"
