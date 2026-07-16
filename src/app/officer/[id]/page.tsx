@@ -32,7 +32,8 @@ export default async function OfficerPage({
 
   // Generate automated insights
   const totalItems = data.length;
-  const flaggedItems = data.filter(r => r['Auto-Flag']?.trim() !== '').length;
+  const flaggedRows = data.filter(r => r['Auto-Flag']?.trim() !== '');
+  const flaggedItems = flaggedRows.length;
   const completedItems = data.filter(r => r['Status']?.toLowerCase() === 'completed').length;
   const pendingItems = totalItems - flaggedItems - completedItems;
 
@@ -53,6 +54,7 @@ export default async function OfficerPage({
             <InstructButton 
               officerName={decodedId} 
               dataSummary={{ totalItems, flaggedItems, completedItems, pendingItems }} 
+              flaggedRows={flaggedRows}
             />
             <a 
               href={editUrl} 

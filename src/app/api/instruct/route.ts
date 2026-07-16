@@ -4,7 +4,7 @@ import { sendWhatsAppMessage } from '@/lib/whatsapp';
 
 export async function POST(req: NextRequest) {
   try {
-    const { officerName, dataSummary } = await req.json();
+    const { officerName, dataSummary, flaggedRows } = await req.json();
 
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
@@ -13,22 +13,38 @@ export async function POST(req: NextRequest) {
 
     const genAI = new GoogleGenerativeAI(apiKey);
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
+    
+    // Create a compact list of flagged tasks for the prompt
+    let flaggedContext = "";
+    if (flaggedRows && flaggedRows.length > 0) {
+      flaggedContext = "\\n\\nDetailed Flagged Items:\\n";
+      // Limit to 20 to avoid giant prompts
+      const subset = flaggedRows.slice(0, 20);
+      subset.forEach((row: any) => {
+        flaggedContext += `- Group: ${row['Agenda Group']}, Task: ${row['KPI / Metric']}, Status: ${row['Status'] || 'Pending'}, Remark: ${row['Remarks / Next Steps'] || 'None'}\\n`;
+      });
+      if (flaggedRows.length > 20) {
+        flaggedContext += `... and ${flaggedRows.length - 20} more flagged items.`;
+      }
+    }
 
     const prompt = `
     You are an AI assistant helping the District Commissioner manage officers.
     Officer Name: ${officerName}
+    
     Current Workload Summary:
     - Total Items Tracked: ${dataSummary.totalItems}
     - Flagged Items (Requiring Immediate Attention): ${dataSummary.flaggedItems}
     - Completed Items: ${dataSummary.completedItems}
     - Pending/In-Progress Items: ${dataSummary.pendingItems}
+    ${flaggedContext}
 
-    Based on this data, write a brief, professional WhatsApp message instructing the officer on "where to focus". 
-    If there are flagged items, emphasize addressing them immediately. 
+    Based on this data, write a firm, professional WhatsApp message instructing the officer on "where to focus". 
+    Specifically analyze the Detailed Flagged Items (if any) and mention the specific tasks/metrics they need to prioritize.
     If there are many pending items, encourage speeding up the process.
     Keep the tone authoritative but encouraging.
     
-    Return ONLY the text of the message, nothing else.
+    Return ONLY the text of the message, nothing else. Do not use asterisks for bolding if it makes it too messy, but standard WhatsApp formatting is fine.
     `;
 
     let message = "";

@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { MessageCircle, Loader2 } from 'lucide-react';
 
-export default function InstructButton({ officerName, dataSummary }: { officerName: string, dataSummary: any }) {
+export default function InstructButton({ officerName, dataSummary, flaggedRows }: { officerName: string, dataSummary: any, flaggedRows?: any[] }) {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
@@ -15,7 +15,7 @@ export default function InstructButton({ officerName, dataSummary }: { officerNa
       const res = await fetch('/api/instruct', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ officerName, dataSummary })
+        body: JSON.stringify({ officerName, dataSummary, flaggedRows })
       });
       
       if (!res.ok) throw new Error('Failed to send instruction');
