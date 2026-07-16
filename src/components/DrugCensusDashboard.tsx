@@ -110,6 +110,14 @@ export default function DrugCensusDashboard() {
     total: parseFloat(str(r['Total Booths']).replace(/,/g, '')) || 0,
   })).filter((d: any) => d.unstarted > 0);
 
+  // Prepare Progress Data by AC
+  const progressRows = (data.progress || []).filter((r: any) => !str(r['Assembly Constituency']).toUpperCase().includes('TOTAL') && str(r['Assembly Constituency']) !== 'nan');
+  const progressChartData = progressRows.map((r: any) => ({
+    name: str(r['Assembly Constituency']).replace('Ldh-', 'L-'),
+    surveysAdded: parseFloat(str(r['Surveys Added (2 days)']).replace(/,/g, '')) || 0,
+    benchmarkPct: parseFloat(str(r['% of 20/day Benchmark']).replace('%', '')) || 0,
+  })).filter((d: any) => d.surveysAdded > 0);
+
   return (
     <div className="space-y-6">
       
@@ -289,6 +297,23 @@ export default function DrugCensusDashboard() {
                 <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
                 <Bar dataKey="unstarted" fill="#f59e0b" name="Unstarted Booths" radius={[4, 4, 0, 0]} />
               </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Chart 8: Recent Progress vs Benchmark */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">Recent Momentum vs Benchmark</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <ComposedChart data={progressChartData} margin={{ top: 10, right: 10, left: -20, bottom: 25 }}>
+                <XAxis dataKey="name" tick={{ fontSize: 10, fill: '#64748b' }} angle={-45} textAnchor="end" interval={0} axisLine={false} tickLine={false} />
+                <YAxis yAxisId="left" tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} />
+                <YAxis yAxisId="right" orientation="right" tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} />
+                <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Bar yAxisId="left" dataKey="surveysAdded" fill="#0ea5e9" radius={[4, 4, 0, 0]} name="Surveys Added (Last 2 Days)" />
+                <Line yAxisId="right" type="monotone" dataKey="benchmarkPct" stroke="#f43f5e" strokeWidth={2} dot={{ r: 3, fill: '#f43f5e' }} name="% of 20/day Benchmark" />
+              </ComposedChart>
             </ResponsiveContainer>
           </div>
         </div>
