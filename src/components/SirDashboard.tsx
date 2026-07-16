@@ -158,6 +158,25 @@ export default function SirDashboard() {
     digitized: parseNum(r['EFs Digi tized']),
   }));
 
+  // Chart Data: Unverified Ratio (%)
+  const unverifiedRatioData = acRows.map((r: any) => {
+    const submitted = parseNum(r['EFs Sub mitted by Elector']);
+    const unverified = parseNum(r['EFs Sub mitted by Elector (Not Verified by BLO)']);
+    const ratio = submitted > 0 ? (unverified / submitted) * 100 : 0;
+    return {
+      name: str(r['AC No. & Name']).replace(/^[0-9]+-/, ''),
+      ratio: parseFloat(ratio.toFixed(1)),
+    };
+  });
+
+  // Chart Data: Overall District Drop-off Funnel
+  const funnelData = [
+    { stage: 'Total Electors', count: parseNum(totalRow['Total El ectors']) },
+    { stage: 'Printed EFs', count: parseNum(totalRow['EFs Printed']) },
+    { stage: 'Distributed EFs', count: parseNum(totalRow['EFs Distri buted']) },
+    { stage: 'Digitized EFs', count: parseNum(totalRow['EFs Digi tized']) },
+  ];
+
   const pieColors = ['#f43f5e', '#ef4444', '#f97316', '#f59e0b', '#eab308'];
 
   return (
@@ -477,6 +496,46 @@ export default function SirDashboard() {
                 <Bar dataKey="distributed" fill="#cbd5e1" name="Distributed" radius={[4, 4, 0, 0]} barSize={20} />
                 <Line type="monotone" dataKey="digitized" stroke="#8b5cf6" strokeWidth={2} dot={{ r: 3 }} name="Digitized" />
               </ComposedChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Chart 15: Unverified Ratio (%) */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">Unverified Ratio (%)</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={unverifiedRatioData} margin={{ top: 10, right: 10, left: 10, bottom: 25 }}>
+                <defs>
+                  <linearGradient id="colorRatio" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#f43f5e" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="#f43f5e" stopOpacity={0}/>
+                  </linearGradient>
+                </defs>
+                <XAxis dataKey="name" tick={{ fontSize: 10, fill: '#64748b' }} angle={-45} textAnchor="end" interval={0} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} tickFormatter={(v) => `${v}%`} />
+                <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Area type="monotone" dataKey="ratio" stroke="#f43f5e" fillOpacity={1} fill="url(#colorRatio)" name="Unverified %" strokeWidth={2} />
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Chart 16: Overall District Drop-off Funnel */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">Overall District Drop-off Funnel</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={funnelData} layout="vertical" margin={{ top: 10, right: 10, left: 30, bottom: 5 }}>
+                <XAxis type="number" tick={{ fontSize: 10, fill: '#64748b' }} axisLine={false} tickLine={false} tickFormatter={(v) => `${v/1000000}M`} />
+                <YAxis dataKey="stage" type="category" tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} width={100} />
+                <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Bar dataKey="count" fill="#14b8a6" name="Total Count" radius={[0, 4, 4, 0]}>
+                  {funnelData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={['#64748b', '#94a3b8', '#cbd5e1', '#8b5cf6'][index]} />
+                  ))}
+                </Bar>
+              </BarChart>
             </ResponsiveContainer>
           </div>
         </div>
