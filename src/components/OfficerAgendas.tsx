@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { AlertCircle, CheckCircle2, ChevronDown, ChevronUp, Search } from 'lucide-react';
+import DrugCensusDashboard from './DrugCensusDashboard';
 
 export default function OfficerAgendas({ data }: { data: any[] }) {
   const [filter, setFilter] = useState<'all' | 'flagged' | 'completed' | 'in-progress'>('all');
@@ -117,33 +118,40 @@ export default function OfficerAgendas({ data }: { data: any[] }) {
               </div>
 
               {/* Mini Metrics Tag Cloud */}
-              <div className="mt-4 ml-3.5 flex flex-wrap gap-2">
-                {groupItems.map((row: any, idx: number) => {
-                  const title = row['KPI / Metric'];
-                  const current = row['Current Value'];
-                  const pct = row['Achieved %'];
-                  const target = row['Target / Total'];
-                  
-                  let displayValue = '';
-                  if (pct && pct !== '-') displayValue = pct;
-                  else if (current && current !== '-') displayValue = current;
-                  else if (target && target !== '-') displayValue = target;
-                  
-                  if (!displayValue || !title) return null;
+              {agenda !== 'Socio-Economic Drug Census' && (
+                <div className="mt-4 ml-3.5 flex flex-wrap gap-2">
+                  {groupItems.map((row: any, idx: number) => {
+                    const title = row['KPI / Metric'];
+                    const current = row['Current Value'];
+                    const pct = row['Achieved %'];
+                    const target = row['Target / Total'];
+                    
+                    let displayValue = '';
+                    if (pct && pct !== '-') displayValue = pct;
+                    else if (current && current !== '-') displayValue = current;
+                    else if (target && target !== '-') displayValue = target;
+                    
+                    if (!displayValue || !title) return null;
 
-                  return (
-                    <div key={idx} className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded px-2 py-1 flex items-center gap-1.5 shadow-sm max-w-[280px]">
-                      <span className="text-[10px] font-medium text-slate-500 dark:text-slate-400 truncate" title={title}>{title}</span>
-                      <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200 whitespace-nowrap pl-1 border-l border-slate-200 dark:border-slate-700">{displayValue}</span>
-                    </div>
-                  );
-                })}
-              </div>
+                    return (
+                      <div key={idx} className="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded px-2 py-1 flex items-center gap-1.5 shadow-sm max-w-[280px]">
+                        <span className="text-[10px] font-medium text-slate-500 dark:text-slate-400 truncate" title={title}>{title}</span>
+                        <span className="text-[11px] font-bold text-slate-800 dark:text-slate-200 whitespace-nowrap pl-1 border-l border-slate-200 dark:border-slate-700">{displayValue}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </button>
             
             {isExpanded && (
               <div className="p-5 pt-0 border-t border-slate-200 dark:border-slate-800/50 mt-1">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-4 items-start">
+                {agenda === 'Socio-Economic Drug Census' ? (
+                  <div className="pt-4">
+                    <DrugCensusDashboard />
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-4 items-start">
                   {groupItems.map((row: any, idx: number) => {
                     const hasFlag = row['Auto-Flag'] && row['Auto-Flag'].trim() !== '';
                     const status = row['Status'] || '';
@@ -241,6 +249,7 @@ export default function OfficerAgendas({ data }: { data: any[] }) {
                     );
                   })}
                 </div>
+                )}
               </div>
             )}
           </div>

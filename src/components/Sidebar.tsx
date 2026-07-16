@@ -1,6 +1,7 @@
 import { fetchMasterDashboard } from '@/lib/dataFetcher';
 import Link from 'next/link';
 import { LayoutDashboard, Flag, Landmark } from 'lucide-react';
+import UploadDropzone from './UploadDropzone';
 
 export default async function Sidebar() {
   let masterData: any[] = [];
@@ -53,6 +54,9 @@ export default async function Sidebar() {
           </span>
         </Link>
       </div>
+
+      {/* Upload Dropzone */}
+      <UploadDropzone />
 
       {/* Officers List */}
       <div className="px-4 py-2 flex-1">
