@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Loader2, Users, TrendingUp, CalendarDays, Activity } from 'lucide-react';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend, ComposedChart, LineChart, Line, AreaChart, Area, PieChart, Pie, Cell, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts';
+import { Loader2, Users, TrendingUp, CalendarDays, Activity, ExternalLink } from 'lucide-react';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend, ComposedChart, LineChart, Line, AreaChart, Area, PieChart, Pie, Cell, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, ScatterChart, Scatter, ZAxis } from 'recharts';
 
 export default function MmmdsyDashboard() {
   const [data, setData] = useState<any[]>([]);
@@ -113,9 +113,22 @@ export default function MmmdsyDashboard() {
     signups: r.Reg_W4 - r.Reg_W1
   })).sort((a, b) => b.signups - a.signups);
 
+  // Scatter Chart: Total Base vs Recent Growth
+  const scatterData = acRows.map((r: any) => ({
+    name: r.Constituency.replace('Ludhiana ', 'L-'),
+    totalBase: r.Reg_W1,
+    newGrowth: (r.Prog_W2 + r.Prog_W3 + r.Prog_W4)
+  }));
+
+  // Bar Chart: Average Phase Progress
+  const avgProgressData = acRows.map((r: any) => ({
+    name: r.Constituency.replace('Ludhiana ', 'L-'),
+    avg: (r.Prog_W2 + r.Prog_W3 + r.Prog_W4) / 3
+  })).sort((a, b) => b.avg - a.avg);
+
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 gap-4">
         <div>
           <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100 flex items-center gap-2">
             <Activity className="w-6 h-6 text-pink-500" />
@@ -125,6 +138,15 @@ export default function MmmdsyDashboard() {
             Tracking cumulative registrations and phase-wise progress across all constituencies.
           </p>
         </div>
+        <a 
+          href="https://docs.google.com/spreadsheets/d/12J6Rmk96GDp2NUSQ57zV3cdOFBD0smzrISS7D_WjGPg/edit?gid=0#gid=0"
+          target="_blank"
+          rel="noreferrer"
+          className="flex items-center gap-2 px-4 py-2 bg-emerald-500 hover:bg-emerald-600 text-white font-medium rounded-lg shadow-sm transition-all text-sm whitespace-nowrap"
+        >
+          <ExternalLink className="w-4 h-4" />
+          Edit Google Sheet
+        </a>
       </div>
 
       {/* Top Level Metric Cards */}
@@ -348,6 +370,42 @@ export default function MmmdsyDashboard() {
                   ))}
                 </Bar>
               </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Chart 11: Base vs Growth Scatter */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">Phase 1 Base vs New Growth</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <ScatterChart margin={{ top: 10, right: 10, left: 10, bottom: 25 }}>
+                <XAxis dataKey="totalBase" type="number" name="Phase 1 Base" tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} tickFormatter={(v) => `${(v/1000).toFixed(0)}k`} />
+                <YAxis dataKey="newGrowth" type="number" name="New Growth (P2-P4)" tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} />
+                <ZAxis dataKey="name" type="category" name="Constituency" />
+                <Tooltip cursor={{ strokeDasharray: '3 3' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Scatter data={scatterData} fill="#f43f5e" />
+              </ScatterChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Chart 12: Average Phase Progress */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5 lg:col-span-2">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">Average Progress per Phase</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <ComposedChart data={avgProgressData} margin={{ top: 10, right: 10, left: 10, bottom: 25 }}>
+                <XAxis dataKey="name" tick={{ fontSize: 10, fill: '#64748b' }} angle={-45} textAnchor="end" interval={0} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} />
+                <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Bar dataKey="avg" fill="#14b8a6" name="Avg Phase Progress" radius={[4, 4, 0, 0]} barSize={40}>
+                  {avgProgressData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={index < 3 ? '#0f766e' : '#2dd4bf'} />
+                  ))}
+                </Bar>
+                <Line type="monotone" dataKey="avg" stroke="#0f766e" strokeWidth={2} dot={false} name="Trend" />
+              </ComposedChart>
             </ResponsiveContainer>
           </div>
         </div>
