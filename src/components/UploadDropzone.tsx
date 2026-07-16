@@ -34,20 +34,37 @@ export default function UploadDropzone() {
     }
   };
 
-  const handleFiles = (files: FileList) => {
+  const handleFiles = async (files: FileList) => {
     const file = files[0];
     setFileName(file.name);
     setUploadStatus('uploading');
     
-    // Simulate upload process
-    setTimeout(() => {
+    const formData = new FormData();
+    formData.append('file', file);
+    
+    try {
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+      
+      if (!response.ok) {
+        throw new Error('Upload failed');
+      }
+      
       setUploadStatus('success');
-      // Reset after 3 seconds
       setTimeout(() => {
         setUploadStatus('idle');
         setFileName(null);
       }, 3000);
-    }, 1500);
+    } catch (error) {
+      console.error(error);
+      setUploadStatus('error');
+      setTimeout(() => {
+        setUploadStatus('idle');
+        setFileName(null);
+      }, 3000);
+    }
   };
 
   const handleClick = () => {
@@ -90,7 +107,7 @@ export default function UploadDropzone() {
           <>
             <div className="w-5 h-5 border-2 border-blue-500 border-t-transparent rounded-full animate-spin mb-2"></div>
             <div className="text-xs font-semibold text-blue-600 dark:text-blue-400 text-center truncate w-full px-2">
-              Uploading...
+              Analyzing via AI...
             </div>
             <div className="text-[10px] text-slate-500 text-center mt-1 truncate w-full px-2">
               {fileName}
@@ -102,10 +119,19 @@ export default function UploadDropzone() {
           <>
             <CheckCircle className="w-6 h-6 mb-2 text-emerald-500" />
             <div className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 text-center">
-              Uploaded
+              Analyzed & Sent to WhatsApp!
             </div>
             <div className="text-[10px] text-slate-500 text-center mt-1 truncate w-full px-2">
               {fileName}
+            </div>
+          </>
+        )}
+        
+        {uploadStatus === 'error' && (
+          <>
+            <AlertCircle className="w-6 h-6 mb-2 text-red-500" />
+            <div className="text-xs font-semibold text-red-600 dark:text-red-400 text-center">
+              Analysis Failed
             </div>
           </>
         )}
