@@ -74,6 +74,23 @@ export default function PstcDashboard() {
     }))
     .sort((a, b) => (b.open + b.underProcess + b.resolved) - (a.open + a.underProcess + a.resolved));
 
+  // Chart 5: Global Status Distribution (Pie)
+  const globalPieData = [
+    { name: 'Resolved', value: totalResolved },
+    { name: 'Under Process', value: department_status.reduce((sum: number, r: any) => sum + r.underProcess, 0) },
+    { name: 'Open (Pending Action)', value: department_status.reduce((sum: number, r: any) => sum + r.open, 0) }
+  ];
+  const PIE_COLORS = ['#10b981', '#3b82f6', '#cbd5e1'];
+
+  // Chart 6: Workload vs Efficiency (Scatter)
+  const scatterData = [...department_status]
+    .filter(r => (r.active + r.resolved) > 0)
+    .map(r => ({
+      name: r.department.replace('Rural Dev & Panchayat', 'Rural Dev').replace('District Food and Supply', 'DFSO').replace('Law & Order (Police)', 'Police'),
+      workload: r.active + r.resolved,
+      efficiency: r.donePct
+    }));
+
   return (
     <div className="space-y-6">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 gap-4">
@@ -206,6 +223,43 @@ export default function PstcDashboard() {
                 <Bar dataKey="underProcess" stackId="a" fill="#3b82f6" name="Under Process" />
                 <Bar dataKey="open" stackId="a" fill="#cbd5e1" name="Open (Pending Action)" radius={[4, 4, 0, 0]} />
               </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Chart 5: Global Status Distribution (Pie) */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">Overall District Status Pipeline</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie data={globalPieData} cx="50%" cy="50%" innerRadius={60} outerRadius={90} paddingAngle={2} dataKey="value" stroke="none" label>
+                  {globalPieData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={PIE_COLORS[index % PIE_COLORS.length]} />
+                  ))}
+                </Pie>
+                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Legend verticalAlign="bottom" height={36} wrapperStyle={{ fontSize: '12px' }} />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Chart 6: Workload vs Efficiency (Scatter) */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">Total Workload vs Resolution Rate</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <ScatterChart margin={{ top: 10, right: 10, bottom: 25, left: 10 }}>
+                <XAxis type="number" dataKey="workload" name="Total Grievances" tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} />
+                <YAxis type="number" dataKey="efficiency" name="Resolution Rate (%)" domain={[0, 100]} tick={{ fontSize: 11, fill: '#64748b' }} tickFormatter={(v) => `${v}%`} axisLine={false} tickLine={false} />
+                <Tooltip cursor={{ strokeDasharray: '3 3' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Scatter name="Departments" data={scatterData} fill="#8b5cf6">
+                  {scatterData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={entry.efficiency > 80 ? '#10b981' : entry.efficiency < 40 ? '#f43f5e' : '#8b5cf6'} />
+                  ))}
+                </Scatter>
+              </ScatterChart>
             </ResponsiveContainer>
           </div>
         </div>
