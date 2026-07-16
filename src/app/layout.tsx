@@ -31,7 +31,7 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
-      <body className="flex h-screen overflow-hidden bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans transition-colors print:h-auto print:overflow-visible print:bg-white">
+      <body className="flex flex-col md:flex-row h-screen overflow-hidden bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans transition-colors print:h-auto print:overflow-visible print:bg-white">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -39,9 +39,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Sidebar />
-          <div className="flex-1 flex flex-col h-screen overflow-hidden print:h-auto print:overflow-visible">
+          <div className="flex-1 flex flex-col h-full overflow-hidden print:h-auto print:overflow-visible">
             <TopBar />
-            <main className="flex-1 overflow-y-auto p-6 bg-slate-50 dark:bg-slate-950 transition-colors print:overflow-visible print:bg-white print:p-0">
+            <main className="flex-1 overflow-y-auto p-4 md:p-6 bg-slate-50 dark:bg-slate-950 transition-colors print:overflow-visible print:bg-white print:p-0">
               {children}
             </main>
           </div>
