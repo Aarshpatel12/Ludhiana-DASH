@@ -40,7 +40,7 @@ export default function DrugCensusDashboard() {
   }
 
   // Extract District Totals (Usually the last row in tracker, labeled 'DISTRICT TOTAL')
-  const trackerRows = data.tracker.filter((r: any) => str(r['Assembly Constituency']).lower() != 'nan');
+  const trackerRows = data.tracker.filter((r: any) => str(r['Assembly Constituency']).toLowerCase() !== 'nan');
   const districtTotalRow = trackerRows.find((r: any) => str(r['Assembly Constituency']).toUpperCase().includes('TOTAL')) || trackerRows[trackerRows.length - 1];
   
   // Filter out the total row for the AC list
