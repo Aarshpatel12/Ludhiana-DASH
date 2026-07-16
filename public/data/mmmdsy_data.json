@@ -1,0 +1,152 @@
+[
+  {
+    "Constituency": "Atam Nagar",
+    "Reg_W1": 35928,
+    "Reg_W2": 36517,
+    "Prog_W2": 589,
+    "Reg_W3": 37059,
+    "Prog_W3": 542,
+    "Reg_W4": 37444,
+    "Prog_W4": 385
+  },
+  {
+    "Constituency": "Dakha",
+    "Reg_W1": 59564,
+    "Reg_W2": 59980,
+    "Prog_W2": 416,
+    "Reg_W3": 60327,
+    "Prog_W3": 347,
+    "Reg_W4": 60522,
+    "Prog_W4": 195
+  },
+  {
+    "Constituency": "Gill",
+    "Reg_W1": 79183,
+    "Reg_W2": 80233,
+    "Prog_W2": 1050,
+    "Reg_W3": 81136,
+    "Prog_W3": 903,
+    "Reg_W4": 81639,
+    "Prog_W4": 503
+  },
+  {
+    "Constituency": "Jagraon",
+    "Reg_W1": 57639,
+    "Reg_W2": 58060,
+    "Prog_W2": 421,
+    "Reg_W3": 58405,
+    "Prog_W3": 345,
+    "Reg_W4": 58627,
+    "Prog_W4": 222
+  },
+  {
+    "Constituency": "Khanna",
+    "Reg_W1": 53849,
+    "Reg_W2": 54578,
+    "Prog_W2": 729,
+    "Reg_W3": 55169,
+    "Prog_W3": 591,
+    "Reg_W4": 55561,
+    "Prog_W4": 392
+  },
+  {
+    "Constituency": "Ludhiana Central",
+    "Reg_W1": 33269,
+    "Reg_W2": 33947,
+    "Prog_W2": 678,
+    "Reg_W3": 34551,
+    "Prog_W3": 604,
+    "Reg_W4": 34930,
+    "Prog_W4": 379
+  },
+  {
+    "Constituency": "Ludhiana East",
+    "Reg_W1": 56552,
+    "Reg_W2": 57576,
+    "Prog_W2": 1024,
+    "Reg_W3": 58366,
+    "Prog_W3": 790,
+    "Reg_W4": 58872,
+    "Prog_W4": 506
+  },
+  {
+    "Constituency": "Ludhiana North",
+    "Reg_W1": 47934,
+    "Reg_W2": 48870,
+    "Prog_W2": 936,
+    "Reg_W3": 49661,
+    "Prog_W3": 791,
+    "Reg_W4": 50112,
+    "Prog_W4": 451
+  },
+  {
+    "Constituency": "Ludhiana South",
+    "Reg_W1": 45614,
+    "Reg_W2": 46669,
+    "Prog_W2": 1055,
+    "Reg_W3": 47472,
+    "Prog_W3": 803,
+    "Reg_W4": 48028,
+    "Prog_W4": 556
+  },
+  {
+    "Constituency": "Ludhiana West",
+    "Reg_W1": 27880,
+    "Reg_W2": 28481,
+    "Prog_W2": 601,
+    "Reg_W3": 28921,
+    "Prog_W3": 440,
+    "Reg_W4": 29256,
+    "Prog_W4": 335
+  },
+  {
+    "Constituency": "Payal",
+    "Reg_W1": 56601,
+    "Reg_W2": 56926,
+    "Prog_W2": 325,
+    "Reg_W3": 57214,
+    "Prog_W3": 288,
+    "Reg_W4": 57412,
+    "Prog_W4": 198
+  },
+  {
+    "Constituency": "Raikot",
+    "Reg_W1": 48094,
+    "Reg_W2": 48623,
+    "Prog_W2": 529,
+    "Reg_W3": 49096,
+    "Prog_W3": 473,
+    "Reg_W4": 49352,
+    "Prog_W4": 256
+  },
+  {
+    "Constituency": "Sahnewal",
+    "Reg_W1": 72056,
+    "Reg_W2": 73757,
+    "Prog_W2": 1701,
+    "Reg_W3": 74998,
+    "Prog_W3": 1241,
+    "Reg_W4": 75732,
+    "Prog_W4": 734
+  },
+  {
+    "Constituency": "Samrala",
+    "Reg_W1": 57872,
+    "Reg_W2": 58573,
+    "Prog_W2": 701,
+    "Reg_W3": 59062,
+    "Prog_W3": 489,
+    "Reg_W4": 59343,
+    "Prog_W4": 281
+  },
+  {
+    "Constituency": "TOTAL",
+    "Reg_W1": 732035,
+    "Reg_W2": 742790,
+    "Prog_W2": 10755,
+    "Reg_W3": 751437,
+    "Prog_W3": 8647,
+    "Reg_W4": 756830,
+    "Prog_W4": 5393
+  }
+]
