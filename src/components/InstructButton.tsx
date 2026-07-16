@@ -20,6 +20,12 @@ export default function InstructButton({ officerName, dataSummary, flaggedRows }
       
       if (!res.ok) throw new Error('Failed to send instruction');
       
+      const data = await res.json();
+      if (data.aiMessage) {
+        const waUrl = `https://wa.me/919555059976?text=${encodeURIComponent(data.aiMessage)}`;
+        window.open(waUrl, '_blank');
+      }
+      
       setSuccess(true);
       setTimeout(() => setSuccess(false), 3000);
     } catch (err) {
@@ -48,7 +54,7 @@ export default function InstructButton({ officerName, dataSummary, flaggedRows }
       ) : (
         <MessageCircle className="w-4 h-4" />
       )}
-      {loading ? 'Sending...' : success ? 'Sent!' : 'Instruct via WhatsApp'}
+      {loading ? 'Preparing Message...' : success ? 'Redirected!' : 'Instruct via WhatsApp'}
     </button>
   );
 }

@@ -58,11 +58,9 @@ export async function POST(req: NextRequest) {
       message = `*Automated Alert for ${officerName}*\n\nPlease prioritize the ${dataSummary.flaggedItems} flagged items immediately. You currently have ${dataSummary.pendingItems} items in progress. Ensure steady progress to meet targets.`;
     }
 
-    // Send the WhatsApp Message
-    const targetNumber = '9555059976';
-    await sendWhatsAppMessage(targetNumber, message);
-
-    return NextResponse.json({ success: true, message: "Instruction sent" });
+    // Instead of sending it server-side, return it to the client
+    // so the client can redirect to the WhatsApp app.
+    return NextResponse.json({ success: true, aiMessage: message });
 
   } catch (error: any) {
     console.error("Instruct API Error:", error);
