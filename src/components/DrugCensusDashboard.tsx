@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Loader2, Users, Target, Activity, AlertTriangle, Building, Map } from 'lucide-react';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend, ComposedChart, Line } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend, ComposedChart, Line, AreaChart, Area } from 'recharts';
 
 export default function DrugCensusDashboard() {
   const [data, setData] = useState<any>(null);
@@ -85,6 +85,22 @@ export default function DrugCensusDashboard() {
       { name: 'Not Started', value: unstarted, color: '#f59e0b' },
     ];
   }
+
+  // Prepare Daily Surveys Trend Data
+  const dailyRows = (data.daily_surveys || []).filter((r: any) => str(r['Rank']).includes('2026') || str(r['Rank']).includes('Jul'));
+  const dailyTrendData = dailyRows.map((r: any) => ({
+    date: str(r['Rank']).replace(' 2026', '').replace(' (5 PM)', '').replace(' (24 hr)', '').trim(),
+    cumulative: parseFloat(str(r['Assembly Constituency']).replace(/,/g, '')) || 0,
+    dailyDone: parseFloat(str(r['Cumulative 06-Jul']).replace(/,/g, '')) || 0,
+    completionPct: parseFloat(str(r['11-Jul']).replace('%', '')) || 0
+  })).filter((d: any) => d.cumulative > 0);
+
+  // Prepare Manpower Gaps Data
+  const manpowerData = gapRows.map((r: any) => ({
+    name: str(r['Assembly Constituency']).replace('Ldh-', 'L-'),
+    enumGap: parseFloat(str(r['Enum. Gap'])) || 0,
+    supGap: parseFloat(str(r['Supervisor Gap'])) || 0,
+  })).filter((d: any) => d.enumGap > 0 || d.supGap > 0);
 
   return (
     <div className="space-y-6">
@@ -212,6 +228,44 @@ export default function DrugCensusDashboard() {
                 <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
                 <Legend verticalAlign="bottom" height={36} iconType="circle" wrapperStyle={{ fontSize: '12px' }} />
               </PieChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Chart 5: Daily Trend */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">Cumulative District Progress</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={dailyTrendData} margin={{ top: 10, right: 10, left: 10, bottom: 25 }}>
+                <defs>
+                  <linearGradient id="colorCumulative" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="#3b82f6" stopOpacity={0}/>
+                  </linearGradient>
+                </defs>
+                <XAxis dataKey="date" tick={{ fontSize: 10, fill: '#64748b' }} angle={-45} textAnchor="end" interval={0} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} tickFormatter={(v) => `${v/1000}k`} />
+                <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Area type="monotone" dataKey="cumulative" stroke="#3b82f6" fillOpacity={1} fill="url(#colorCumulative)" name="Total Surveys" strokeWidth={2} />
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Chart 6: Manpower Gaps */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">Staff Shortages by AC</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={manpowerData} margin={{ top: 10, right: 10, left: -20, bottom: 25 }}>
+                <XAxis dataKey="name" tick={{ fontSize: 10, fill: '#64748b' }} angle={-45} textAnchor="end" interval={0} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} />
+                <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px' }} />
+                <Bar dataKey="enumGap" stackId="a" fill="#ef4444" name="Idle Enumerators" radius={[0, 0, 0, 0]} />
+                <Bar dataKey="supGap" stackId="a" fill="#f59e0b" name="Missing Supervisors" radius={[4, 4, 0, 0]} />
+              </BarChart>
             </ResponsiveContainer>
           </div>
         </div>
