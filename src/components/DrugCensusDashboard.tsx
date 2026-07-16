@@ -160,7 +160,7 @@ export default function DrugCensusDashboard() {
                         <div className="h-2 flex-1 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
                           <div 
                             className={`h-full rounded-full ${pct >= 80 ? 'bg-emerald-500' : pct >= 40 ? 'bg-amber-500' : 'bg-red-500'}`}
-                            style={{ width: \`\${Math.min(100, Math.max(0, pct))}%\` }}
+                            style={{ width: `${Math.min(100, Math.max(0, pct))}%` }}
                           />
                         </div>
                         <span className="text-xs font-bold w-10 text-right">{pct.toFixed(1)}%</span>
