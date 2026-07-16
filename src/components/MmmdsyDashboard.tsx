@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Loader2, Users, TrendingUp, CalendarDays, Activity } from 'lucide-react';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend, ComposedChart, Line, AreaChart, Area, PieChart, Pie, Cell } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Legend, ComposedChart, LineChart, Line, AreaChart, Area, PieChart, Pie, Cell, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from 'recharts';
 
 export default function MmmdsyDashboard() {
   const [data, setData] = useState<any[]>([]);
@@ -90,6 +90,28 @@ export default function MmmdsyDashboard() {
     name: r.Constituency.replace('Ludhiana ', 'L-'),
     momentum: r.Prog_W4 - r.Prog_W3
   }));
+
+  // Radar Chart: Early vs Late (W1 vs W4-W1)
+  const earlyLateData = acRows.map((r: any) => ({
+    name: r.Constituency.replace('Ludhiana ', 'L-'),
+    early: r.Reg_W1,
+    late: r.Reg_W4 - r.Reg_W1
+  }));
+
+  // Line Chart: Top 5 ACs Trajectory
+  const top5ACs = [...acRows].sort((a, b) => b.Reg_W4 - a.Reg_W4).slice(0, 5);
+  const trajectoryData = [
+    { phase: 'Phase 1', ...Object.fromEntries(top5ACs.map(r => [r.Constituency, r.Reg_W1])) },
+    { phase: 'Phase 2', ...Object.fromEntries(top5ACs.map(r => [r.Constituency, r.Reg_W2])) },
+    { phase: 'Phase 3', ...Object.fromEntries(top5ACs.map(r => [r.Constituency, r.Reg_W3])) },
+    { phase: 'Phase 4', ...Object.fromEntries(top5ACs.map(r => [r.Constituency, r.Reg_W4])) }
+  ];
+
+  // Bar Chart: Total New Signups Since W1
+  const netSignupsData = acRows.map((r: any) => ({
+    name: r.Constituency.replace('Ludhiana ', 'L-'),
+    signups: r.Reg_W4 - r.Reg_W1
+  })).sort((a, b) => b.signups - a.signups);
 
   return (
     <div className="space-y-6">
@@ -255,7 +277,7 @@ export default function MmmdsyDashboard() {
         </div>
 
         {/* Chart 7: Registration Momentum */}
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5 lg:col-span-2">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5">
           <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">Registration Momentum (Phase 4 vs Phase 3 Progress)</h3>
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
@@ -271,6 +293,61 @@ export default function MmmdsyDashboard() {
                 <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
                 <Area type="monotone" dataKey="momentum" stroke="#0ea5e9" fillOpacity={1} fill="url(#colorMomentum)" name="Momentum (Net Gain/Loss)" strokeWidth={2} />
               </AreaChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Chart 8: Top 5 ACs Multi-Line Trajectory */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">Top 5 ACs Growth Trajectory</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={trajectoryData} margin={{ top: 10, right: 10, left: 10, bottom: 25 }}>
+                <XAxis dataKey="phase" tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} tickFormatter={(v) => `${(v/1000).toFixed(0)}k`} />
+                <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '10px' }} />
+                {top5ACs.map((ac, idx) => (
+                  <Line key={ac.Constituency} type="monotone" dataKey={ac.Constituency} stroke={COLORS[idx]} strokeWidth={2} dot={{ r: 3 }} />
+                ))}
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Chart 9: Early vs Late Adopters (Radar) */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">Initial Setup vs Recent Signups</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <RadarChart cx="50%" cy="50%" outerRadius="70%" data={earlyLateData}>
+                <PolarGrid stroke="#e2e8f0" />
+                <PolarAngleAxis dataKey="name" tick={{ fill: '#64748b', fontSize: 10 }} />
+                <PolarRadiusAxis angle={30} domain={[0, 'auto']} tick={false} axisLine={false} />
+                <Radar name="Phase 1 Registrations" dataKey="early" stroke="#8b5cf6" fill="#8b5cf6" fillOpacity={0.4} />
+                <Radar name="New Signups (P2-P4)" dataKey="late" stroke="#ec4899" fill="#ec4899" fillOpacity={0.4} />
+                <Tooltip />
+                <Legend wrapperStyle={{ fontSize: '10px' }} />
+              </RadarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Chart 10: Total Net Signups */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">Total Net Signups Since Phase 1</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={netSignupsData} margin={{ top: 10, right: 10, left: 10, bottom: 25 }}>
+                <XAxis dataKey="name" tick={{ fontSize: 10, fill: '#64748b' }} angle={-45} textAnchor="end" interval={0} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} />
+                <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Bar dataKey="signups" fill="#3b82f6" name="Total New Signups" radius={[4, 4, 0, 0]}>
+                  {netSignupsData.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={index < 3 ? '#2563eb' : '#60a5fa'} />
+                  ))}
+                </Bar>
+              </BarChart>
             </ResponsiveContainer>
           </div>
         </div>
