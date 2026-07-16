@@ -1,0 +1,27 @@
+{
+  "pendency_5_days": [
+    { "department": "MCL", "count": 26 },
+    { "department": "Local Govt/EO/MC", "count": 17 },
+    { "department": "PSPCL", "count": 17 },
+    { "department": "Rural Development", "count": 13 },
+    { "department": "CP, Office", "count": 6 },
+    { "department": "PWD", "count": 5 },
+    { "department": "SSP Office Jagraon", "count": 3 },
+    { "department": "SSP Office Khanna", "count": 3 }
+  ],
+  "department_status": [
+    { "department": "MCL", "open": 0, "underProcess": 2, "active": 2, "resolved": 50, "donePct": 96, "stale": 0 },
+    { "department": "Electricity", "open": 0, "underProcess": 15, "active": 15, "resolved": 25, "donePct": 63, "stale": 15 },
+    { "department": "Local Govt", "open": 0, "underProcess": 9, "active": 9, "resolved": 18, "donePct": 67, "stale": 9 },
+    { "department": "Others", "open": 1, "underProcess": 6, "active": 7, "resolved": 14, "donePct": 67, "stale": 6 },
+    { "department": "Rural Dev & Panchayat", "open": 0, "underProcess": 13, "active": 13, "resolved": 4, "donePct": 24, "stale": 13 },
+    { "department": "Law & Order (Police)", "open": 0, "underProcess": 1, "active": 1, "resolved": 43, "donePct": 98, "stale": 1 },
+    { "department": "District Food and Supply", "open": 0, "underProcess": 0, "active": 0, "resolved": 2, "donePct": 100, "stale": 0 },
+    { "department": "PWD", "open": 0, "underProcess": 4, "active": 4, "resolved": 0, "donePct": 0, "stale": 4 },
+    { "department": "Tax and Excise", "open": 0, "underProcess": 1, "active": 1, "resolved": 4, "donePct": 80, "stale": 1 },
+    { "department": "Revenue Department", "open": 0, "underProcess": 0, "active": 0, "resolved": 0, "donePct": 0, "stale": 0 },
+    { "department": "Mandi Board", "open": 0, "underProcess": 0, "active": 0, "resolved": 2, "donePct": 100, "stale": 0 },
+    { "department": "GMADA", "open": 0, "underProcess": 0, "active": 0, "resolved": 0, "donePct": 0, "stale": 0 },
+    { "department": "Pollution Control Board", "open": 0, "underProcess": 0, "active": 0, "resolved": 1, "donePct": 100, "stale": 0 }
+  ]
+}

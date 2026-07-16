@@ -6,6 +6,7 @@ import DrugCensusDashboard from './DrugCensusDashboard';
 import SirDashboard from './SirDashboard';
 import MmmdsyDashboard from './MmmdsyDashboard';
 import RanglaPunjabDashboard from './RanglaPunjabDashboard';
+import PstcDashboard from './PstcDashboard';
 
 export default function OfficerAgendas({ data }: { data: any[] }) {
   const [filter, setFilter] = useState<'all' | 'flagged' | 'completed' | 'in-progress'>('all');
@@ -134,7 +135,7 @@ export default function OfficerAgendas({ data }: { data: any[] }) {
               </div>
 
               {/* Mini Metrics Tag Cloud */}
-              {agenda !== 'Socio-Economic Drug Census' && agenda !== 'SIR' && !agenda.includes('MMMDSY') && agenda !== 'Rangla Punjab Vikas Scheme' && (
+              {agenda !== 'Socio-Economic Drug Census' && agenda !== 'SIR' && !agenda.includes('MMMDSY') && agenda !== 'Rangla Punjab Vikas Scheme' && agenda !== 'PSTC — Supervision (owned by AC-G)' && (
                 <div className="mt-4 ml-3.5 flex flex-wrap gap-2">
                   {groupItems.map((row: any, idx: number) => {
                     const title = row['KPI / Metric'];
@@ -177,6 +178,10 @@ export default function OfficerAgendas({ data }: { data: any[] }) {
                 ) : agenda === 'Rangla Punjab Vikas Scheme' ? (
                   <div className="pt-4 pb-2">
                     <RanglaPunjabDashboard />
+                  </div>
+                ) : agenda === 'PSTC — Supervision (owned by AC-G)' ? (
+                  <div className="pt-4 pb-2">
+                    <PstcDashboard />
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-4 items-start">
