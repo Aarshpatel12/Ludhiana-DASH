@@ -27,7 +27,8 @@ def fetch_sheet(gid, skip_rows=3):
         
         # Drop rows where all elements are NaN
         df.dropna(how='all', inplace=True)
-        # Convert to dictionary records
+        # Convert to dictionary records, filling NaNs with empty strings to avoid invalid JSON
+        df = df.fillna('')
         return df.to_dict('records')
     except Exception as e:
         print(f"Error fetching gid {gid}: {e}")
