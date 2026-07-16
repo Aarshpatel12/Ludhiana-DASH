@@ -54,8 +54,25 @@ export async function POST(req: NextRequest) {
       message = result.response.text().trim();
     } catch (apiError: any) {
       console.warn("Gemini API failed, using fallback message. Error:", apiError.message);
-      // Fallback message if API key fails
-      message = `*Automated Alert for ${officerName}*\n\nPlease prioritize the ${dataSummary.flaggedItems} flagged items immediately. You currently have ${dataSummary.pendingItems} items in progress. Ensure steady progress to meet targets.`;
+      
+      // Build a detailed fallback message manually
+      let specificTasks = "";
+      if (flaggedRows && flaggedRows.length > 0) {
+        specificTasks = "\\n\\n*Critical Focus Areas:*";
+        // Grab top 3 or 4 flagged items to highlight specifically
+        const topFlags = flaggedRows.slice(0, 4);
+        topFlags.forEach((row: any) => {
+          specificTasks += `\\n- *${row['Agenda Group'] || 'Task'}*: ${row['KPI / Metric']} requires immediate intervention.`;
+          if (row['Remarks / Next Steps']) {
+             specificTasks += ` (${row['Remarks / Next Steps']})`;
+          }
+        });
+        if (flaggedRows.length > 4) {
+          specificTasks += `\\n...and ${flaggedRows.length - 4} other flagged items.`;
+        }
+      }
+
+      message = `*Detailed Alert for ${officerName}*\n\nPlease prioritize the ${dataSummary.flaggedItems} flagged items immediately. You currently have ${dataSummary.pendingItems} items in progress.${specificTasks}\n\nEnsure steady progress to meet these targets by end of week.`;
     }
 
     // Instead of sending it server-side, return it to the client
