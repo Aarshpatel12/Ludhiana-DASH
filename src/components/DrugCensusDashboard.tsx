@@ -118,6 +118,22 @@ export default function DrugCensusDashboard() {
     benchmarkPct: parseFloat(str(r['% of 20/day Benchmark']).replace('%', '')) || 0,
   })).filter((d: any) => d.surveysAdded > 0);
 
+  // Prepare Days to Clear Data
+  const daysToClearData = acRows.map((r: any) => ({
+    name: str(r['Assembly Constituency']).replace('Ldh-', 'L-'),
+    currentPace: parseFloat(str(r['Days to Clear @ Current Pace'])) || 0,
+    targetPace: parseFloat(str(r['Days to Clear @ 20/enum/day'])) || 0,
+  })).filter((d: any) => d.currentPace > 0 || d.targetPace > 0);
+
+  // Prepare Booth Granularity Data
+  const boothGranularityData = boothRows.map((r: any) => ({
+    name: str(r['Assembly Constituency']).replace('Ldh-', 'L-'),
+    completed: parseFloat(str(r['Booths at 100%'])) || 0,
+    almostDone: parseFloat(str(r['Booths Between 50% and 99%'])) || 0,
+    lessThan50: parseFloat(str(r['Booths with <50 Surveys'])) || 0,
+    unstarted: parseFloat(str(r['Booths with 0 Surveys'])) || 0,
+  }));
+
   return (
     <div className="space-y-6">
       
@@ -314,6 +330,42 @@ export default function DrugCensusDashboard() {
                 <Bar yAxisId="left" dataKey="surveysAdded" fill="#0ea5e9" radius={[4, 4, 0, 0]} name="Surveys Added (Last 2 Days)" />
                 <Line yAxisId="right" type="monotone" dataKey="benchmarkPct" stroke="#f43f5e" strokeWidth={2} dot={{ r: 3, fill: '#f43f5e' }} name="% of 20/day Benchmark" />
               </ComposedChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Chart 9: Days to Clear */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">Days to Clear (Current vs Target Pace)</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={daysToClearData} margin={{ top: 10, right: 10, left: -20, bottom: 25 }}>
+                <XAxis dataKey="name" tick={{ fontSize: 10, fill: '#64748b' }} angle={-45} textAnchor="end" interval={0} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} />
+                <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px' }} />
+                <Bar dataKey="currentPace" fill="#64748b" name="Days @ Current Pace" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="targetPace" fill="#14b8a6" name="Days @ Target (20/day)" radius={[4, 4, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Chart 10: Booth Granularity */}
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden p-5">
+          <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-4">Booth Progress Distribution by AC</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={boothGranularityData} margin={{ top: 10, right: 10, left: -20, bottom: 25 }}>
+                <XAxis dataKey="name" tick={{ fontSize: 10, fill: '#64748b' }} angle={-45} textAnchor="end" interval={0} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 11, fill: '#64748b' }} axisLine={false} tickLine={false} />
+                <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px' }} />
+                <Bar dataKey="completed" stackId="a" fill="#10b981" name="Completed (100%)" />
+                <Bar dataKey="almostDone" stackId="a" fill="#3b82f6" name="50%-99%" />
+                <Bar dataKey="lessThan50" stackId="a" fill="#facc15" name="<50 Surveys" />
+                <Bar dataKey="unstarted" stackId="a" fill="#ef4444" name="Unstarted (0)" radius={[4, 4, 0, 0]} />
+              </BarChart>
             </ResponsiveContainer>
           </div>
         </div>
